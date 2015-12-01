@@ -1,0 +1,48 @@
+<div id="sidebar-alt">
+    <div id="sidebar-alt-scroll">
+        <div class="sidebar-content">
+            <a class="sidebar-title">
+                <i class="fa fa-comments pull-right"></i> <strong>DSS</strong>Chat
+            </a>
+
+            <form id="sidebar-chat-form" class="chat-form" ng-submit="postMessage()">
+                <div class="input-group">
+                    <input focus-on-change="chatMessage" class="form-control" ng-model="chatMessage"
+                           placeholder="Type a message..">
+                    <!--
+                    <span class="input-group-addon" smilies-selector="chatMessage"
+                          smilies-placement="right" smilies-title="Smilies">
+                    </span>
+                    -->
+                </div>
+            </form>
+            <div class="chat-talk">
+                <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 100%;">
+                    <ul class="media-list">
+                        <li ng-repeat="message in messages" class="media animation-slideRight">
+                            <div class="media-body">
+                                <div class="media">
+                                    <a class="pull-left" href="#">
+                                        <img class="media-object img-circle " ng-src="{{message.image}}">
+                                    </a>
+                                    <div class="media-body" ng-bind-html="message.message | smilies">
+                                    </div>
+                                    <small class="text-muted">{{message.user}} |
+                                        <span time-ago="message.date" class="time-ago"></span>
+                                    </small>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="slimScrollBar"
+                         style="width: 3px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; left: 1px; height: 210px; background: rgb(255, 255, 255);">
+                    </div>
+                    <div class="slimScrollRail"
+                         style="width: 3px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; opacity: 0.2; z-index: 90; left: 1px; background: rgb(51, 51, 51);">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,133 @@
+<nav class="navbar navbar-default" role="navigation">
+    <div class="side-menu-container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">
+                <div class="icon fa fa-paper-plane"></div>
+                <div class="title">Flat Admin V.2</div>
+            </a>
+            <button type="button" class="navbar-expand-toggle pull-right visible-xs">
+                <i class="fa fa-times icon"></i>
+            </button>
+        </div>
+        <ul class="nav navbar-nav">
+            <li ng-if="$root.currentUser" class="purple">
+                <a ui-sref="root.upload" ui-sref-active="active">
+                    <i
+                            class="sidebar-nav-icon fa fa-upload fa-white"></i>Upload
+                </a>
+            </li>
+            <li>
+                <a ui-sref="root.mixes" ui-sref-active="active">
+                    <i class="sidebar-nav-icon fa fa-music"></i>Mixes
+                </a>
+                <b class="arrow"></b>
+            </li>
+            <li>
+                <a ui-sref="root.schedule" ui-sref-active="active">
+                    <i class="sidebar-nav-icon fa fa-calendar"></i>Schedule
+                </a>
+                <b class="arrow"></b>
+            </li>
+            <li ng-if="isInRole('admin')">
+                <a ui-sref="root.radio" ui-sref-active="active">
+                    <i class="sidebar-nav-icon fa fa-signal"></i>Radio Admin
+                </a>
+                <b class="arrow"></b>
+            </li>
+            <li>
+                <a ui-sref="root.users" ui-sref-active="active">
+                    <i
+                            class="sidebar-nav-icon fa fa-user"></i>Users
+                </a>
+            </li>
+            <li ng-if="$root.currentUser" class="purple">
+                <a ui-sref-active="active" ui-sref="root.me">
+                    <i
+                            class="sidebar-nav-icon fa fa-users"></i>My Profile
+                </a>
+            </li>
+            <li ng-if="$root.currentUser">
+                <a ui-sref-active="active" ui-sref="root.me.edit">
+                    <i
+                            class="sidebar-nav-icon fa fa-cogs"></i>Settings
+                </a>
+            </li>
+            <li ng-if="$root.currentUser &amp;&amp; False">
+                <a id="header-stream-button" ui-sref-active="active"
+                   href="/stream"
+                   title="Show mixes from people you follow">
+                    <i
+                            class="sidebar-nav-icon fa fa-dot-circle-o fa-white"></i>Stream
+                </a>
+            </li>
+            <li ng-if="False">
+                <a id="header-random-button" ui-sref-active="active" data-bypass="true"
+                   title="Show random mix from our vaults">
+                    <i class="sidebar-nav-icon fa fa-cogs"></i>Random
+                </a>
+            </li>
+            <li ng-if="False">
+                <a ui-sref-active="active" data-bypass="true" target="_blank" href="/podcast">
+                    <i
+                            class="sidebar-nav-icon fa fa-rss"></i>Podcast
+                </a>
+            </li>
+            <li ng-if="liveEnabled" class="purple">
+                <a id="header-live-button" ui-sref-active="active" data-bypass="true"
+                   class="btn-success">
+                    <i id="header-live-icon"
+                       class="sidebar-nav-icon fa fa-headphones"></i>Listen
+                    Live
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- /.navbar-collapse -->
+</nav>
+
+<div class="sidebar-scroll">
+    <div class="sidebar-content">
+        <a href="/" class="sidebar-brand">
+            <i class="fa fa-2x fa-heartbeat"></i><span>Deep<small>south</small>Sounds</span>
+        </a>
+
+        <div id="sidebar-currentuser" ng-if="$root.currentUser" class="sidebar-section sidebar-user clearfix">
+            <div class="sidebar-user-avatar">
+                <a ui-sref="root.users.user({slug: $root.currentUser.slug})">
+                    <img
+                        ng-src="{{$root.currentUser.profile_image_medium}}" alt="avatar"/>
+                </a>
+            </div>
+            <a ui-sref="root.users.user({slug: $root.currentUser.slug})" class="sidebar-user-name">{{$root.currentUser.display_name}}</a>
+
+            <div class="sidebar-user-links">
+                <a ui-sref="root.users.user({slug: $root.currentUser.slug})"
+                   data-toggle="tooltip" data-placement="bottom"
+                   title="Profile">
+                    <i class="fa fa-user"></i>
+                </a>
+                <a href="#"
+                   data-toggle="tooltip"
+                   data-placement="bottom"
+                   title="Messages">
+                    <i class="fa fa-envelope-o"></i>
+                </a>
+                <a ui-sref="root.users.edit({slug: $root.currentUser.slug})"
+                   data-toggle="tooltip" data-placement="bottom"
+                   title="Settings" class="enable-tooltip">
+                    <i
+                        class="fa fa-cogs"></i>
+                </a>
+                <a href="#" ng-click="logout()"
+                   data-toggle="tooltip" title="Logout">
+                    <i class="fa fa-sign-out"></i>
+                </a>
+            </div>
+        </div>
+
+        <div class="sidebar-section sidebar-nav-mini-hide">
+            <dss-radio-player></dss-radio-player>
+        </div>
+
+    </div>
+</div>

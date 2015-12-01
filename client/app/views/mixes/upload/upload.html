@@ -1,0 +1,156 @@
+<div ng-hide="$root.currentUser" class="row">
+    <button type="button" ng-click="login()" class="btn btn-sm btn-danger">Login</button>
+</div>
+<div ng-show="$root.currentUser" class="row">
+    <div ng-show="uploadState != uploadStates.VIRGIN && (!detailsEntered || uploadState == uploadStates.EDIT_MODE)"
+         class="col-md-8">
+        <div class="block">
+            <div class="block-title">
+                <h2>Mix<strong>Details</strong></h2>
+            </div>
+            <form name="uploadForm" ng-submit="saveMix()" class="form-horizontal form-bordered">
+                <input type="hidden" ng-model="mix.uid"/>
+
+                <div id="title-area" show-errors="{ trigger: 'keypress' }" class="form-group"
+                     ng-class="uploadForm.title.$invalid ? 'error' : ''">
+                    <label for="title" class="col-sm-3 control-label">Title</label>
+
+                    <div class="col-sm-6">
+                        <input type="text" id="title" name="title" required="" ng-minlength="5" ng-maxlength="250"
+                               ng-model="mix.title" class="form-control input-sm"/>
+
+                        <p for="title" ng-show="uploadForm.title.$invalid &amp;&amp; uploadForm.title.$dirty"
+                           class="help-block">Title must be between 5 and 250 characters</p>
+
+                        <p for="title"
+                           ng-show="(uploadForm.title.$error.required) &amp;&amp; uploadForm.$dirty &amp;&amp;!(uploadForm.title.$invalid &amp;&amp; uploadForm.title.$dirty)"
+                           class="help-block">Title is a must</p>
+                    </div>
+                </div>
+                <div id="description-area" show-errors="" class="form-group">
+                    <label for="description" class="col-sm-3 control-label">Description</label>
+
+                    <div class="col-sm-6">
+                        <textarea type="text" id="description" name="description" rows="5" required="" ng-minlength="10"
+                                  ng-maxlength="2000" ng-model="mix.description" class="form-control"></textarea>
+
+                        <p for="description"
+                           ng-show="uploadForm.description.$invalid &amp;&amp; uploadForm.description.$dirty"
+                           class="help-block">Description must be between 10 and 2000 characters</p>
+
+                        <p for="description"
+                           ng-show="(uploadForm.description.$error.required) &amp;&amp; uploadForm.$dirty &amp;&amp;!(uploadForm.description.$invalid &amp;&amp; uploadForm.description.$dirty)"
+                           class="help-block">Description is a must</p>
+                    </div>
+                </div>
+                <div id="image-area" class="form-group">
+                    <label class="col-sm-3 control-label">Image</label>
+                    <div class="col-sm-3">
+                        <div data-provides="fileinput" class="fileinput fileinput-new">
+                            <div data-trigger="fileinput" style="width: 200px; height: 150px;"
+                                 class="fileinput-preview thumbnail">
+                                <img id="mix-image"
+                                     ng-src="{{mix.mix_image ? mix.mix_image : &quot;assets/images/image-upload-placeholder.png&quot;}}"
+                                     class="editable img-responsive image-user-profile"/>
+                            </div>
+                            <div>
+                                <span class="btn btn-default btn-file">
+                                    <span class="fileinput-new">Select image</span>
+                                    <span class="fileinput-exists">Change</span>
+                                    <input id="mix-image-fileinput" type="file" name="..."/>
+                                </span>
+                                <a href="#" data-dismiss="fileinput" class="btn btn-default fileinput-exists">
+                                    Remove
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <table class="table table-striped table-vcenter">
+                            <tbody>
+                            <tr>
+                                <td>
+                                    Private
+                                </td>
+                                <td>
+                                    <div class="checkbox">
+                                        <label class="switch switch-primary">
+                                            <input ng-model="mix.is_private" type="checkbox" checked="">
+                                            <span></span>
+                                        </label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Downloadable
+                                </td>
+                                <td>
+                                    <div class="checkbox">
+                                        <label class="switch switch-primary">
+                                            <input ng-model="mix.is_downloadable" type="checkbox" checked="">
+                                            <span></span>
+                                        </label>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Homepage
+                                </td>
+                                <td>
+                                    <div class="checkbox">
+                                        <label class="switch switch-primary">
+                                            <input ng-model="mix.is_featured" type="checkbox" checked="">
+                                            <span></span>
+                                        </label>
+                                    </div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div id="genres-area" class="form-group">
+                    <label for="genres" class="col-sm-3 control-label">Genres</label>
+
+                    <div class="col-sm-6">
+                        <input id="genres" style="width:98%" ng-model="mix.genres"/>
+                    </div>
+                </div>
+                <div id="submit-area" class="form-group form-actions">
+                    <div class="col-sm-9 col-sm-offset-3">
+                        <button formnovalidate="" type="submit" class="btn btn-sm btn-primary"
+                                ng-disabled="sending">
+                            <i class="fa fa-save"></i> Save
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div ng-show="uploadState <= uploadStates.AUDIO_SENT" class="col-md-4">
+        <div class="block full">
+            <div class="block-title">
+                <h2><strong>Audio file</strong>
+                    <small>{{waveformHeader}}</small>
+                </h2>
+            </div>
+            <div ng-show="uploadState==2" class="widget widget-simple">
+                <div>
+                    <img src="/assets/images/waveform-interstitial.gif" style="width: 100%; height: 132px;">
+
+                    <div>
+                        <p ng-bind-html="waveformFooter | unsafe"></p>
+                    </div>
+                </div>
+            </div>
+            <div ng-show="uploadState==1" class="progress progress-striped">
+                <div role="progressbar" aria-valuenow="uploadProgress" aria-valuemin="0" aria-valuemax="100"
+                     ng-style="uploadProgressStyle" class="progress-bar progress-bar-success">{{uploadProgress}}%
+                </div>
+            </div>
+            <form id="dss-file-upload" ng-show="uploadState==0" class="dropzone"></form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+<div class="modal-header">
+    <button type="button" data-dismiss="modal" aria-hidden="true" ng-click="doClose(false)" class="close">×</button>
+    <h4 class="modal-title">Add new show</h4>
+</div>
+<div class="modal-body">
+    <dss-scheduler></dss-scheduler>
+</div>
+<div class="modal-footer">
+    <button ng-show="editing" type="button" ng-click="doDelete()" class="btn btn-sm btn-danger pull-left">Delete</button>
+    <button type="button" ng-click="doClose(false)" class="btn btn-sm btn-default">Cancel</button>
+    <button type="button" ng-click="doClose(true)" class="btn btn-sm btn-primary"
+            ng-bind="editing ? 'Update show' : 'Create show'"></button>
+</div>

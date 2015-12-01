@@ -1,0 +1,69 @@
+<div class="block-section">
+    <div class="form-horizontal container-fluid">
+        <div class="form-group">
+            <label class="col-sm-2 control-label scheduler-label">Start Date</label>
+
+            <div class="row col-sm-10">
+                <div class="col-sm-6 form-group" ng-class="{'has-error': errors.start_date}">
+                    <div class="input-group date">
+                        <input id="start-date" size="16" type="text" ng-model="vm.start_date"
+                               class="form-control form_datetime">
+                        <span class="input-group-addon">
+                            <i class="fa fa-th"></i>
+                        </span>
+                    </div>
+                    <span ng-show="errors.start_date" class="help-inline has-error" ng-bind="errors.start_date"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group repeat-container">
+            <label class="col-sm-2 control-label scheduler-label">Repeat</label>
+
+            <div class="row col-sm-10">
+                <div class="col-sm-6 form-group">
+                    <div class="input-group date">
+                        <select id="recurrence" class="form-control span2 col-sm-2" ng-model="vm.recurrence">
+                            <option value="0">Once</option>
+                            <option value="1">Weekly</option>
+                            <option value="2">Monthly</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group repeat-container" ng-class="{'has-error': errors.mix}">
+            <label class="col-sm-2 control-label scheduler-label">Mix</label>
+            <div class="col-sm-10">
+                <div class="form-group">
+                    <dss-search-mix></dss-search-mix>
+                </div>
+                <span ng-show="errors.mix" class="help-inline has-error" ng-bind="errors.mix"></span>
+            </div>
+        </div>
+        <div class="form-group repeat-container" ng-class="{'has-error': errors.performer}">
+            <label class="col-sm-2 control-label scheduler-label">Dj</label>
+            <div class="col-sm-10">
+                <div class="form-group">
+                    <input type="text"
+                           class="form-control"
+                           ng-model="vm.performer.display_name"
+                           placeholder="Type to search"
+                           typeahead="result as result.name for results in getUserSearchResults($viewValue)"
+                           typeahead-on-select="chooseValue($item)"
+                           typeahead-template-url="app/directives/scheduler/djSearchResult.html">
+                </div>
+                <span ng-show="errors.performer" class="help-inline has-error" ng-bind="errors.performer"></span>
+            </div>
+        </div>
+        <div class="form-group" ng-class="{'has-error': errors.description}">
+            <label class="col-sm-2 control-label scheduler-label">Description</label>
+            <div class="col-sm-10">
+                <div class="form-group">
+                    <input type="text" placeholder="Event description..."
+                           class="form-control" ng-model="vm.description"/>
+                </div>
+                <span ng-show="errors.description" class="help-inline has-error" ng-bind="errors.description"></span>
+            </div>
+        </div>
+    </div>
+</div>

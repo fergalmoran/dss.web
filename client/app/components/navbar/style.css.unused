@@ -1,0 +1,245 @@
+
+.navbar-default,
+.navbar-default .dropdown-menu,
+.navbar-default .navbar-toggle,
+.navbar-default .navbar-toggle:focus,
+.navbar-default .navbar-toggle:hover {
+  background-color: #2C3E50;
+}
+
+.navbar-default .navbar-nav>.active>a,
+.navbar-default .navbar-nav>.active>a:focus,
+.navbar-default .navbar-nav>.active>a:hover,
+.navbar-default .navbar-nav>.open>a,
+.navbar-default .navbar-nav>.open>a:focus,
+.navbar-default .navbar-nav>.open>a:hover,
+.navbar-default .dropdown-menu>li>a:focus,
+.navbar-default .dropdown-menu>li>a:hover,
+.navbar-default .dropdown-menu .divider {
+  background-color: #1E2A36;
+}
+
+.navbar-default .badge {
+  background-color: #18BC9C;
+}
+
+.navbar-default .navbar-toggle .icon-bar,
+.navbar-default .input-group-addon {
+  background-color: #FFF;
+}
+
+/*-*/
+
+.navbar-inverse,
+.navbar-inverse .dropdown-menu,
+.navbar-inverse .navbar-toggle,
+.navbar-inverse .navbar-toggle:focus,
+.navbar-inverse .navbar-toggle:hover {
+  background-color: #18BC9C;
+}
+
+.navbar-inverse .navbar-nav>.active>a,
+.navbar-inverse .navbar-nav>.active>a:focus,
+.navbar-inverse .navbar-nav>.active>a:hover,
+.navbar-inverse .navbar-nav>.open>a,
+.navbar-inverse .navbar-nav>.open>a:focus,
+.navbar-inverse .navbar-nav>.open>a:hover,
+.navbar-inverse .dropdown-menu>li>a:focus,
+.navbar-inverse .dropdown-menu>li>a:hover,
+.navbar-inverse .dropdown-menu .divider {
+  background-color: #15A287;
+}
+
+.navbar-inverse .badge {
+  background-color: #2C3E50;
+}
+
+.navbar-inverse .navbar-toggle .icon-bar,
+.navbar-inverse .input-group-addon {
+  background-color: #FFF;
+}
+
+/* =COLOR */
+.navbar-default .navbar-brand,
+.navbar-default .navbar-nav>li>a,
+.navbar-default .navbar-nav>.active>a,
+.navbar-default .navbar-nav>.active>a:focus,
+.navbar-default .navbar-nav>.active>a:hover,
+.navbar-default .navbar-nav>.open>a,
+.navbar-default .navbar-nav>.open>a:focus,
+.navbar-default .navbar-nav>.open>a:hover,
+.navbar-default .dropdown-menu>li>a,
+.navbar-default .badge {
+  color: #FFF;
+}
+
+.navbar-default .navbar-form .form-control {
+  color: #2C3E50;
+}
+
+.navbar-default .navbar-brand:focus,
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-nav>li>a:focus,
+.navbar-default .navbar-nav>li>a:hover {
+  color: #18BC9C;
+}
+
+.navbar-default .dropdown-header,
+.navbar-default .dropdown-menu>.disabled>a,
+.navbar-default .dropdown-menu>.disabled>a:focus,
+.navbar-default .dropdown-menu>.disabled>a:hover,
+.navbar-default .input-group-addon {
+  color: #C5D4DB;
+}
+
+.navbar-default .navbar-form .form-control::-webkit-input-placeholder {
+  color: #C5D4DB;
+}
+
+.navbar-default .navbar-form .form-control::-moz-placeholder {
+  color: #C5D4DB;
+}
+
+.navbar-default .navbar-form .form-control:-moz-placeholder {
+  color: #C5D4DB;
+}
+
+.navbar-default .navbar-form .form-control:-ms-input-placeholder {
+  color: #C5D4DB;
+}
+
+/*-*/
+
+.navbar-inverse .navbar-brand,
+.navbar-inverse .navbar-nav>li>a,
+.navbar-inverse .navbar-nav>.active>a,
+.navbar-inverse .navbar-nav>.active>a:focus,
+.navbar-inverse .navbar-nav>.active>a:hover,
+.navbar-inverse .navbar-nav>.open>a,
+.navbar-inverse .navbar-nav>.open>a:focus,
+.navbar-inverse .navbar-nav>.open>a:hover,
+.navbar-inverse .dropdown-menu>li>a,
+.navbar-inverse .badge {
+  color: #FFF;
+}
+
+.navbar-inverse .navbar-brand:focus,
+.navbar-inverse .navbar-brand:hover,
+.navbar-inverse .navbar-nav>li>a:focus,
+.navbar-inverse .navbar-nav>li>a:hover,
+.navbar-inverse .navbar-form .form-control {
+  color: #2C3E50;
+}
+
+.navbar-inverse .dropdown-header,
+.navbar-inverse .dropdown-menu>.disabled>a,
+.navbar-inverse .dropdown-menu>.disabled>a:focus,
+.navbar-inverse .dropdown-menu>.disabled>a:hover,
+.navbar-inverse .input-group-addon {
+  color: #C5D4DB;
+}
+
+.navbar-inverse .navbar-form .form-control::-webkit-input-placeholder {
+  color: #C5D4DB;
+}
+
+.navbar-inverse .navbar-form .form-control::-moz-placeholder {
+  color: #C5D4DB;
+}
+
+.navbar-inverse .navbar-form .form-control:-moz-placeholder {
+  color: #C5D4DB;
+}
+
+.navbar-inverse .navbar-form .form-control:-ms-input-placeholder {
+  color: #C5D4DB;
+}
+
+/* =MEDIA QUERIES */
+@media (max-width: 767px) {
+  /* BACKGROUND */
+  .navbar-default .navbar-nav .open .dropdown-menu>li>a:focus,
+  .navbar-default .navbar-nav .open .dropdown-menu>li>a:hover,
+  .navbar-default .navbar-nav .open .dropdown-menu .divider,
+  .navbar-default .navbar-form .form-control,
+  .navbar-default .input-group-addon {
+    background-color: #1E2A36;
+  }
+
+  /*-*/
+  
+  .navbar-inverse .navbar-nav .open .dropdown-menu>li>a:focus,
+  .navbar-inverse .navbar-nav .open .dropdown-menu>li>a:hover,
+  .navbar-inverse .navbar-nav .open .dropdown-menu .divider,
+  .navbar-inverse .navbar-form .form-control,
+  .navbar-inverse .input-group-addon {
+    background-color: #15A287;
+  }
+
+  /* COLOR */
+  .navbar-default .navbar-nav .open .dropdown-menu>li>a,
+  .navbar-default .navbar-nav .open .dropdown-menu>li>a:focus,
+  .navbar-default .navbar-nav .open .dropdown-menu>li>a:hover {
+    color: #FFF;
+  }
+
+  .navbar-default .navbar-form .form-control::-webkit-input-placeholder {
+    color: #2C3E50;
+  }
+
+  .navbar-default .navbar-form .form-control::-moz-placeholder {
+    color: #2C3E50;
+  }
+
+  .navbar-default .navbar-form .form-control:-moz-placeholder {
+    color: #2C3E50;
+  }
+
+  .navbar-default .navbar-form .form-control:-ms-input-placeholder {
+    color: #2C3E50;
+  }
+
+  .navbar-default .input-group-addon {
+    color: #2C3E50;
+  }
+
+  .navbar-default .navbar-nav .open .dropdown-menu>.disabled>a,
+  .navbar-default .navbar-nav .open .dropdown-menu>.disabled>a:focus,
+  .navbar-default .navbar-nav .open .dropdown-menu>.disabled>a:hover {
+    color: #C5D4DB;
+  }
+
+  /*-*/
+
+  .navbar-inverse .navbar-nav .open .dropdown-menu>li>a,
+  .navbar-inverse .navbar-nav .open .dropdown-menu>li>a:focus,
+  .navbar-inverse .navbar-nav .open .dropdown-menu>li>a:hover {
+    color: #FFF;
+  }
+
+  .navbar-inverse .navbar-form .form-control::-webkit-input-placeholder {
+    color: #18BC9C;
+  }
+
+  .navbar-inverse .navbar-form .form-control::-moz-placeholder {
+    color: #18BC9C;
+  }
+
+  .navbar-inverse .navbar-form .form-control:-moz-placeholder {
+    color: #18BC9C;
+  }
+
+  .navbar-inverse .navbar-form .form-control:-ms-input-placeholder {
+    color: #18BC9C;
+  }
+
+  .navbar-inverse .input-group-addon {
+    color: #18BC9C;
+  }
+
+  .navbar-inverse .navbar-nav .open .dropdown-menu>.disabled>a,
+  .navbar-inverse .navbar-nav .open .dropdown-menu>.disabled>a:focus,
+  .navbar-inverse .navbar-nav .open .dropdown-menu>.disabled>a:hover {
+    color: #C5D4DB;
+  }
+}

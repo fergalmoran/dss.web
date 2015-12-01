@@ -1,0 +1,46 @@
+<div class="page-header" ng-show="$root.currentUser" >
+    <div class="pull-left">
+        <h1>Welcome<strong> {{$root.currentUser.first_name}}</strong><br/>
+            <small>You're looking well!</small>
+        </h1>
+    </div>
+    <div class="pull-right">
+        <ul class="minitiles" ng-if="false">
+            <li class="grey">
+                <a ui-sref="root.users.edit" data-toggle="tooltip" title="settings">
+                    <i class="fa fa-cogs"></i>
+                </a>
+            </li>
+        </ul>
+        <ul class="stats">
+            <li class="satgreen">
+                <i class="fa fa-headphones"></i>
+                <div class="details">
+                    <span class="big">{{$root.currentUser.mix_count}}</span>
+                    <span>Mixes</span>
+                </div>
+            </li>
+            <li class="satblue">
+                <i class="fa fa-thumbs-up"></i>
+                <div class="details">
+                    <span class="big">{{$root.currentUser.likes.length}}</span>
+                    <span>Likes</span>
+                </div>
+            </li>
+            <li class="red">
+                <i class="fa fa-heart"></i>
+                <div class="details">
+                    <span class="big">{{$root.currentUser.favourites.length}}</span>
+                    <span>Favourites</span>
+                </div>
+            </li>
+            <li class="lightred" ng-if="$root.currentUser.followers.length > 0">
+                <i class="fa fa-users"></i>
+                <div class="details">
+                    <span class="big">{{$root.currentUser.followers.length}}</span>
+                    <span>Followers</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

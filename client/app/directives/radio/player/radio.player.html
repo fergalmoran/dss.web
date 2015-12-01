@@ -1,0 +1,10 @@
+<div class="alert alert-success alert-alt text-">
+    DSS Radio: Now playing
+    <br>
+    <a ng-click="playRadio()" href="#">
+        <i class="fa fa-fw"
+           ng-class="radioPlaying ? 'fa-stop text-danger' : 'fa-play text-success'"></i>
+        {{radioNowPlaying}}
+    </a>
+    <i ng-if="radioLoading" class="fa fa-spinner fa-spin"></i>
+</div>

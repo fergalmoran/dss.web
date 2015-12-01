@@ -1,0 +1,44 @@
+<div class="box">
+    <div class="box-title">
+        <a ui-sref="root.mixes.mix({slug: mix.slug})"><h3><i class="fa fa-headphones"></i>{{mix.title}}</h3></a>
+        <div class="actions">
+            <a href="#" class="btn btn-mini content-refresh">
+                <i class="fa fa-refresh"></i>
+            </a>
+            <a href="#" class="btn btn-mini content-remove">
+                <i class="fa fa-times"></i>
+            </a>
+            <a href="#" class="btn btn-mini content-slideUp">
+                <i class="fa fa-angle-down"></i>
+            </a>
+        </div>
+    </div>
+    <div class="box-content">
+        <div class="col-md-4 image-container widget-advanced"
+             style="background-image: url('{{mix.mix_image}}');">
+            <div style="background-image: url('{{mix.user.profile_image_small}}')"
+                 class="widget-image-container animation-hatch">
+                <div ng-class="playState==1 ? 'pause' : 'play'" style="display: block" ng-click="play(mix)"
+                     class="playbtn play"></div>
+            </div>
+        </div>
+        <div class="col-md-7 pull-right">
+            <div class="row">
+                <h4></h4>
+            </div>
+            <div class="row">
+                <aside>By <a ui-sref="root.users.user({slug: mix.user.slug})">{{mix.user.display_name}}</a></aside>
+            </div>
+            <div class="row">
+                <div class="btn-group mix-tools" role="group" aria-label="Default button group">
+                    <button type="button" class="btn" title="Share" data-toggle="tooltip">
+                        <i class="glyphicon glyphicon-share"></i></button>
+                    <button type="button" class="btn" title="Add to" data-toggle="tooltip">
+                        <i class="glyphicon glyphicon-plus"></i></button>
+                    <button type="button" class="btn" title="Favourite" data-toggle="tooltip">
+                        <i class="glyphicon glyphicon-heart-empty"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

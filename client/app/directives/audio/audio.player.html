@@ -1,0 +1,144 @@
+<div id="ap1" style="width:100%; " class="skin-wave skin-wave-mode-normal audioplayer loaded">
+    <div class="audioplayer-inner">
+        <a class="the-thumb-con">
+            <div style="background-image:url({{mix.mix_image}})" class="the-thumb"></div>
+        </a>
+
+        <div class="ap-controls">
+            <dss-waveform class="hidden-xs"></dss-waveform>
+            <div ng-show="addingComment" class="lower-container add-comment animate-show">
+                <div class="input-group comment-add-form pull-right">
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-primary">
+                            <i class="fa fa-pencil"></i>
+                        </button>
+                    </span>
+                    <input type="text" placeholder="Add comment"
+                           ng-keyup="$event.keyCode == 13 &amp;&amp; addComment($event)"
+                           ng-show="addingComment"
+                           show-focus="addingComment" class="form-control"/>
+                </div>
+            </div>
+            <div ng-hide="addingComment" class="lower-container mix-details animate-show">
+                <div class="control-container pull-left">
+                    <div class="con-controls">
+                        <div class="the-bg"></div>
+                        <div ng-click="play($event)" class="con-playpause">
+                            <div ng-show="(playState == 0 || playState == 2)" class="playbtn">
+                                <div class="play-icon"></div>
+                                <div class="play-icon-hover"></div>
+                            </div>
+                            <div ng-show="(playState == 1)" class="pausebtn">
+                                <div class="pause-icon">
+                                    <div class="pause-part-1"></div>
+                                    <div class="pause-part-2"></div>
+                                </div>
+                                <div class="pause-icon-hover"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="left: 56px;" class="meta-artist-con hidden-xs">
+                        <a ui-sref="root.users.user({slug: mix.user.slug})"
+                           class="the-artist ng-binding">
+                            {{mix.user.display_name}}
+                        </a>
+                        <a href="#" ng-click="toggleFollow()" ng-show="currentUser"
+                           tooltip="tooltip" data-toggle="tooltip"
+                           title="{{mix.user.is_following ? 'Unfollow' : 'Follow'}} {{mix.user.display_name}}"
+                           data-placement="top">
+                            <i class="fa fa-user-plus"
+                               ng-class="mix.user.is_following ? 'text-danger' : 'text-success'"></i>
+                        </a>
+
+                        <div class="meta-artist"><span class="the-name ng-binding">{{mix.title}}</span></div>
+                    </div>
+                </div>
+                <div class="activity-container pull-right hidden-xs">
+                    <div ng-show="true" class="form-group remove-margin-top remove-margin-bottom">
+                        <div class="btn-group btn-group-xs">
+                            <ul class="list-nostyle list-horiz">
+                                <li class="stats-item bordered-right">
+                                    <button ng-click="shareEmbed()" class="btn btn-small"><i
+                                            class="fa fa-wordpress color-blue"></i></button>
+                                </li>
+                                <li class="stats-item bordered-right">
+                                    <button ng-click="shareFacebook()" class="btn btn-small"><i
+                                            class="fa fa-facebook-square color-blue"></i></button>
+                                </li>
+                                <li class="stats-item bordered-right">
+                                    <button class="btn btn-small">
+                                        <i ng-click="shareTwitter()" class="fa fa-twitter-square"></i>
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="btn-group btn-group-xs hidden-xs block-options">
+                            <ul class="list-nostyle list-horiz">
+                                <li title="{{ mix.plays.length }} Plays" class="stats-item bordered-right">
+                                    <span tooltip="tooltip" data-toggle="tooltip" title="Plays"
+                                          class="btn btn-alt btn-sm btn-default non-url-button">
+                                        <i class="fa fa-play-circle"></i>
+                                        {{ mix.plays.length }}
+                                    </span>
+                                </li>
+                                <li title="{{ mix.downloads.length }} Downloads" class="stats-item bordered-right">
+                                    <span ng-show="$root.currentUser">
+                                        <button ng-show="mix.is_downloadable" ng-click="downloadFile()" tooltip="tooltip"
+                                                data-toggle="tooltip" title="Download"
+                                                class="btn btn-alt btn-sm btn-default">
+                                            <i class="fa fa-download"></i>
+                                            {{ mix.downloads.length }}
+                                        </button>
+                                    </span>
+                                    <span ng-show="!$root.currentUser">
+                                        <span ng-show="mix.is_downloadable" tooltip="tooltip" data-toggle="tooltip"
+                                              ng-click="login()" title="Login to download" class="btn btn-alt btn-sm btn-default">
+                                            <i class="fa fa-download"></i>
+                                            {{ mix.downloads.length }}
+                                        </span>
+                                    </span>
+                                </li>
+                                <li title="{{ mix.likes.length }} Likes" ng-show="$root.currentUser"
+                                    class="stats-item bordered-right">
+                                    <a ng-click="toggleLike()"
+                                       ng-class="mix.is_liked ? 'btn-danger' : 'btn-success'"
+                                       tooltip="tooltip" data-toggle="tooltip"
+                                       ng-attr-title="{{mix.is_liked ? 'Unlike' : 'Like'}}"
+                                       data-placement="top"
+                                       class="btn btn-alt btn-sm btn-default"><i
+                                            class="fa fa-heart"></i>{{ mix.likes.length }}
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div ng-show="mix.can_edit" class="btn-group btn-group-xs hidden-xs">
+                            <ul class="list-nostyle list-horiz">
+                                <li ng-click="editMix()" class="stats-item bordered-right">
+                                    <button class="btn btn-small btn-success"><i class="fa fa-pencil-square-o"></i>Edit
+                                    </button>
+                                </li>
+                                <li ng-click="deleteMix()" class="stats-item bordered-right">
+                                    <button class="btn btn-small btn-danger"><i class="fa fa-times"></i>Delete</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="width: 920px; left: 220px;" ng-click="showCommentForm($event)" class="comments-holder active">
+        <div class="the-bg"></div>
+        <span ng-style="{'left': + (comment.time_index/mix.duration) * 100 + '%'}"
+              ng-repeat="comment in comments | filter: { time_index: '!0' }"
+              class="a-comment with-tooltip">
+            <div class="aux-padder"></div>
+            <span style="width: 250px;" class="dzstooltip skin-black">
+                <span class="the-comment-author">@{{comment.user}}</span> says:<br/>{{comment.comment}}
+            </span>
+           <div style="background-image: url({{comment.avatar_image}})" class="the-avatar">
+           </div>
+        </span>
+    </div>
+    <div class="clear"></div>
+</div>

@@ -1,0 +1,76 @@
+@import url('//fonts.googleapis.com/css?family=Open+Sans:300,400,400italic,600,600italic,700,700italic');
+@import 'font-awesome/less/font-awesome.less';
+
+@fa-font-path: '/bower_components/font-awesome/fonts';
+
+// injector
+@import 'components/comments/comments.less';
+@import 'components/footer/footer.less';
+@import 'components/messagepopup/messagepopup.less';
+@import 'components/navbar/navbar.less';
+@import 'directives/activity/activityFeed.less';
+@import 'directives/audio/audio.player.less';
+@import 'directives/notifications/notifications.less';
+@import 'directives/playlist/playlist.less';
+@import 'directives/scheduler/scheduler.less';
+@import 'directives/waveform/waveform.less';
+@import 'views/home/home.less';
+@import 'views/mixes/item/mix.less';
+@import 'views/mixes/mixes.less';
+@import 'views/mixes/upload/upload.less';
+@import 'views/schedule/schedule.less';
+@import 'views/users/item/userItem.less';
+@import 'views/users/users.less';
+// endinjector
+
+#page-content {
+    min-height: 894px;
+}
+
+.list-nostyle {
+    list-style: none outside none;
+    margin: 0;
+}
+
+.list-horiz li {
+    float: left;
+    list-style-type: none;
+    position: relative;
+    padding-right: 20px;
+}
+
+.truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.non-url-button {
+    cursor: default;
+}
+
+.chat-talk {
+    padding-top: 5px;
+}
+
+.slimScrollDiv {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.sidebar-alt-visible-lg #sidebar-alt {
+    width: 300px !important;
+}
+
+.sidebar-alt-visible-lg #main-container {
+    margin-right: 300px !important;
+}
+
+.sidebar-alt-visible-lg.header-fixed-top header.navbar-fixed-top, .sidebar-alt-visible-lg.header-fixed-bottom header.navbar-fixed-bottom,
+.sidebar-alt-visible-lg.footer-fixed #main-container #page-content + footer {
+    right: 300px !important;
+}
+
+.sidebar-content {
+    width: 100% !important;
+}
