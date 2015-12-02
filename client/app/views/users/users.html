@@ -1,10 +1,28 @@
+<div class="col-sm-4 col-md-4" ng-repeat="user in users">
+    <div class="post">
+        <div class="post-img-content">
+            <a ui-sref="root.users.user({slug: user.slug})">
+                <img class="userlist-profile-image" ng-src="{{user.profile_image_medium}}" class="img-responsive"/>
+            </a>
+            <br/>
+            <span class="post-title">
+                <b>{{user.display_name}}</b>
+            </span>
+        </div>
+        <div class="content">
+            <div>
+               {{user.title}}
+            </div>
+        </div>
+    </div>
+</div>
+<!--
 <div ng-repeat="user in users" class="col-md-4">
     <div class="widget">
         <div class="widget-advanced widget-advanced-alt">
             <div class="widget-header text-left">
                 <img ng-src="{{user.profile_image_header}}" alt="background"
                      class="widget-background animation-pulseSlow">
-
                 <h3 class="widget-content widget-content-image widget-content-light clearfix">
                     <a ui-sref="root.users.user({slug: user.slug})" class="pull-right">
                         <img ng-src="{{user.profile_image_medium}}" alt="avatar" class="widget-image img-circle">
@@ -56,3 +74,4 @@
         </div>
     </div>
 </div>
+-->

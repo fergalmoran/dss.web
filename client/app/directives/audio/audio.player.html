@@ -113,11 +113,11 @@
                         </div>
                         <div ng-show="mix.can_edit" class="btn-group btn-group-xs hidden-xs">
                             <ul class="list-nostyle list-horiz">
-                                <li ng-click="editMix()" class="stats-item bordered-right">
+                                <li ng-click="editMix(mix)" class="stats-item bordered-right">
                                     <button class="btn btn-small btn-success"><i class="fa fa-pencil-square-o"></i>Edit
                                     </button>
                                 </li>
-                                <li ng-click="deleteMix()" class="stats-item bordered-right">
+                                <li ng-click="deleteMix(mix)" class="stats-item bordered-right">
                                     <button class="btn btn-small btn-danger"><i class="fa fa-times"></i>Delete</button>
                                 </li>
                             </ul>

@@ -1,27 +1,23 @@
-<div data-category="music" class="media-items animation-fadeInQuickInv">
-    <div class="media-items-options text-left">
-        <a ng-click="play($event)" class="btn btn-xs btn-primary"
-           data-toggle="tooltip" title="Play Mix">
-            <i ng-class="playState==1 ? 'fa-pause' : 'fa-play'" class="fa"></i>
-        </a>
-        <a ng-show="mix.can_edit" ng-click="editMix()" class="btn btn-xs btn-primary"
-           data-toggle="tooltip" title="Edit Mix">
-            <i class="fa fa-pencil"></i>
-        </a>
-        <a ng-show="mix.can_edit" ng-click="deleteMix()" class="btn btn-xs btn-primary"
-           data-toggle="tooltip" title="Delete Mix">
-            <i class="fa fa-remove"></i>
-        </a>
+<div class="box">
+    <div class="box-title">
+        <div class="actions">
+            <a ng-click="play($event)" class="btn btn-xs btn-primary"
+               data-toggle="tooltip" title="Play Mix">
+                <i ng-class="playState==1 ? 'fa-pause' : 'fa-play'" class="fa"></i>
+            </a>
+            <a ng-show="mix.can_edit" ng-click="editMix(mix)" class="btn btn-xs btn-primary"
+               data-toggle="tooltip" title="Edit Mix">
+                <i class="fa fa-pencil"></i>
+            </a>
+            <a ng-show="mix.can_edit" ng-click="deleteMix(mix)" class="btn btn-xs btn-primary"
+               data-toggle="tooltip" title="Delete Mix">
+                <i class="fa fa-remove"></i>
+            </a>
+        </div>
     </div>
-    <div class="media-items-content">
+    <div class="box-content">
         <a ui-sref="root.mixes.mix({slug: mix.slug})"><img ng-src="{{mix.mix_image}}"/>
         </a>
+        <h5>{{mix.title}}</h5>
     </div>
-    <h4>
-        <a ng-if="showUser" ui-sref="root.users.user({slug: mix.user.slug})">
-            <div class="strong">{{mix.user.display_name}}</div>
-        </a>
-        <br/>
-        <div class="small truncate">{{mix.title}}</div>
-    </h4>
 </div>

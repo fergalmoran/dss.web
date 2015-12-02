@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('dssWebApp')
-    .controller('MainCtrl', function ($scope, $rootScope, $http, dialogs, logger, authService, SocketService, AudioService,
-                                      UserModel, LoginService, Session, SERVER_CONFIG, CHAT_EVENTS, AUTH_EVENTS) {
+    .controller('MainCtrl', function ($scope, $rootScope, $http, $state, dialogs, logger, authService, SocketService, AudioService,
+                                      MixModel, UserModel, LoginService, Session, SERVER_CONFIG, CHAT_EVENTS, AUTH_EVENTS) {
         $scope.isAuthorized = LoginService.isAuthorized;
         $scope.isAuthenticated = LoginService.isAuthenticated;
         $scope.currentPath = '';
@@ -126,5 +126,23 @@ angular.module('dssWebApp')
 
         $scope.showChatbar = function () {
             $scope.chatVisible = !$scope.chatVisible;
+        };
+
+        $scope.editMix = function (mix) {
+            $state.go('root.edit', {slug: mix.slug});
+        };
+
+        $scope.deleteMix = function (mix) {
+            var dlg = dialogs.create('app/dialogs/confirm/confirmDialog.html', 'confirmDialogCtrl', {
+                title: "Delete this mix?",
+                body: mix.title
+            });
+            dlg.result.then(function (result) {
+                if (result) {
+                    MixModel.destroy(mix.slug).then(function () {
+                        $state.go('root.mixes');
+                    });
+                }
+            });
         };
     });
