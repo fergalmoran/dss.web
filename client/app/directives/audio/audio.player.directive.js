@@ -40,23 +40,6 @@ angular.module('dssWebApp')
                         });
                 };
 
-                $scope.editMix = function () {
-                    $state.go('root.edit', {slug: $scope.mix.slug});
-                };
-
-                $scope.deleteMix = function () {
-                    var dlg = dialogs.create('app/dialogs/confirm/confirmDialog.html', 'confirmDialogCtrl', {
-                        title: "Delete this mix?",
-                        body: $scope.mix.title
-                    });
-                    dlg.result.then(function (result) {
-                        if (result) {
-                            MixModel.destroy($scope.mix.slug).then(function () {
-                                $state.go('root.mixes');
-                            });
-                        }
-                    });
-                };
                 $scope.shareEmbed = function () {
                     var dlg = dialogs.create(
                         'app/dialogs/sharing/shareMix.html',

@@ -2,14 +2,11 @@
     <div class="box-title">
         <a ui-sref="root.mixes.mix({slug: mix.slug})"><h3><i class="fa fa-headphones"></i>{{mix.title}}</h3></a>
         <div class="actions">
-            <a href="#" class="btn btn-mini content-refresh">
-                <i class="fa fa-refresh"></i>
+            <a ng-click="editMix(mix)" class="btn btn-mini content-refresh" data-toggle="tooltip" data-title="Edit">
+                <i class="fa fa-pencil"></i>
             </a>
-            <a href="#" class="btn btn-mini content-remove">
+            <a ng-click="deleteMix(mix)" class="btn btn-mini content-remove" data-toggle="tooltip" data-title="Delete">
                 <i class="fa fa-times"></i>
-            </a>
-            <a href="#" class="btn btn-mini content-slideUp">
-                <i class="fa fa-angle-down"></i>
             </a>
         </div>
     </div>
@@ -31,12 +28,24 @@
             </div>
             <div class="row">
                 <div class="btn-group mix-tools" role="group" aria-label="Default button group">
-                    <button type="button" class="btn" title="Share" data-toggle="tooltip">
-                        <i class="glyphicon glyphicon-share"></i></button>
+                    <button ng-click="shareFacebook()" type="button" class="btn"
+                            title="Share to facebook" data-toggle="tooltip">
+                        <i class="fa fa-2x fa-facebook-square"></i></button>
+                    <button ng-click="shareTwitter()" type="button" class="btn"
+                            title="Share to twitter" data-toggle="tooltip">
+                        <i class="fa fa-2x fa-twitter-square"></i></button>
+                    <!--
                     <button type="button" class="btn" title="Add to" data-toggle="tooltip">
                         <i class="glyphicon glyphicon-plus"></i></button>
-                    <button type="button" class="btn" title="Favourite" data-toggle="tooltip">
-                        <i class="glyphicon glyphicon-heart-empty"></i></button>
+                    -->
+                    <button ng-click="toggleLike()" type="button" class="btn"
+                            tooltip="tooltip" data-toggle="tooltip"
+                            ng-attr-title="{{mix.is_liked ? 'Unlike' : 'Like'}}">
+                        <i class="fa fa-2x"
+                           ng-class="mix.is_liked ? 'fa-heart' : 'fa-heart-o'"
+                           ng-style="{'color': mix.is_liked ? 'red' : ''}">
+                        </i>
+                    </button>
                 </div>
             </div>
         </div>
