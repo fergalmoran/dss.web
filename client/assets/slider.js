@@ -55,7 +55,7 @@
         }
 
         var defaults = {handles: 1, serialization: {to: ["", ""], resolution: 0.01}};
-        methods = {
+        var methods = {
             create: function () {
                 return this.each(function () {
                     function setHandle(handle, to, slider) {
