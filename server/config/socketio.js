@@ -16,7 +16,7 @@ sub.subscribe('user:message');
 sub.subscribe('chat');
 
 sub.on("error", function (err) {
-    console.error("Error connecting to redis", err);
+    //console.error("Error connecting to redis", err);
 });
 
 sub.on('message', function (channel, message) {

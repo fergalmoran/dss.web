@@ -6,6 +6,7 @@ module.exports = function (app) {
 
     app.route('/config')
         .get(function (req, res) {
+            console.log('Sending config');
             res.send(JSON.stringify({
                 apiUrl: app.get('apiUrl'),
                 radioUrl: app.get('radioUrl')
