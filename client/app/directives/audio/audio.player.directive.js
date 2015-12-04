@@ -118,7 +118,6 @@ angular.module('dssWebApp')
                     $scope.playingId = -1;
                     $scope.playState = PLAYSTATES.stopped;
                     _stopListener();
-                    _progressListener();
                 }
             });
         }
