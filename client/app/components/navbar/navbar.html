@@ -51,8 +51,29 @@
             </ul>
         </div>
     </div>
-    <ul class="main-nav pull-right" ng-if="!$root.currentUser">
-        <li class="ms-hover">
+    <ul class="main-nav pull-right">
+        <li>
+            <form action="" class="search-form">
+                <div class="form-group has-feedback">
+                    <label for="search" class="sr-only">Search</label>
+                    <input type="text" class="form-control" name="search" id="search" placeholder="search">
+                    <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                </div>
+            </form>
+            <!--
+            <form class="search-form">
+                <div class="search-pane">
+                    <input type="text" ng-model="selected" placeholder="Search..."
+                           typeahead="result for results in getSearchResults($viewValue)"
+                           typeahead-template-url="app/views/templates/searchResult.html"
+                           typeahead-loading="loadingSearchResults"
+                           class="form-control"/>
+                    <i ng-show="loadingSearchResults" class="glyphicon glyphicon-refresh"></i>
+                </div>
+            </form>
+            -->
+        </li>
+        <li class="ms-hover" ng-if="!$root.currentUser">
             <a href="#" data-toggle="dropdown" class="dropdown-toggle">
                 Login/Signup
                 <i class="fa fa-angle-down"></i>
