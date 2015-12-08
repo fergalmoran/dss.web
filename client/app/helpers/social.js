@@ -1,5 +1,4 @@
 var helpers = helpers || {};
-/*
 if (FB) {
     FB.init({
         appId: '154504534677009',
@@ -9,7 +8,6 @@ if (FB) {
         version: 'v2.3'
     });
 }
-*/
 helpers.social = {
     postToFacebook: function (mix) {
         FB.getLoginStatus(function (oResponse) {
