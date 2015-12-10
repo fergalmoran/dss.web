@@ -16,7 +16,7 @@
         </div>
     </div>
     <div class="box-content">
-        <a ui-sref="root.mixes.mix({slug: mix.slug})"><img ng-src="{{mix.mix_image}}"/>
+        <a ui-sref="root.user.mix({user: mix.user.slug, mix: mix.slug})"><img ng-src="{{mix.mix_image}}"/>
         </a>
         <h5>{{mix.title}}</h5>
     </div>

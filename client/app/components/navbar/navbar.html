@@ -1,18 +1,9 @@
 <div class="container-fluid">
-    <a ui-sref="root.home" id="brand">Deep|South|Sounds</a>
+    <a ui-sref="root" id="brand">Deep|South|Sounds</a>
     <ul class="main-nav">
-        <li class="ms-hover">
-            <a ui-sref="root.mixes" ui-sref-active="active">
-                <span>Mixes</span>
-            </a>
-        </li>
-        <li class="ms-hover">
-            <a ui-sref="root.users" ui-sref-active="active">
-                <span>Users</span>
-            </a>
-        </li>
         <li class="ms-hover" ng-if="$root.currentUser">
             <a ui-sref="root.upload" ui-sref-active="active">
+                <i class="fa fa-cloud-upload"></i>
                 <span>Upload</span>
             </a>
         </li>
@@ -39,7 +30,7 @@
                     <span class="label label-lightred">{{notificationCount}}</span>
                 </a>
                 <ul class="dropdown-menu pull-right message-ul">
-                    <dss-notifications />
+                    <dss-notifications/>
                     <li>
                         <a href="components-messages.html" class="more-messages">Go to Message center
                             <i class="fa fa-arrow-right"></i>
@@ -54,7 +45,7 @@
             </a>
             <ul class="dropdown-menu pull-right">
                 <li>
-                    <a ui-sref="root.me">Edit profile</a>
+                    <a ui-sref="root.me">View profile</a>
                 </li>
                 <li>
                     <a ui-sref="root.me.edit">Account settings</a>

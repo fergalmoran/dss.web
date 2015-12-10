@@ -1,7 +1,7 @@
 <div class="col-sm-4 col-md-4" ng-repeat="user in users">
     <div class="post">
         <div class="post-img-content">
-            <a ui-sref="root.users.user({slug: user.slug})">
+            <a ui-sref="root.user({user: user.slug})">
                 <img class="userlist-profile-image" ng-src="{{user.profile_image_medium}}" class="img-responsive"/>
             </a>
             <br/>
@@ -24,10 +24,10 @@
                 <img ng-src="{{user.profile_image_header}}" alt="background"
                      class="widget-background animation-pulseSlow">
                 <h3 class="widget-content widget-content-image widget-content-light clearfix">
-                    <a ui-sref="root.users.user({slug: user.slug})" class="pull-right">
+                    <a ui-sref="root.user({user: user.slug})" class="pull-right">
                         <img ng-src="{{user.profile_image_medium}}" alt="avatar" class="widget-image img-circle">
                     </a>
-                    <a ui-sref="root.users.user({slug: user.slug})"
+                    <a ui-sref="root.user({user: user.slug})"
                        class="themed-color-autumn">{{user.display_name}}</a>
                     <br>
                     <small>{{user.title}}</small>

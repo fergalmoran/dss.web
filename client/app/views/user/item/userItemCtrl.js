@@ -4,7 +4,7 @@ angular.module('dssWebApp')
     .controller('UserItemCtrl', function ($scope, UserModel, MixModel, user, logger) {
         logger.logSuccess('UserItemCtrl', $scope);
         $scope.user = user;
-        $scope.showLatest = function(){
+        $scope.showLatest = function () {
             $scope.mixTitle = "Latest";
             MixModel.findAll({
                 user__slug: user.slug,
@@ -15,7 +15,7 @@ angular.module('dssWebApp')
                 $scope.mixPage = 1;
             });
         };
-        $scope.showPopular = function(){
+        $scope.showPopular = function () {
             $scope.mixTitle = "Popular";
             MixModel.findAll({
                 user__slug: user.slug,

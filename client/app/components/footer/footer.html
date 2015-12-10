@@ -6,7 +6,7 @@
         </div>
         <div class="play-progress">
             <span>
-                <a ui-sref="root.mixes.mix({slug: mix.slug})">
+                <a ui-sref="root.user.mix({user: mix.user.slug, mix: mix.slug})">
                     {{mix.user.first_name}} - {{mix.title}}
                 </a>
             </span>

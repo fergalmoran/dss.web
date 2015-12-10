@@ -6,7 +6,7 @@ ul.timeline-list
             small {{item.date|humanise}}
         .timeline-content
             p.push-bit
-                a(ui-sref='root.users.user({slug: item.from_user.slug})')
+                a(ui-sref='root.user({user: item.from_user.slug})')
                     strong {{item.from_user.display_name}}
             p.push-bit {{item.verb}}
                 a(ng-href="{{item.object_type}}/{{item.object_slug}}")

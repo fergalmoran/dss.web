@@ -1,5 +1,9 @@
 @charset "UTF-8";
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300);
+<<<<<<< HEAD
+=======
+
+>>>>>>> develop
 .input-group .form-control:first-child, .input-group-addon:first-child, .input-group-btn:first-child > .btn, .input-group-btn:first-child > .dropdown-toggle, .input-group-btn:last-child > .btn:not(:last-child):not(.dropdown-toggle) {
     -moz-border-radius: 0;
     -webkit-border-radius: 0;

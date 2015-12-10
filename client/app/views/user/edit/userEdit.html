@@ -1,0 +1,89 @@
+<div class="col-md-6">
+    <div class="block">
+        <div class="block-title">
+            <h2><strong>My Details</strong></h2>
+        </div>
+        <form class="form-horizontal form-bordered">
+            <div class="fieldset">
+                <div class="form-group">
+                    <div class="col-md-4">
+                        <label class="control-label">Display Name</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="text" ng-model="vm.user.display_name" ng-blur="updateUser()" class="form-control"/>
+                    </div>
+                </div>
+                <div ng-class="{'has-error': vm.slugError}" class="form-group">
+                    <div class="col-md-4">
+                        <label class="control-label">Profile Url</label>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="input-group">
+                            <input type="text" ng-model="vm.tempSlug" ng-change="checkSlug()" ng-blur="saveSlug()" class="form-control"/><span class="input-group-addon"><i ng-class="{'fa-spin': vm.slugChanging || vm.slugError,  'text-danger': vm.slugError}" class="fa fa-asterisk"></i></span>
+                        </div><span ng-show="!vm.slugError" class="help-block">Your profile URL will be /users/{{vm.tempSlug}}</span><span ng-show="vm.slugError" class="help-block animation-slideDown">Slug must be unique</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-4">
+                        <label class="control-label">Email Address</label>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="text" ng-model="vm.user.email" ng-blur="updateUser()" class="form-control"/>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="block">
+        <div class="block-title">
+            <h2><i class="ace-icon fa fa-share green"></i><strong></strong> Sharing</h2>
+        </div>
+        <form class="form-horizontal form-bordered">
+            <div class="form-group">
+                <label class="col-md-2 control-label"><i class="fa fa-facebook"></i> Facebook</label>
+                <div class="col-md-10">
+                    <label ng-repeat="item in sharing_options" ng-model="vm.user.activity_sharing_facebook" checkbox-bitfield="" ng-change="updateUser()" class="radio-inline">
+                        <input type="checkbox" value="{{item.power}}"/> {{item.abbr}}
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-md-2 control-label"><i class="fa fa-twitter"></i> Twitter</label>
+                <div class="col-md-10">
+                    <label ng-repeat="item in sharing_options" ng-model="vm.user.activity_sharing_twitter" checkbox-bitfield="" ng-change="updateUser()" class="radio-inline">
+                        <input type="checkbox" value="{{item.power}}"/> {{item.abbr}}
+                    </label>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="block">
+        <div class="block-title">
+            <h2><i class="fa fa-envelope"></i><strong></strong> Email Notifications</h2>
+        </div>
+        <form class="form-horizontal form-bordered">
+            <div class="form-group">
+                <label ng-repeat="item in sharing_options" ng-model="vm.user.email_notifications" checkbox-bitfield="" ng-change="updateUser()" class="radio-inline">
+                    <input type="checkbox" value="{{item.power}}"/> {{item.abbr}}
+                </label>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="col-md-6">
+    <div class="block">
+        <div class="block-title">
+            <div class="block-options pull-right"><a ng-click="updateUser()" class="btn btn-alt btn-sm btn-default"><i class="fa fa-save"></i></a></div>
+            <h2><strong>My Description</strong><small>This is experimental feedback appreciated </small></h2>
+        </div>
+        <form class="form-horizontal form-bordered">
+            <fieldset>
+                <div class="form-group">
+                    <div class="col-xs-12">
+                        <textarea dss-ckeditor="dss-ckeditor" on-change="updateDescription()" ng-model="vm.user.description" blur="updateUser()" ng-blur="updateUser()"></textarea>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
