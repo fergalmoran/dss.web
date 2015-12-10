@@ -33,7 +33,7 @@
                             span.text-info()
                                 i.fa.fa-globe
                         strong
-                            a(ui-sref='root.users.user({slug: comment.slug})') {{comment.display_name}}
+                            a(ui-sref='root.user({user: comment.slug})') {{comment.display_name}}
                             |  commented.
                     p {{comment.comment}}
                     p

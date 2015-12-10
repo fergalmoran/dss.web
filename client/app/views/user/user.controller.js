@@ -1,6 +1,6 @@
 'use strict';
 
 angular.module('dssWebApp')
-    .controller('UsersCtrl', function ($scope, users) {
+    .controller('UserCtrl', function ($scope, users) {
         $scope.users = users;
     });

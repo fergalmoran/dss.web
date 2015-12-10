@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 angular.module('dssWebApp')
     .controller('MixCtrl', function ($scope, mix, comments) {

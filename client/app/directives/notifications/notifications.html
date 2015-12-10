@@ -1,5 +1,6 @@
 <li ng-repeat="notification in notifications">
-    <a ui-sref="root.mixes.mix({slug: notification.target})">
+    <a ui-sref="root.users.mix({user: mix.user.slug, mix: notification.target})"
+        ng-class="notification.accepted_date ? '' : 'notification-new'">
         <img ng-src="{{notification.from_user.profile_image_small}}" alt="">
         <div class="details">
             <div class="name">{{notification.from_user.display_name}}</div>

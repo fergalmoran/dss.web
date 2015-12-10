@@ -41,36 +41,12 @@ angular.module('dssWebApp')
             $scope.currentTheme = element.currentTarget.getAttribute("data-theme");
             localStorage.setItem('dss__theme__', $scope.currentTheme);
         };
-        $scope.toggleSidebar = function () {
-            var $page = $('#page-container');
-            var windowW = utils.getWindowWidth();
-            if (windowW > 991) { // Toggle main sidebar in large screens (> 991px)
-                $page.toggleClass('sidebar-visible-lg');
-                if ($page.hasClass('sidebar-mini')) {
-                    $page.toggleClass('sidebar-visible-lg-mini');
-                }
-                if ($page.hasClass('sidebar-visible-lg')) {
-                    $scope.closeSidebarAlt();
-                }
-            } else { // Toggle main sidebar in small screens (< 992px)
-                $page.toggleClass('sidebar-visible-xs');
-                if ($page.hasClass('sidebar-visible-xs')) {
-                    $scope.closeSidebarAlt();
-                }
-            }
-        };
         $scope.startChat = function (slug) {
             console.log("Starting chat", slug);
             UserModel.find(slug).then(function (user) {
                 $rootScope.isMessaging = true;
                 $rootScope.$broadcast(CHAT_EVENTS.startChat, user);
             });
-        };
-        $scope.closeSidebarAlt = function () {
-
-        };
-        $scope.openSidebarAlt = function () {
-
         };
         $scope.$on(AUTH_EVENTS.loginSuccess, function (event, user) {
             $scope.setCurrentUser(user);
@@ -129,7 +105,7 @@ angular.module('dssWebApp')
         };
 
         $scope.editMix = function (mix) {
-            $state.go('root.edit', {slug: mix.slug});
+            $state.go('root.user.mix.edit', {mix: mix.slug});
         };
 
         $scope.deleteMix = function (mix) {
@@ -140,7 +116,7 @@ angular.module('dssWebApp')
             dlg.result.then(function (result) {
                 if (result) {
                     MixModel.destroy(mix.slug).then(function () {
-                        $state.go('root.mixes');
+                        $state.go('root');
                     });
                 }
             });
