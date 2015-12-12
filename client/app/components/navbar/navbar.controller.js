@@ -32,4 +32,5 @@ angular.module('dssWebApp')
         $scope.doDebug = function () {
             $http.get(SERVER_CONFIG.apiUrl + '/__debug/');
         };
+
     });

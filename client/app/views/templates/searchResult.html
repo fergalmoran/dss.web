@@ -1,8 +1,8 @@
-<a ui-sref="root.user.mix({user: mix.user.slug, mix: mix.slug})">
+<a ui-sref="root.user.mix({user: match.model.user, mix: match.model.slug})">
     <div class="widget">
         <div class="widget-simple">
             <div href="javascript:void(0)" class="widget-icon pull-left animation-fadeIn themed-background">
-                <img class="search-result-image" ng-src="{{match.model.image}}" class="widget-icon sidebar-user-avatar pull-right"/>
+                <img ng-src="{{match.model.image}}" class="search-result-image widget-icon sidebar-user-avatar pull-right"/>
             </div>
             <h4 class="widget-content text-right animation-hatch">
                 <small>{{match.model.title}}</small>
