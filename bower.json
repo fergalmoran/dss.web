@@ -5,7 +5,7 @@
     "SoundManager2": "soundmanager#*",
     "angular": "~1.4.3",
     "angular-animate": "*",
-    "angular-bootstrap": "~0.13.3",
+    "angular-bootstrap": "~0.14.3",
     "angular-cookies": ">=1.2.*",
     "angular-deferred-bootstrap": "~0.1.7",
     "angular-dialog-service": "5.2.8",
@@ -44,8 +44,8 @@
     "angular-scenario": ">=1.2.*"
   },
   "resolutions": {
-    "angular": "~1.4.3",
-    "angular-bootstrap": "~0.13.3",
-    "js-data-angular": "~3.1.0"
+    "js-data-angular": "~3.1.0",
+    "angular-bootstrap": "~0.14.3",
+    "angular": "1.4.8"
   }
 }
