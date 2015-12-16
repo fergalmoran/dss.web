@@ -96,7 +96,7 @@ angular.module('dssWebApp')
                         default:
                             AudioService.stop();
                             var d = soundManager.createSound({
-                                url: 'assets/fuckyouchrome.mp3',
+                                url: 'https://dsscdn2.blob.core.windows.net/assets/fuckyouchrome.mp3',
                                 onfinish: function () {
                                     $scope.mix.getStreamUrl().then(function (response) {
                                         AudioService.play($scope.mix, response.data.url).then(function () {

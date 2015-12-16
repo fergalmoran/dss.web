@@ -32,7 +32,7 @@ angular.module('dssWebApp')
                         case PLAYSTATES.stopped:
                         default:
                             var d = soundManager.creindeateSound({
-                                url: 'assets/fuckyouchrome.mp3',
+                                url: 'https://dsscdn2.blob.core.windows.net/assets/fuckyouchrome.mp3',
                                 onfinish: function () {
                                     $scope.mix.getStreamUrl().then(function (response) {
                                         AudioService.play($scope.mix, response.data.url).then(function () {
