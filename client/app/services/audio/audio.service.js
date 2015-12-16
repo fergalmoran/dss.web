@@ -17,7 +17,7 @@ angular.module('dssWebApp')
         });
 
         function _getStoredVolume() {
-            return  Math.round(localStorage.getItem(AUDIO_CONSTANTS.volume) || 50);
+            return Math.round(localStorage.getItem(AUDIO_CONSTANTS.volume) || 50);
         }
 
         function _setStoredVolume(volume) {

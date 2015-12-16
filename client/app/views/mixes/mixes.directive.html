@@ -29,18 +29,17 @@
             <div class="row">
                 <div class="btn-group mix-tools" role="group" aria-label="Default button group">
                     <button ng-click="shareFacebook()" type="button" class="btn"
-                            title="Share to facebook" data-toggle="tooltip">
+                            uib-tooltip="Share to facebook">
                         <i class="fa fa-2x fa-facebook-square"></i></button>
                     <button ng-click="shareTwitter()" type="button" class="btn"
-                            title="Share to twitter" data-toggle="tooltip">
+                            uib-tooltip="Share to twitter">
                         <i class="fa fa-2x fa-twitter-square"></i></button>
                     <!--
                     <button type="button" class="btn" title="Add to" data-toggle="tooltip">
                         <i class="glyphicon glyphicon-plus"></i></button>
                     -->
                     <button ng-click="toggleLike()" type="button" class="btn"
-                            tooltip="tooltip" data-toggle="tooltip"
-                            ng-attr-title="{{mix.is_liked ? 'Unlike' : 'Like'}}">
+                            uib-tooltip="{{mix.is_liked ? 'Unlike' : 'Like'}}">
                         <i class="fa fa-2x"
                            ng-class="mix.is_liked ? 'fa-heart' : 'fa-heart-o'"
                            ng-style="{'color': mix.is_liked ? 'red' : ''}">
