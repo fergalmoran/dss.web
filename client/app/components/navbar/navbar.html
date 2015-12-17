@@ -19,7 +19,7 @@
                     <span>Upload</span>
                 </a>
             </li>
-        </ul>n
+        </ul>
         <div class="col-sm-6 col-md-6">
             <form class="navbar-form" role="search">
                 <div class="input-group">
@@ -47,9 +47,11 @@
             </li>
 
             <li id="navbar-profile-dropdown" class="dropdown" ng-if="$root.currentUser">
-                <a href="#" class="dropdown-toggle navbar-profile-dropdown" data-toggle="dropdown">{{ $root.currentUser.display_name }}
+                <a href="#" class="dropdown-toggle navbar-profile-dropdown" data-toggle="dropdown">{{
+                    $root.currentUser.display_name }}
                     <b class="caret"></b>
-                    <img class="navbar-profile-image img-circle" ng-src="{{$root.currentUser.profile_image_small}}" alt="">
+                    <img class="navbar-profile-image img-circle" ng-src="{{$root.currentUser.profile_image_small}}"
+                         alt="">
                 </a>
                 <ul class="dropdown-menu">
                     <li>
@@ -81,7 +83,8 @@
                                             class="fa fa-twitter"></i> Twitter</a>
                                 </li>
                                 <li>
-                                    <a ng-click="doLogin('google')" class="btn btn-google"><i class="fa fa-google"></i>
+                                    <a ng-click="doLogin('google')" class="btn btn-google"><i
+                                            class="fa fa-google"></i>
                                         Google</a>
                                 </li>
                             </ul>
