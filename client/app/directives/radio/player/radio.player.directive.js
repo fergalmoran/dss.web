@@ -30,7 +30,7 @@ angular.module('dssWebApp')
                         });
                 };
                 $scope.checkRadioStatus();
-                $scope.playRadio = function () {
+                $scope.playRadio = function ($event) {
                     if (!$scope.radioPlaying) {
                         $scope.radioLoading = true;
                         //TODO: get rid of radioUrl here and query api server for url
@@ -43,6 +43,7 @@ angular.module('dssWebApp')
                         AudioService.stop();
                         $scope.radioPlaying = false;
                     }
+                    $event.stopPropagation();
                 };
             }
         }
