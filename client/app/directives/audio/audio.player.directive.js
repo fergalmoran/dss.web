@@ -95,18 +95,24 @@ angular.module('dssWebApp')
                         case PLAYSTATES.stopped:
                         default:
                             AudioService.stop();
-                            $scope.mix.getStreamUrl().then(function (response) {
-                                AudioService.play($scope.mix, response.data.url).then(function () {
-                                    $scope.playingId = $scope.mix.slug;
-                                    _addListeners($scope, AUDIO_EVENTS, PLAYSTATES);
+                            var d = soundManager.createSound({
+                                url: 'https://dsscdn2.blob.core.windows.net/assets/fuckyouchrome.mp3',
+                                onfinish: function () {
+                                    $scope.mix.getStreamUrl().then(function (response) {
+                                        AudioService.play($scope.mix, response.data.url).then(function () {
+                                            $scope.playingId = $scope.mix.slug;
+                                            _addListeners($scope, AUDIO_EVENTS, PLAYSTATES);
 
-                                    $scope.mix.addPlay($rootScope.currentUser ? $rootScope.currentUser.slug : '')
-                                        .then(function (response) {
-                                            $scope.mix.plays.push(response);
+                                            $scope.mix.addPlay($rootScope.currentUser ? $rootScope.currentUser.slug : '')
+                                                .then(function (response) {
+                                                    $scope.mix.plays.push(response);
+                                                });
                                         });
-                                });
-                                $scope.playState = 1;
+                                        $scope.playState = 1;
+                                    });
+                                }
                             });
+                            d.play();
                             break;
                     }
                 };

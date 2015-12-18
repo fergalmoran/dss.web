@@ -105,7 +105,7 @@ angular.module('dssWebApp')
                     $scope.mix = result;
                     $timeout(function () {
                         $scope.waveformFooter = "Waveform processing is taking longer than expected.<br />" +
-                            "Your mix should be available <a href='/mix/" + $scope.mix.slug + "'>Here</a>";
+                            "Your mix should be available <a ui-sref='root.user.mix({user: currentUser.slug, mix: mix.slug})'>Here</a>";
                         $scope.$apply();
                     }, 120000);
 

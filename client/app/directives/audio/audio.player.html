@@ -43,13 +43,10 @@
                             {{mix.user.display_name}}
                         </a>
                         <a href="#" ng-click="toggleFollow()" ng-show="currentUser"
-                           tooltip="tooltip" data-toggle="tooltip"
-                           title="{{mix.user.is_following ? 'Unfollow' : 'Follow'}} {{mix.user.display_name}}"
-                           data-placement="top">
+                           uib-tooltip="{{mix.user.is_following ? 'Unfollow' : 'Follow'}} {{mix.user.display_name}}">
                             <i class="fa fa-user-plus"
                                ng-class="mix.user.is_following ? 'text-danger' : 'text-success'"></i>
                         </a>
-
                         <div class="meta-artist"><span class="the-name ng-binding">{{mix.title}}</span></div>
                     </div>
                 </div>
@@ -75,7 +72,7 @@
                         <div class="btn-group btn-group-xs hidden-xs block-options">
                             <ul class="list-nostyle list-horiz">
                                 <li title="{{ mix.plays.length }} Plays" class="stats-item bordered-right">
-                                    <span tooltip="tooltip" data-toggle="tooltip" title="Plays"
+                                    <span uib-tooltip="Plays"
                                           class="btn btn-alt btn-sm btn-default non-url-button">
                                         <i class="fa fa-play-circle"></i>
                                         {{ mix.plays.length }}
@@ -83,16 +80,16 @@
                                 </li>
                                 <li title="{{ mix.downloads.length }} Downloads" class="stats-item bordered-right">
                                     <span ng-show="$root.currentUser">
-                                        <button ng-show="mix.is_downloadable" ng-click="downloadFile()" tooltip="tooltip"
-                                                data-toggle="tooltip" title="Download"
+                                        <button ng-show="mix.is_downloadable" ng-click="downloadFile()"
+                                                uib-tooltip="Download"
                                                 class="btn btn-alt btn-sm btn-default">
                                             <i class="fa fa-download"></i>
                                             {{ mix.downloads.length }}
                                         </button>
                                     </span>
                                     <span ng-show="!$root.currentUser">
-                                        <span ng-show="mix.is_downloadable" tooltip="tooltip" data-toggle="tooltip"
-                                              ng-click="login()" title="Login to download" class="btn btn-alt btn-sm btn-default">
+                                        <span ng-show="mix.is_downloadable" uib-tooltip="Login to download"
+                                              ng-click="login()" class="btn btn-alt btn-sm btn-default">
                                             <i class="fa fa-download"></i>
                                             {{ mix.downloads.length }}
                                         </span>
@@ -102,9 +99,7 @@
                                     class="stats-item bordered-right">
                                     <a ng-click="toggleLike()"
                                        ng-class="mix.is_liked ? 'btn-danger' : 'btn-success'"
-                                       tooltip="tooltip" data-toggle="tooltip"
-                                       ng-attr-title="{{mix.is_liked ? 'Unlike' : 'Like'}}"
-                                       data-placement="top"
+                                       uib-tooltip="{{mix.is_liked ? 'Unlike' : 'Like'}}"
                                        class="btn btn-alt btn-sm btn-default"><i
                                             class="fa fa-heart"></i>{{ mix.likes.length }}
                                     </a>
