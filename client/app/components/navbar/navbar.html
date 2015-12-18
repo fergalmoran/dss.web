@@ -36,10 +36,21 @@
             </form>
         </div>
         <ul class="nav navbar-nav navbar-right">
+            <li id="navbar-radio-dropdown" class="dropdown">
+                <a href="#" class="dropdown-toggle navbar-button" data-toggle="dropdown" uib-tooltip="Live">
+                    <span class="fa fa-1-3x fa-microphone">&nbsp;Radio</span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li class="radio-player-dropdown">
+                        <dss-radio-player />
+                    </li>
+                </ul>
+            </li>
+
             <li id="navbar-notification-dropdown" class="dropdown" ng-if="$root.currentUser">
-                <a href="#" class="dropdown-toggle " data-toggle="dropdown" id="notifications-button">
-                    <i class="fa fa-envelope"></i>
-                    <span class="label label-lightred notification-label">{{notificationCount}}</span>
+                <a href="#" class="dropdown-toggle navbar-button" data-toggle="dropdown" id="notifications-button">
+                    <span class="fa fa-1-3x fa-envelope"></span>
+                    <span ng-if="notificationCount > 0" class="label label-lightred notification-label">{{notificationCount}}</span>
                 </a>
                 <ul class="dropdown-menu message-ul">
                     <dss-notifications/>
