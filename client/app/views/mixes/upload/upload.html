@@ -112,10 +112,17 @@
                     </div>
                 </div>
                 <div id="genres-area" class="form-group">
-                    <label for="genres" class="col-sm-3 control-label">Genres</label>
-
+                    <label class="col-sm-3 control-label">Genres</label>
                     <div class="col-sm-6">
-                        <input id="genres" style="width:98%" ng-model="mix.genres"/>
+                        <ui-select multiple ng-model="mix.genres" theme="bootstrap" ng-disabled="disabled"
+                                   style="width: 300px;">
+                            <ui-select-match placeholder="Start typing...">{{$item.description}}</ui-select-match>
+                            <ui-select-choices repeat="genre in genreSearchResults"
+                                               refresh="refreshGenres($select.search)"
+                                               refresh-delay="0">
+                                <div ng-bind-html="genre.description | highlight: $select.search"></div>
+                            </ui-select-choices>
+                        </ui-select>
                     </div>
                 </div>
                 <div id="submit-area" class="form-group form-actions">

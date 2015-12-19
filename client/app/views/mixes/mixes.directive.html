@@ -26,6 +26,9 @@
             <div class="row">
                 <aside>By <a ui-sref="root.user({user: mix.user.slug})">{{mix.user.display_name}}</a></aside>
             </div>
+            <div class="row genre-wrapper">
+                <span class="btn genre-btn" ng-repeat="g in mix.genres">{{g.description}}</span>
+            </div>
             <div class="row">
                 <div class="btn-group mix-tools" role="group" aria-label="Default button group">
                     <button ng-click="shareFacebook()" type="button" class="btn"
