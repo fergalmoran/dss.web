@@ -10,6 +10,7 @@ angular.module('dssWebApp', [
         'angular-loading-bar',
         'js-data',
         'ui.bootstrap',
+        'ui.select',
         'dialogs.main',
         'infinite-scroll',
         'angularFileUpload',
