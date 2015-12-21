@@ -54,6 +54,23 @@ angular.module('dssWebApp')
                     }
                 }
             })
+            .state('root.mixes', {
+                url: '/mixes',
+                resolve: {
+                    mixes: function () {
+                        return MixModel.findAll({
+                            waveform_generated: "True",
+                            is_featured: "True"
+                        });
+                    }
+                },
+                views: {
+                    'content@': {
+                        templateUrl: 'app/views/mixes/mixes.html',
+                        controller: 'MixCtrl'
+                    }
+                }
+            })
             .state('root.me', {
                 url: 'me',
                 resolve: {
