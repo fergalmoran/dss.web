@@ -35,8 +35,8 @@ angular.module('dssWebApp')
                         controller: 'FooterCtrl'
                     },
                     'content@': {
-                        templateUrl: 'app/views/home/home.html',
-                        controller: 'HomeCtrl'
+                        templateUrl: 'app/views/mixes/mixes.html',
+                        controller: 'MixesCtrl'
                     }
                 }
             })
