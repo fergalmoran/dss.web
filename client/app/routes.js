@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 angular.module('dssWebApp')
     .config(function ($stateProvider) {
         $stateProvider
@@ -41,7 +41,7 @@ angular.module('dssWebApp')
                 }
             })
             .state('root.upload', {
-                url: '/upload',
+                url: 'upload',
                 resolve: {
                     mix: function () {
                         return null;
@@ -55,19 +55,19 @@ angular.module('dssWebApp')
                 }
             })
             .state('root.mixes', {
-                url: '/mixes',
+                url: 'mixes?genres=:genre',
                 resolve: {
-                    mixes: function () {
+                    mixes: function (MixModel, $stateParams) {
                         return MixModel.findAll({
                             waveform_generated: "True",
-                            is_featured: "True"
+                            genres__slug: $stateParams.genre
                         });
                     }
                 },
                 views: {
                     'content@': {
                         templateUrl: 'app/views/mixes/mixes.html',
-                        controller: 'MixCtrl'
+                        controller: 'MixesCtrl'
                     }
                 }
             })
