@@ -42,7 +42,7 @@ angular.module('dssWebApp')
                 if ($scope.detailsEntered && $scope.uploadState >= uploadStates.AUDIO_SENT &&
                     $scope.processingState == processingStates.PROCESSED) {
                     MixModel.refresh($scope.mix.slug).then(function (m) {
-                        $state.go('root.user.mix', {user: m.user.slug, slug: m.slug});
+                        $state.go('root.user.mix', {user: m.user.slug, mix: m.slug});
                     });
                 }
             }
