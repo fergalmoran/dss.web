@@ -2,13 +2,13 @@
     <div class="box-title">
         <a ui-sref="root.user.mix({user: mix.user.slug, mix: mix.slug})"><h3><i class="fa fa-headphones"></i>{{mix.title}}</h3></a>
         <div class="actions">
-            <a ng-click="copyUrl(mix)" class="btn btn-mini content-refresh" data-toggle="tooltip" data-title="Copy Link">
+            <btn clip-copy="getMixUrl(mix)" clip-click="copyUrl(mix)" class="btn btn-mini content-refresh" data-toggle="tooltip" data-title="Copy Link">
                 <i class="fa fa-copy"></i>
-            </a>
-            <a ng-if="mix.can_edit" ng-click="editMix(mix)" class="btn btn-mini content-refresh" data-toggle="tooltip" data-title="Edit">
+            </btn>
+            <a ng-show="mix.can_edit" ng-click="editMix(mix)" class="btn btn-mini content-refresh" data-toggle="tooltip" data-title="Edit">
                 <i class="fa fa-pencil"></i>
             </a>
-            <a ng-if="mix.can_edit" ng-click="deleteMix(mix)" class="btn btn-mini content-remove" data-toggle="tooltip" data-title="Delete">
+            <a ng-show="mix.can_edit" ng-click="deleteMix(mix)" class="btn btn-mini content-remove" data-toggle="tooltip" data-title="Delete">
                 <i class="fa fa-times"></i>
             </a>
         </div>
