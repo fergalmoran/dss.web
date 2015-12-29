@@ -14,6 +14,5 @@ angular.module('dssWebApp')
                 limit: 3
             });
         };
-
         MixModel.bindAll(null, $scope, 'mixes');
     });

@@ -100,6 +100,19 @@ angular.module('dssWebApp')
             SocketService.removeHandler('site:broadcast');
         });
 
+        $scope.getMixUrl = function(mix){
+            var port = window.location.port;
+            return window.location.protocol +
+                "//" + window.location.hostname +
+                (port === '80' ? '' : ':' + port) +
+                $state.href('root.user.mix', {user: mix.user.slug, mix: mix.slug});
+        };
+
+        $scope.copyUrl = function(mix){
+            var url = getMixUrl(mix);
+            console.log("Copied URL", url);
+        };
+
         $scope.showChatbar = function () {
             $scope.chatVisible = !$scope.chatVisible;
         };

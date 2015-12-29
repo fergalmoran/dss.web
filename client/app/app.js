@@ -15,13 +15,14 @@ angular.module('dssWebApp', [
         'infinite-scroll',
         'angularFileUpload',
         'angulartics',
+        'ngClipboard',
         'angular-jwt',
         'http-auth-interceptor',
         'angular-smilies',
         'angulartics.google.analytics'
     ])
     .config(function ($stateProvider, $sceDelegateProvider, $httpProvider, $urlRouterProvider, $locationProvider, $provide,
-                      jwtInterceptorProvider, $analyticsProvider, dialogsProvider, DSProvider, DSHttpAdapterProvider,
+                      ngClipProvider, jwtInterceptorProvider, $analyticsProvider, dialogsProvider, DSProvider, DSHttpAdapterProvider,
                       SERVER_CONFIG, STORAGE) {
         $urlRouterProvider
             .otherwise('/');
@@ -29,6 +30,8 @@ angular.module('dssWebApp', [
         //$httpProvider.defaults.headers.common.Accept = 'application/json';
         $httpProvider.defaults.useXDomain = true;
         $httpProvider.interceptors.push('AuthInterceptor');
+
+        ngClipProvider.setPath("bower_components/zeroclipboard/dist/ZeroClipboard.swf");
 
         $analyticsProvider.firstPageview(true);
         $analyticsProvider.withAutoBase(true);
@@ -51,7 +54,7 @@ angular.module('dssWebApp', [
             'https://dsscdn.blob.core.windows.net/mixes/**'
         ]);
         $locationProvider.html5Mode(true);
-    }).run(function ($http, $rootScope, $state, $anchorScroll, $window, LoginService, Session, SocketService) {
+    }).run(function ($http, $rootScope, $state, $window, LoginService, Session, SocketService) {
     $rootScope.isPlaying = false;
 
     $rootScope.setCurrentUser = function (user) {
@@ -112,24 +115,4 @@ angular.module('dssWebApp', [
             event.preventDefault();
         }
     });
-    $rootScope.$on('$viewContentLoaded', function (evt, absNewUrl, absOldUrl) {
-        $anchorScroll();
-        //$window.scrollTop(0, 0);
-    });
-    $rootScope.$on('$locationChangeSuccess', function (evt, absNewUrl, absOldUrl) {
-        $anchorScroll();
-    });
-    /*
-    $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
-        console.log('$stateChangeError - fired when an error occurs during transition.');
-        console.log(arguments);
-    });
-    $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
-        console.log('$stateChangeSuccess to ' + toState.name + '- fired once the state transition is complete.');
-    });
-    $rootScope.$on('$stateNotFound', function (event, unfoundState, fromState, fromParams) {
-        console.log('$stateNotFound ' + unfoundState.to + '  - fired when a state cannot be found by its name.');
-        console.log(unfoundState, fromState, fromParams);
-    });
-    */
 });
