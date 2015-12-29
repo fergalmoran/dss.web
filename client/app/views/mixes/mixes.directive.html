@@ -2,10 +2,13 @@
     <div class="box-title">
         <a ui-sref="root.user.mix({user: mix.user.slug, mix: mix.slug})"><h3><i class="fa fa-headphones"></i>{{mix.title}}</h3></a>
         <div class="actions">
-            <a ng-click="editMix(mix)" class="btn btn-mini content-refresh" data-toggle="tooltip" data-title="Edit">
+            <btn clip-copy="getMixUrl(mix)" clip-click="copyUrl(mix)" class="btn btn-mini content-refresh" data-toggle="tooltip" data-title="Copy Link">
+                <i class="fa fa-copy"></i>
+            </btn>
+            <a ng-show="mix.can_edit" ng-click="editMix(mix)" class="btn btn-mini content-refresh" data-toggle="tooltip" data-title="Edit">
                 <i class="fa fa-pencil"></i>
             </a>
-            <a ng-click="deleteMix(mix)" class="btn btn-mini content-remove" data-toggle="tooltip" data-title="Delete">
+            <a ng-show="mix.can_edit" ng-click="deleteMix(mix)" class="btn btn-mini content-remove" data-toggle="tooltip" data-title="Delete">
                 <i class="fa fa-times"></i>
             </a>
         </div>
@@ -27,7 +30,7 @@
                 <aside>By <a ui-sref="root.user({user: mix.user.slug})">{{mix.user.display_name}}</a></aside>
             </div>
             <div class="row genre-wrapper">
-                <span class="btn genre-btn" ng-repeat="g in mix.genres">{{g.description}}</span>
+                <a ui-sref="root.mixes({genre: g.slug})" class="btn genre-btn" ng-repeat="g in mix.genres">{{g.description}}</a>
             </div>
             <div class="row">
                 <div class="btn-group mix-tools" role="group" aria-label="Default button group">

@@ -15,13 +15,14 @@ angular.module('dssWebApp', [
         'infinite-scroll',
         'angularFileUpload',
         'angulartics',
+        'ngClipboard',
         'angular-jwt',
         'http-auth-interceptor',
         'angular-smilies',
         'angulartics.google.analytics'
     ])
     .config(function ($stateProvider, $sceDelegateProvider, $httpProvider, $urlRouterProvider, $locationProvider, $provide,
-                      jwtInterceptorProvider, $analyticsProvider, dialogsProvider, DSProvider, DSHttpAdapterProvider,
+                      ngClipProvider, jwtInterceptorProvider, $analyticsProvider, dialogsProvider, DSProvider, DSHttpAdapterProvider,
                       SERVER_CONFIG, STORAGE) {
         $urlRouterProvider
             .otherwise('/');
@@ -29,6 +30,8 @@ angular.module('dssWebApp', [
         //$httpProvider.defaults.headers.common.Accept = 'application/json';
         $httpProvider.defaults.useXDomain = true;
         $httpProvider.interceptors.push('AuthInterceptor');
+
+        ngClipProvider.setPath("bower_components/zeroclipboard/dist/ZeroClipboard.swf");
 
         $analyticsProvider.firstPageview(true);
         $analyticsProvider.withAutoBase(true);

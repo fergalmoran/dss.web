@@ -20,18 +20,18 @@
                     <span>Mixes</span>
                 </div>
             </li>
-            <li class="satblue">
-                <i class="fa fa-thumbs-up"></i>
-                <div class="details">
-                    <span class="big">{{$root.currentUser.likes.length}}</span>
-                    <span>Likes</span>
-                </div>
-            </li>
             <li class="red">
                 <i class="fa fa-heart"></i>
                 <div class="details">
                     <span class="big">{{$root.currentUser.favourites.length}}</span>
                     <span>Favourites</span>
+                </div>
+            </li>
+            <li class="satblue">
+                <i class="fa fa-thumbs-up"></i>
+                <div class="details">
+                    <span class="big">{{$root.currentUser.likes.length}}</span>
+                    <span>Likes</span>
                 </div>
             </li>
             <li class="lightred" ng-if="$root.currentUser.followers.length > 0">
