@@ -25,20 +25,8 @@ angular.module('dssWebApp')
                         return x.accepted_date === null;
                     }).length;
                 });
-
-                $('#notifications').data('open', false);
-                $('#notifications-button').click(function() {
-                    if($('#notifications').data('open')) {
-                        $('#notifications').data('open', false);
-                            markNotifications(scope);
-                    } else
-                        $('#notifications').data('open', true);
-                });
-                $(document).click(function() {
-                    if($('#notifications').data('open')) {
-                        $('#notifications').data('open', false);
-                            markNotifications(scope);
-                    }
+                $('#navbar-notification-dropdown').on('hide.bs.dropdown', function(){
+                    markNotifications(scope);
                 });
             }
         }
