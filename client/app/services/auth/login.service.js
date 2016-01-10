@@ -1,5 +1,5 @@
 angular.module('dssWebApp')
-    .factory('LoginService', function ($rootScope, $http, $q, Session, UserModel, logger,
+    .factory('LoginService', function ($rootScope, $http, $q, $auth, Session, UserModel, logger,
                                        SERVER_CONFIG, STORAGE, AUTH_BACKENDS, AUTH_EVENTS) {
 
         return {
@@ -10,32 +10,38 @@ angular.module('dssWebApp')
         };
 
         function loginUser(provider) {
-            var defer = $q.defer();
-            var backend = provider || Session.getBackend();
-            hello(backend).login({force: false}).then(function (result) {
-                var response = hello.getAuthResponse(backend);
-                Session.setLocalToken(response.access_token);
-                getJwtToken(response.access_token, AUTH_BACKENDS[backend])
-                    .then(function (user) {
-                        defer.resolve(user);
-                    }).error(function (reason, code) {
-                        defer.reject(reason, code);
-                    });
-            }, function (e) {
-                console.error(e);
-                defer.reject(e);
-            });
-            return defer.promise;
+            var deferred = $q.defer();
+
+            var prov = provider || Session.getBackend();
+            $auth.authenticate(prov)
+                .then(function () {
+                    console.log('You have successfully signed in with ' + prov + '!');
+                    deferred.resolve();
+                })
+                .catch(function (error) {
+                    if (error.error) {
+                        // Popup error - invalid redirect_uri, pressed cancel button, etc.
+                        console.error(error.error);
+                        deferred.reject(error.error);
+                    } else if (error.data) {
+                        // HTTP response error from server
+                        console.error(error.data.message, error.status);
+                        deferred.reject(error.status);
+                    } else {
+                        console.error(error);
+                        deferred.reject(error);
+                    }
+                });
+            return deferred.promise;
         }
 
-        function getJwtToken(helloToken, backend) {
+        function getJwtToken(token, backend) {
             var defer = $q.defer();
             //need to clear any cached tokens before attempting login
             //otherwise server will 403 us
             Session.removeJwtToken();
-            $http.post(SERVER_CONFIG.apiUrl + '/_login/', {
-                "access_token": helloToken,
-                "backend": backend
+            $http.post(SERVER_CONFIG.apiUrl + '/_login?backend?backend=' + backend , {
+                'code': token
             }).success(function (response, status, headers, config) {
                 if (response.token) {
                     Session.setToken(response.token);
@@ -43,10 +49,10 @@ angular.module('dssWebApp')
                     Session.setBackend(backend);
                     defer.resolve(backend);
                 } else {
-                    defer.reject("Invalid response token", 500);
+                    defer.reject('Invalid response token', 500);
                 }
             }).error(function (response, status, headers, config) {
-                defer.reject("Unable to retrieve access token", 500);
+                defer.reject('Unable to retrieve access token', 500);
             });
             return defer.promise;
         }
@@ -61,11 +67,11 @@ angular.module('dssWebApp')
                             $rootScope.$broadcast(AUTH_EVENTS.loginSuccess, user);
                             defer.resolve(user);
                         }, function (result) {
-                            defer.reject("Unable to get user object", 500);
+                            defer.reject('Unable to get user object', 500);
                         })
                 }).error(function (data, status, headers, config) {
-                    defer.reject("Unable to get user proxy", 500);
-                });
+                defer.reject('Unable to get user proxy', 500);
+            });
             return defer.promise;
         }
 

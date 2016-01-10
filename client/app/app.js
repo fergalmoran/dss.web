@@ -19,9 +19,10 @@ angular.module('dssWebApp', [
         'angular-jwt',
         'http-auth-interceptor',
         'angular-smilies',
+        'satellizer',
         'angulartics.google.analytics'
     ])
-    .config(function ($stateProvider, $sceDelegateProvider, $httpProvider, $urlRouterProvider, $locationProvider, $provide,
+    .config(function ($stateProvider, $sceDelegateProvider, $httpProvider, $urlRouterProvider, $locationProvider, $provide, $authProvider,
                       ngClipProvider, jwtInterceptorProvider, $analyticsProvider, dialogsProvider, DSProvider, DSHttpAdapterProvider,
                       SERVER_CONFIG, STORAGE) {
         $urlRouterProvider
@@ -30,7 +31,27 @@ angular.module('dssWebApp', [
         //$httpProvider.defaults.headers.common.Accept = 'application/json';
         $httpProvider.defaults.useXDomain = true;
         $httpProvider.interceptors.push('AuthInterceptor');
+        $authProvider.baseUrl = SERVER_CONFIG.apiUrl + '/';
+        $authProvider.loginUrl = '_login';
+        $authProvider.authToken = 'JWT';
 
+        $authProvider.facebook({
+            name: 'facebook',
+            url: '/_login/?backend=facebook',
+            clientId: '154504534677009',
+            authorizationEndpoint: 'https://www.facebook.com/v2.5/dialog/oauth',
+            redirectUri: window.location.origin + '/',
+            requiredUrlParams: ['display', 'scope'],
+            scope: ['email'],
+            scopeDelimiter: ',',
+            display: 'popup',
+            type: '2.0',
+            popupOptions: {width: 580, height: 400}
+        });
+        $authProvider.twitter({
+            //qmvJ6tptgd8G9T9WYp6P3Q
+            url: '/_login?backend=twitter',
+        });
         ngClipProvider.setPath("bower_components/zeroclipboard/dist/ZeroClipboard.swf");
 
         $analyticsProvider.firstPageview(true);
@@ -54,6 +75,11 @@ angular.module('dssWebApp', [
             'https://dsscdn.blob.core.windows.net/mixes/**'
         ]);
         $locationProvider.html5Mode(true);
+
+        $authProvider.google({
+            clientId: '248170132962-5km115budk9h84raa26hdmnnqdj8ivkl.apps.googleusercontent.com'
+        });
+
     }).run(function ($http, $rootScope, $state, $window, LoginService, Session, SocketService) {
     $rootScope.isPlaying = false;
 
@@ -77,14 +103,6 @@ angular.module('dssWebApp', [
             });
         });
     };
-
-    hello.init({
-        facebook: '154504534677009',
-        twitter: 'qmvJ6tptgd8G9T9WYp6P3Q',
-        google: '248170132962-5km115budk9h84raa26hdmnnqdj8ivkl.apps.googleusercontent.com'
-    }, {
-        redirect_uri: '/'
-    });
 
     //ensure login before state change
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
