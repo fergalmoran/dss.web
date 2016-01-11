@@ -10,7 +10,7 @@ function _parseUrl(u){
     });
     if (path.length == 2){
         //probably a mix, reconstruct url and return
-        return parts.protocol + "//" + parts.host + "/mix/" + path[1];
+        return parts.protocol + "//" + parts.host + "/mix/" + path[1] + "/";
     }
     return u;
 }
