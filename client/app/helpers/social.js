@@ -1,4 +1,8 @@
 var helpers = helpers || {};
+function _getLink(url){
+    return window.location.protocol + "//" + (window.location.host + '/' + url).replace(/([^:]\/)\/+/g, '$1');
+}
+
 if (FB) {
     FB.init({
         appId: '154504534677009',
@@ -9,17 +13,17 @@ if (FB) {
     });
 }
 helpers.social = {
-    postToFacebook: function (mix) {
+    postToFacebook: function (title, image, description, url) {
         FB.getLoginStatus(function (oResponse) {
             if (oResponse.status === "connected") {
                 return FB.ui({
                     method: "feed",
                     name: "Check out this mix on Deep South Sounds",
                     display: "iframe",
-                    link: "http://" + window.location.host + "/mixes/" + mix.slug,
-                    picture: mix.mix_image,
-                    caption: mix.title,
-                    description: mix.description
+                    link: _getLink(url),
+                    picture: _getLink(image),
+                    caption: title,
+                    description: description
                 }, function (response) {
                     if (response && response.post_id) {
                         return utils.showAlert("Success", "Post shared to facebook");
