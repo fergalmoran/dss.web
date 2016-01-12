@@ -110,10 +110,11 @@ angular.module('dssWebApp')
                     var _processResult = function (result) {
                         $scope.mix = result;
                         $timeout(function () {
+                            var url = $state.href('root.user.mix', {user: $scope.mix.user.slug, mix: $scope.mix.slug});
                             $scope.waveformFooter = "Waveform processing is taking longer than expected.<br />" +
-                                "Your mix should be available <a ui-sref='root.user.mix({user: currentUser.slug, mix: mix.slug})'>Here</a>";
+                                "Your mix should be available <a href='" + url + "'>Here</a>";
                             $scope.$apply();
-                        }, 120000);
+                        }, 1200);
 
                         var imageFile = document.getElementById('mix-image-fileinput').files[0];
                         if (imageFile) {
