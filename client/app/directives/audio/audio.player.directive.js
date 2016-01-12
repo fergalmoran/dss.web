@@ -48,10 +48,15 @@ angular.module('dssWebApp')
                         {size: 'md'});
                 };
                 $scope.shareFacebook = function () {
-                    helpers.social.postToFacebook($scope.mix);
+                    helpers.social.postToFacebook(
+                        $scope.mix.title,
+                        $scope.mix.mix_image,
+                        $scope.mix.description,
+                        $state.href('root.user.mix', {user: $scope.mix.user.slug, mix: $scope.mix.slug})
+                    );
                 };
                 $scope.shareTwitter = function () {
-                    helpers.social.postToTwitter($scope.mix);
+                    helpers.social.postToTwitter($state.href('root.user.mix', {user: $scope.mix.user.slug, mix: $scope.mix.slug}));
                 };
                 $scope.toggleFollow = function () {
                     if ($scope.currentUser) {
