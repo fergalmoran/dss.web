@@ -122,7 +122,7 @@
             </div>
         </div>
     </div>
-    <div style="width: 920px; left: 220px;" ng-click="showCommentForm($event)" class="comments-holder active">
+    <div style="width: 920px; left: 220px;" class="hidden-sm" ng-click="showCommentForm($event)" class="comments-holder active">
         <div class="the-bg"></div>
         <span ng-style="{'left': + (comment.time_index/mix.duration) * 100 + '%'}"
               ng-repeat="comment in comments | filter: { time_index: '!0' }"
