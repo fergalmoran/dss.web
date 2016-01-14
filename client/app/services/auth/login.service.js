@@ -14,13 +14,20 @@ angular.module('dssWebApp')
             var backend = provider || Session.getBackend();
             hello(backend).login({force: false}).then(function (result) {
                 var response = hello.getAuthResponse(backend);
+                var data = {
+                    "access_token": response.access_token,
+                    "backend": backend
+                };
+                if (backend === 'twitter') {
+                    data.access_token_secret= response.oauth_token_secret;
+                }
                 Session.setLocalToken(response.access_token);
-                getJwtToken(response.access_token, AUTH_BACKENDS[backend])
+                getJwtToken(data, AUTH_BACKENDS[backend])
                     .then(function (user) {
                         defer.resolve(user);
                     }).error(function (reason, code) {
-                        defer.reject(reason, code);
-                    });
+                    defer.reject(reason, code);
+                });
             }, function (e) {
                 console.error(e);
                 defer.reject(e);
@@ -28,15 +35,12 @@ angular.module('dssWebApp')
             return defer.promise;
         }
 
-        function getJwtToken(helloToken, backend) {
+        function getJwtToken(data, backend) {
             var defer = $q.defer();
             //need to clear any cached tokens before attempting login
             //otherwise server will 403 us
             Session.removeJwtToken();
-            $http.post(SERVER_CONFIG.apiUrl + '/_login/', {
-                "access_token": helloToken,
-                "backend": backend
-            }).success(function (response, status, headers, config) {
+            $http.post(SERVER_CONFIG.apiUrl + '/_login/', data).success(function (response, status, headers, config) {
                 if (response.token) {
                     Session.setToken(response.token);
                     Session.setSession(response.session);
@@ -64,8 +68,8 @@ angular.module('dssWebApp')
                             defer.reject("Unable to get user object", 500);
                         })
                 }).error(function (data, status, headers, config) {
-                    defer.reject("Unable to get user proxy", 500);
-                });
+                defer.reject("Unable to get user proxy", 500);
+            });
             return defer.promise;
         }
 
