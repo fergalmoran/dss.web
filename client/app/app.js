@@ -31,13 +31,15 @@ angular.module('dssWebApp', [
         //$httpProvider.defaults.headers.common.Accept = 'application/json';
         $httpProvider.defaults.useXDomain = true;
         $httpProvider.interceptors.push('AuthInterceptor');
+
         $authProvider.baseUrl = SERVER_CONFIG.apiUrl + '/';
-        $authProvider.loginUrl = '_login';
+        $authProvider.loginUrl = '_a/';
         $authProvider.authToken = 'JWT';
+        $authProvider.loginRedirect = null;
 
         $authProvider.facebook({
             name: 'facebook',
-            url: '/_login/?backend=facebook',
+            url: '/_a/?backend=facebook',
             clientId: '154504534677009',
             authorizationEndpoint: 'https://www.facebook.com/v2.5/dialog/oauth',
             redirectUri: window.location.origin + '/',
@@ -49,8 +51,10 @@ angular.module('dssWebApp', [
             popupOptions: {width: 580, height: 400}
         });
         $authProvider.twitter({
-            //qmvJ6tptgd8G9T9WYp6P3Q
-            url: '/_login?backend=twitter',
+            url: '_a/?backend=twitter'
+        });
+        $authProvider.google({
+            clientId: '248170132962-5km115budk9h84raa26hdmnnqdj8ivkl.apps.googleusercontent.com'
         });
         ngClipProvider.setPath("bower_components/zeroclipboard/dist/ZeroClipboard.swf");
 
@@ -75,11 +79,6 @@ angular.module('dssWebApp', [
             'https://dsscdn.blob.core.windows.net/mixes/**'
         ]);
         $locationProvider.html5Mode(true);
-
-        $authProvider.google({
-            clientId: '248170132962-5km115budk9h84raa26hdmnnqdj8ivkl.apps.googleusercontent.com'
-        });
-
     }).run(function ($http, $rootScope, $state, $window, LoginService, Session, SocketService) {
     $rootScope.isPlaying = false;
 

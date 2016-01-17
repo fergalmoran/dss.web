@@ -13,7 +13,7 @@ angular.module('dssWebApp')
             var deferred = $q.defer();
 
             var prov = provider || Session.getBackend();
-            $auth.authenticate(prov)
+            $auth.authenticate(prov, {backend: prov})
                 .then(function () {
                     console.log('You have successfully signed in with ' + prov + '!');
                     deferred.resolve();
@@ -40,7 +40,7 @@ angular.module('dssWebApp')
             //need to clear any cached tokens before attempting login
             //otherwise server will 403 us
             Session.removeJwtToken();
-            $http.post(SERVER_CONFIG.apiUrl + '/_login?backend?backend=' + backend , {
+            $http.post(SERVER_CONFIG.apiUrl + '/_login/?backend?backend=' + backend , {
                 'code': token
             }).success(function (response, status, headers, config) {
                 if (response.token) {
