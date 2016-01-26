@@ -1,14 +1,24 @@
 'use strict';
 
 angular.module('dssWebApp')
-    .controller('MainCtrl', function ($scope, $rootScope, $http, $state, dialogs, logger, authService, SocketService, AudioService,
+    .controller('MainCtrl', function ($scope, $rootScope, $http, $state, $auth,
+                                      dialogs, logger, SocketService, AudioService,
                                       MixModel, UserModel, LoginService, Session, SERVER_CONFIG, CHAT_EVENTS, AUTH_EVENTS) {
         $scope.isAuthorized = LoginService.isAuthorized;
         $scope.isAuthenticated = LoginService.isAuthenticated;
         $scope.currentPath = '';
         $scope.chatVisible = false;
         $rootScope.isMessaging = false;
-
+        $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
+            if ($auth.isAuthenticated()) {
+                LoginService.getUserProfile()
+                    .then(function (user) {
+                        $rootScope.setCurrentUser(user);
+                        $rootScope.connectSockets();
+                        return $state.go(toState.name, toParams);
+                    });
+            }
+        });
         $rootScope.safeApply = function (fn) {
             var phase = this.$root.$$phase;
             if (phase == '$apply' || phase == '$digest') {
@@ -57,20 +67,6 @@ angular.module('dssWebApp')
 
         $rootScope.$on('event:auth-loginConfirmed', function (data) {
             $rootScope.connectSockets();
-        });
-
-        $scope.$on('event:auth-loginRequired', function (rejection) {
-            console.log("Refreshing token");
-            LoginService.getJwtToken(Session.getLocalToken(), Session.getBackend())
-                .then(function (result) {
-                    authService.loginConfirmed(result, function (config) {
-                        config.headers = config.headers || {};
-                        config.headers.Authorization = 'JWT ' + Session.getToken();
-                        return config;
-                    });
-                }, function (reason, code) {
-                    console.error(reason, code);
-                });
         });
 
         $scope.setCurrentPath = function (path) {
