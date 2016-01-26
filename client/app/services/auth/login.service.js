@@ -77,14 +77,11 @@ angular.module('dssWebApp')
 
         function logoutUser() {
             var defer = $q.defer();
-            hello.logout(Session.getBackend())
-                .then(function () {
-                    Session.destroy();
-                    defer.resolve();
-                }, function () {
-                    Session.destroy();
+            $auth.logout()
+                .then(function(){
                     defer.resolve();
                 });
+
             return defer.promise;
         }
     });

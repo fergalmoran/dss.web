@@ -17,20 +17,19 @@ angular.module('dssWebApp', [
         'angulartics',
         'ngClipboard',
         'angular-jwt',
-        'http-auth-interceptor',
         'angular-smilies',
         'satellizer',
         'angulartics.google.analytics'
     ])
     .config(function ($stateProvider, $sceDelegateProvider, $httpProvider, $urlRouterProvider, $locationProvider, $provide, $authProvider,
-                      ngClipProvider, jwtInterceptorProvider, $analyticsProvider, dialogsProvider, DSProvider, DSHttpAdapterProvider,
+                      ngClipProvider, $analyticsProvider, dialogsProvider, DSProvider, DSHttpAdapterProvider,
                       SERVER_CONFIG, STORAGE) {
         $urlRouterProvider
             .otherwise('/');
 
         //$httpProvider.defaults.headers.common.Accept = 'application/json';
         $httpProvider.defaults.useXDomain = true;
-        $httpProvider.interceptors.push('AuthInterceptor');
+        //$httpProvider.interceptors.push('AuthInterceptor');
 
         $authProvider.baseUrl = SERVER_CONFIG.apiUrl + '/';
         $authProvider.loginUrl = '_a/';
@@ -54,7 +53,9 @@ angular.module('dssWebApp', [
             url: '_a/?backend=twitter'
         });
         $authProvider.google({
-            clientId: '248170132962-5km115budk9h84raa26hdmnnqdj8ivkl.apps.googleusercontent.com'
+            clientId: '248170132962-5km115budk9h84raa26hdmnnqdj8ivkl.apps.googleusercontent.com',
+            redirectUri: 'http://ext-test.deepsouthsounds.com:9000/',
+            url: '/_a/?backend=google',
         });
         ngClipProvider.setPath("bower_components/zeroclipboard/dist/ZeroClipboard.swf");
 
@@ -105,6 +106,8 @@ angular.module('dssWebApp', [
 
     //ensure login before state change
     $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
+
+        /*
         if (!$rootScope.currentUser && Session.getLocalToken() != null && Session.getBackend()) {
             LoginService.loginUser().then(function (user) {
                 LoginService.getUserProfile()
@@ -130,6 +133,6 @@ angular.module('dssWebApp', [
                 }
             });
             event.preventDefault();
-        }
+        }*/
     });
 });
