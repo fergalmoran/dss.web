@@ -54,7 +54,7 @@ angular.module('dssWebApp', [
         });
         $authProvider.google({
             clientId: '248170132962-5km115budk9h84raa26hdmnnqdj8ivkl.apps.googleusercontent.com',
-            redirectUri: 'http://ext-test.deepsouthsounds.com:9000/',
+            redirectUri: window.location.origin + '/',
             url: '/_a/?backend=google',
         });
         ngClipProvider.setPath("bower_components/zeroclipboard/dist/ZeroClipboard.swf");
