@@ -54,7 +54,7 @@ angular.module('dssWebApp', [
         });
         $authProvider.google({
             clientId: '248170132962-5km115budk9h84raa26hdmnnqdj8ivkl.apps.googleusercontent.com',
-            redirectUri: 'http://ext-test.deepsouthsounds.com:9000/',
+            redirectUri: window.location.origin + '/',
             url: '/_a/?backend=google',
         });
         ngClipProvider.setPath("bower_components/zeroclipboard/dist/ZeroClipboard.swf");
@@ -104,35 +104,4 @@ angular.module('dssWebApp', [
         });
     };
 
-    //ensure login before state change
-    $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
-
-        /*
-        if (!$rootScope.currentUser && Session.getLocalToken() != null && Session.getBackend()) {
-            LoginService.loginUser().then(function (user) {
-                LoginService.getUserProfile()
-                    .then(function (user) {
-                        $rootScope.setCurrentUser(user);
-                        $rootScope.connectSockets();
-                        return $state.go(toState.name, toParams);
-                    });
-            }, function (result) {
-                console.log('Unable to login', result);
-                if (result.code === 403 || result.code === 400 || result.code === 401 || result.code === 500) {
-                    LoginService.logoutUser()
-                        .then(function () {
-                            return $state.go(toState.name, toParams);
-                        });
-                } else {
-                    debugger;
-                    console.error('Ooops');
-                    LoginService.logoutUser()
-                        .then(function () {
-                            return $state.go(toState.name, toParams);
-                        });
-                }
-            });
-            event.preventDefault();
-        }*/
-    });
 });
