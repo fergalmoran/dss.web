@@ -8,6 +8,6 @@ module.exports = {
 
     seedDB: true,
     redisHost: 'localhost',
-    apiUrl: 'http://ext-test.deepsouthsounds.com:8001',
+    apiUrl: 'https://ext-test.deepsouthsounds.com:8001',
     radioUrl: 'http://localhost:8000'
 };
