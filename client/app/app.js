@@ -50,12 +50,13 @@ angular.module('dssWebApp', [
             popupOptions: {width: 580, height: 400}
         });
         $authProvider.twitter({
-            url: '_a/?backend=twitter'
+            url: '_a/?backend=twitter',
+            redirectUri: window.location.origin + '/',
         });
         $authProvider.google({
-            clientId: '248170132962-5km115budk9h84raa26hdmnnqdj8ivkl.apps.googleusercontent.com',
+            clientId: '248170132962-gljba6svm1l8q73acmfc3ihkgp4orbnr.apps.googleusercontent.com',
             redirectUri: window.location.origin + '/',
-            url: '/_a/?backend=google',
+            url: '/_a/?backend=google'
         });
         ngClipProvider.setPath("bower_components/zeroclipboard/dist/ZeroClipboard.swf");
 

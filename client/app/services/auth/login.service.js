@@ -76,8 +76,6 @@ angular.module('dssWebApp')
         }
 
         function logoutUser() {
-            return $q.resolve();
-            /*
             var defer = $q.defer();
             $auth.logout()
                 .then(function(){
@@ -85,6 +83,5 @@ angular.module('dssWebApp')
                 });
 
             return defer.promise;
-            */
         }
     });
