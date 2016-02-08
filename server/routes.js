@@ -42,6 +42,7 @@ module.exports = function (app) {
                 var url = _parseUrl((app.get('apiUrl') + req.path + '/').replace(/([^:]\/)\/+/g, "$1"));
                 console.log('Api url: ' + url);
                 var fun = isHttps(url) ? https : http;
+                console.log("Using protocol: " + isHttps(url) ? "https" : "http");
                 fun.get(url, function (api_res) {
                     var body = '';
                     api_res.on('data', function (chunk) {
