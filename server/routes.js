@@ -1,7 +1,10 @@
 'use strict';
 var errors = require('./components/errors');
 var http = require('http');
+var https = require('https');
 var url = require('url');
+require('ssl-root-cas').inject();
+
 function _parseUrl(u) {
     var parts = url.parse(u, true, true);
 
@@ -41,9 +44,9 @@ module.exports = function (app) {
             if (req.headers['user-agent'].indexOf('facebookexternalhit') > -1) {
                 var url = _parseUrl((app.get('apiUrl') + req.path + '/').replace(/([^:]\/)\/+/g, "$1"));
                 console.log('Api url: ' + url);
-                var fun = isHttps(url) ? https : http;
-                console.log("Using protocol: " + isHttps(url) ? "https" : "http");
-                fun.get(url, function (api_res) {
+                //var fun = isHttps(url) ? https : http;
+                //console.log("Using protocol: ", isHttps(url) ? "https" : "http");
+                https.get(url, function (api_res) {
                     var body = '';
                     api_res.on('data', function (chunk) {
                         body += chunk;
