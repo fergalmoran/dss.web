@@ -48,7 +48,8 @@ angular.module('dssWebApp')
             }
 
             function _registerProcessingCallback() {
-                SocketService.registerHandler('user:process', function (message) {
+                SocketService.on('user:process', function (message) {
+                    debugger;
                     console.log("Received user:process message: ", message);
                     if (message.type === 'waveform' && message.target === _uploadHash) {
                         $scope.waveformHeader = "Waveform generated.";
@@ -140,7 +141,7 @@ angular.module('dssWebApp')
                 '<span class="smaller-80 grey">(or click)</span> <br /> <i class="upload-icon ace-icon fa fa-cloud-upload blue fa-3x"></i>',
                 maxFilesize: 512,
                 sending: function (file, xhr, formData) {
-                    xhr.setRequestHeader('Session-Id', Session.getSession())
+                    xhr.setRequestHeader('Session-Id', Session.getSession());
                     xhr.setRequestHeader('Upload-Hash', _uploadHash);
                     $scope.uploadState = uploadStates.AUDIO_SENDING;
                     $scope.$apply();
@@ -152,7 +153,7 @@ angular.module('dssWebApp')
                 },
                 complete: function (file) {
                     if (file.status !== 'error') {
-                        $scope.waveformHeader = "Generating waveform.";
+                        $scope.waveformHeader = "Generating waveform, we'll try to let you know when it's done or send you an email.";
                         $scope.uploadState = uploadStates.AUDIO_SENT;
                         $scope.$apply();
                         _checkRedirect();

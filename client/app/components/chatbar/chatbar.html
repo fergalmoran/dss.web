@@ -1,48 +1,84 @@
-<div id="sidebar-alt">
-    <div id="sidebar-alt-scroll">
-        <div class="sidebar-content">
-            <a class="sidebar-title">
-                <i class="fa fa-comments pull-right"></i> <strong>DSS</strong>Chat
-            </a>
-
-            <form id="sidebar-chat-form" class="chat-form" ng-submit="postMessage()">
-                <div class="input-group">
-                    <input focus-on-change="chatMessage" class="form-control" ng-model="chatMessage"
-                           placeholder="Type a message..">
-                    <!--
-                    <span class="input-group-addon" smilies-selector="chatMessage"
-                          smilies-placement="right" smilies-title="Smilies">
-                    </span>
-                    -->
-                </div>
-            </form>
-            <div class="chat-talk">
-                <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 100%;">
-                    <ul class="media-list">
-                        <li ng-repeat="message in messages" class="media animation-slideRight">
-                            <div class="media-body">
-                                <div class="media">
-                                    <a class="pull-left" href="#">
-                                        <img class="media-object img-circle " ng-src="{{message.image}}">
-                                    </a>
-                                    <div class="media-body" ng-bind-html="message.message | smilies">
-                                    </div>
-                                    <small class="text-muted">{{message.user}} |
-                                        <span time-ago="message.date" class="time-ago"></span>
-                                    </small>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                    <div class="slimScrollBar"
-                         style="width: 3px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; left: 1px; height: 210px; background: rgb(255, 255, 255);">
-                    </div>
-                    <div class="slimScrollRail"
-                         style="width: 3px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; opacity: 0.2; z-index: 90; left: 1px; background: rgb(51, 51, 51);">
-                    </div>
-                </div>
-
-            </div>
+<div class="popup-box chat-popup popup-box-on" id="qnimate">
+    <div class="popup-head">
+        <div class="popup-head-left pull-left"><img
+                src="http://bootsnipp.com/img/avatars/bcf1c0d13e5500875fdd5a7e8ad9752ee16e7462.jpg"
+                alt="iamgurdeeposahan"> Gurdeep Osahan
         </div>
+        <div class="popup-head-right pull-right">
+            <div class="btn-group">
+                <button class="chat-header-button" data-toggle="dropdown" type="button" aria-expanded="false">
+                    <i class="glyphicon glyphicon-cog"></i></button>
+                <ul role="menu" class="dropdown-menu pull-right">
+                    <li><a href="#">Media</a></li>
+                    <li><a href="#">Block</a></li>
+                    <li><a href="#">Clear Chat</a></li>
+                    <li><a href="#">Email Chat</a></li>
+                </ul>
+            </div>
+            <button data-widget="remove" id="removeClass" class="chat-header-button pull-right" type="button"><i
+                    class="glyphicon glyphicon-off"></i></button>
+        </div>
+    </div>
+    <div class="popup-messages">
+        <div class="direct-chat-messages">
+            <div class="chat-box-single-line">
+                <abbr class="timestamp">October 8th, 2015</abbr>
+            </div>
+            <!-- Message. Default to the left -->
+            <div class="direct-chat-msg doted-border">
+                <div class="direct-chat-info clearfix">
+                    <span class="direct-chat-name pull-left">Osahan</span>
+                </div>
+                <!-- /.direct-chat-info -->
+                <img alt="message user image"
+                     src="http://bootsnipp.com/img/avatars/bcf1c0d13e5500875fdd5a7e8ad9752ee16e7462.jpg"
+                     class="direct-chat-img"><!-- /.direct-chat-img -->
+                <div class="direct-chat-text">
+                    Hey bro, how’s everything going ?
+                </div>
+                <div class="direct-chat-info clearfix">
+                    <span class="direct-chat-timestamp pull-right">3.36 PM</span>
+                </div>
+                <div class="direct-chat-info clearfix">
+						<span class="direct-chat-img-reply-small pull-left">
+
+						</span>
+                    <span class="direct-chat-reply-name">Singh</span>
+                </div>
+                <!-- /.direct-chat-text -->
+            </div>
+            <!-- /.direct-chat-msg -->
+            <div class="chat-box-single-line">
+                <abbr class="timestamp">October 9th, 2015</abbr>
+            </div>
+            <!-- Message. Default to the left -->
+            <div class="direct-chat-msg doted-border">
+                <div class="direct-chat-info clearfix">
+                    <span class="direct-chat-name pull-left">Osahan</span>
+                </div>
+                <!-- /.direct-chat-info -->
+                <img alt="iamgurdeeposahan"
+                     src="http://bootsnipp.com/img/avatars/bcf1c0d13e5500875fdd5a7e8ad9752ee16e7462.jpg"
+                     class="direct-chat-img"><!-- /.direct-chat-img -->
+                <div class="direct-chat-text">
+                    Hey bro, how’s everything going ?
+                </div>
+                <div class="direct-chat-info clearfix">
+                    <span class="direct-chat-timestamp pull-right">3.36 PM</span>
+                </div>
+                <div class="direct-chat-info clearfix">
+                    <img alt="iamgurdeeposahan"
+                         src="http://bootsnipp.com/img/avatars/bcf1c0d13e5500875fdd5a7e8ad9752ee16e7462.jpg"
+                         class="direct-chat-img big-round">
+                    <span class="direct-chat-reply-name">Singh</span>
+                </div>
+                <!-- /.direct-chat-text -->
+            </div>
+            <!-- /.direct-chat-msg -->
+        </div>
+    </div>
+    <div class="popup-messages-footer">
+        <textarea id="status_message" placeholder="Type a message..." rows="10" cols="40" name="message"
+                  ng-model="chatMessage" enter-press="postMessage()"></textarea>
     </div>
 </div>

@@ -38,6 +38,10 @@ angular.module('dssWebApp')
                 || false;
         };
 
+        $scope.$on('socket:error', function (ev, data) {
+            console.error(data);
+        });
+
         $scope.isInRole = function (role) {
             if ($rootScope.currentUser) {
                 return Session.isInRole(role);
@@ -96,7 +100,7 @@ angular.module('dssWebApp')
             SocketService.removeHandler('site:broadcast');
         });
 
-        $scope.getMixUrl = function(mix){
+        $scope.getMixUrl = function (mix) {
             var port = window.location.port;
             return window.location.protocol +
                 "//" + window.location.hostname +
@@ -104,7 +108,7 @@ angular.module('dssWebApp')
                 $state.href('root.user.mix', {user: mix.user.slug, mix: mix.slug});
         };
 
-        $scope.copyUrl = function(mix){
+        $scope.copyUrl = function (mix) {
             var url = getMixUrl(mix);
             console.log("Copied URL", url);
         };

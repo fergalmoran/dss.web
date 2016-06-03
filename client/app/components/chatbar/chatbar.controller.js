@@ -1,16 +1,17 @@
 'use strict';
 
 angular.module('dssWebApp')
-    .controller('ChatbarCtrl', function ($scope, $rootScope, $http, SocketService, SERVER_CONFIG, AUTH_EVENTS) {
+    .controller('ChatbarCtrl', function ($scope, $rootScope, $http, SocketService, SERVER_CONFIG, AUTH_EVENTS, toastr) {
         console.log('ChatbarCtrl', $scope);
         $scope.messages = [];
         $scope.chatMessage = '';
 
         function _registerChatHandler() {
             console.log('Registering chat handler');
-            SocketService.registerHandler('chat', function (message) {
+            SocketService.on('chat', function (message) {
                 var data = JSON.parse(message);
                 console.log("Received chat message: " + data);
+                toastr.success(data);
                 $scope.$apply(function () {
                     $scope.messages.push(data);
                     $scope.chatMessage = '';
@@ -28,7 +29,7 @@ angular.module('dssWebApp')
 
         $scope.postMessage = function () {
             $http.post(SERVER_CONFIG.apiUrl + '/_chat/', {
-                user: 'Someone',
+                user: '2',
                 message: $scope.chatMessage
             });
         };

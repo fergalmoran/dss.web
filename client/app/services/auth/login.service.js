@@ -64,6 +64,7 @@ angular.module('dssWebApp')
                     UserModel.find(data.slug)
                         .then(function (user) {
                             Session.create(user);
+                            Session.setSession(data.session);
                             $rootScope.$broadcast(AUTH_EVENTS.loginSuccess, user);
                             defer.resolve(user);
                         }, function (result) {
