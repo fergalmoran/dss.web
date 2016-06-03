@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="bower_components/fullcalendar/dist/fullcalendar.css" />
     <link rel="stylesheet" href="bower_components/smalot-bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
     <link rel="stylesheet" href="bower_components/ui-select/dist/select.css" />
+    <link rel="stylesheet" href="bower_components/angular-toastr/dist/angular-toastr.css" />
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -56,13 +57,13 @@
         </div>
     </div>
 </div>
+<!--<div ui-view="chatbar"></div>-->
 <div id="footer" ng-show="isPlaying" ui-view="footer" class="app-footer"
      style="position: fixed; bottom: 0px; top: auto;">
 </div>
-<div id="spoon-plugin-kncgbdglledmjmpnikebkagnchfdehbm-2" style="display:none"></div>
-
-</body>
 <script src="//connect.facebook.net/en_US/sdk.js"></script>
+<script src="bower_components/socket.io-client/socket.io.js"></script>
+
 <!--[if lt IE 9]>
 <script src="bower_components/es5-shim/es5-shim.js"></script>
 <script src="bower_components/json3/lib/json3.min.js"></script>
@@ -86,7 +87,6 @@
 <script src="bower_components/angular-mocks/angular-mocks.js"></script>
 <script src="bower_components/angular-resource/angular-resource.js"></script>
 <script src="bower_components/angular-smilies/dist/angular-smilies.js"></script>
-<script src="bower_components/angular-socket-io/socket.js"></script>
 <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 <script src="bower_components/waypoints/waypoints.js"></script>
 <script src="bower_components/SHA-1/sha1.js"></script>
@@ -126,8 +126,9 @@
 <script src="bower_components/ng-clip/src/ngClip.js"></script>
 <script src="bower_components/satellizer/satellizer.js"></script>
 <script src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
+<script src="bower_components/angular-socket-io/socket.js"></script>
+<script src="bower_components/angular-toastr/dist/angular-toastr.tpls.js"></script>
 <!-- endbower -->
-<script src="socket.io-client/socket.io.js"></script>
 <!-- endbuild -->
 
 <!-- build:js({.tmp,client}) app/app.js -->
@@ -166,6 +167,7 @@
 <script src="app/directives/audio/audio.player.directive.js"></script>
 <script src="app/directives/misc/checkboxBitfield.js"></script>
 <script src="app/directives/misc/ckeditor.js"></script>
+<script src="app/directives/misc/enterpress.js"></script>
 <script src="app/directives/misc/focus.js"></script>
 <script src="app/directives/misc/timeAgo.js"></script>
 <script src="app/directives/misc/tooltip.js"></script>

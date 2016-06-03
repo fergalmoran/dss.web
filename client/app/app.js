@@ -19,6 +19,7 @@ angular.module('dssWebApp', [
         'angular-jwt',
         'angular-smilies',
         'satellizer',
+        'toastr',
         'angulartics.google.analytics'
     ])
     .config(function ($stateProvider, $sceDelegateProvider, $httpProvider, $urlRouterProvider, $locationProvider, $provide, $authProvider,
@@ -85,12 +86,11 @@ angular.module('dssWebApp', [
     $rootScope.isPlaying = false;
 
     $rootScope.setCurrentUser = function (user) {
-        console.log('Current user', user);
         $rootScope.currentUser = user;
     };
     $rootScope.connectSockets = function () {
-        SocketService.connectSocket(Session.getSession());
-        SocketService.registerHandler('site:broadcast', function (data) {
+        //SocketService.connectSocket(Session.getSession());
+        SocketService.on('socket:site:broadcast', function (data) {
             console.log(data);
             $.notify({
                 message: data,

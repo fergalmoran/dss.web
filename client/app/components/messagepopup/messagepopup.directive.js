@@ -23,7 +23,7 @@ angular.module('dssWebApp')
                 $rootScope.$on(CHAT_EVENTS.startChat, function (args, user) {
                     scope.vm.chattingWith = user;
                     _loadMessages();
-                    SocketService.registerHandler('user:message', function (message) {
+                    SocketService.on('socket:user:message', function (message) {
                         console.log("You got a message", message);
                         if (message.from_user === scope.vm.chattingWith.slug) {
                             MessageModel.ejectAll({

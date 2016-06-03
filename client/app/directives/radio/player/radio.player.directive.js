@@ -11,7 +11,7 @@ angular.module('dssWebApp')
                 $scope.radioPlaying = false;
                 $scope.radioLoading = false;
 
-                SocketService.registerHandler('site:radio_changed', function (data) {
+                SocketService.on('socket:site:radio_changed', function (data) {
                     console.log('site:radio_changed', data);
                     var d = JSON.parse(data);
                     $scope.radioNowPlaying = d.message.description;
