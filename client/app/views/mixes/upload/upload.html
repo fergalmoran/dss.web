@@ -8,25 +8,24 @@
             </form>
         </div>
     </div>
+    <div class="row">
+        <div ng-show="uploadState==uploadStates.AUDIO_SENT" class="widget widget-simple col-md-8">
+            <h6 class="description">
+                <span ng-bind-html="waveformHeader | unsafe"></span><br/>
+                <span ng-bind-html="waveformFooter | unsafe"></span>
+            </h6>
+        </div>
+    </div>
     <div ng-show="uploadState != uploadStates.VIRGIN && (!detailsEntered || uploadState == uploadStates.EDIT_MODE)"
          class="row">
         <div class="block text-center">
             <div class="col-md-2"></div>
             <div class="col-md-8">
                 <div class="row">
-                    <div ng-show="uploadState==1" class="progress progress-striped">
+                    <div ng-show="uploadState==uploadStates.AUDIO_SENDING" class="progress progress-striped">
                         <div role="progressbar" aria-valuenow="uploadProgress" aria-valuemin="0" aria-valuemax="100"
                              ng-style="uploadProgressStyle" class="progress-bar progress-bar-success">
                             {{uploadProgress}}%
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div ng-show="uploadState==2" class="widget widget-simple col-md-8">
-                        <div>
-                            <h6 class="description">
-                                {{waveformHeader}}
-                            </h6>
                         </div>
                     </div>
                 </div>
@@ -42,10 +41,8 @@
                                 <input type="text" id="title" name="title" required="" ng-minlength="5"
                                        ng-maxlength="250"
                                        ng-model="mix.title" class="form-control input-sm"/>
-
                                 <p for="title" ng-show="uploadForm.title.$invalid &amp;&amp; uploadForm.title.$dirty"
                                    class="help-block">Title must be between 5 and 250 characters</p>
-
                                 <p for="title"
                                    ng-show="(uploadForm.title.$error.required) &amp;&amp; uploadForm.$dirty &amp;&amp;!(uploadForm.title.$invalid &amp;&amp; uploadForm.title.$dirty)"
                                    class="help-block">Title is a must</p>

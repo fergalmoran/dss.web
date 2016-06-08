@@ -7,7 +7,9 @@ angular.module('dssWebApp')
 
             $scope.mix = mix;
             $scope.waveformHeader = '(drag & drop or click & browse)';
+
             $scope.waveformFooter = '';
+
             $scope.sending = false;
 
             $scope.multipleDemo = {};
@@ -49,7 +51,6 @@ angular.module('dssWebApp')
 
             function _registerProcessingCallback() {
                 SocketService.on('user:process', function (message) {
-                    debugger;
                     console.log("Received user:process message: ", message);
                     if (message.type === 'waveform' && message.target === _uploadHash) {
                         $scope.waveformHeader = "Waveform generated.";
@@ -112,10 +113,9 @@ angular.module('dssWebApp')
                         $scope.mix = result;
                         $timeout(function () {
                             var url = $state.href('root.user.mix', {user: $scope.mix.user.slug, mix: $scope.mix.slug});
-                            $scope.waveformFooter = "Waveform processing is taking longer than expected.<br />" +
-                                "Your mix should be available <a href='" + url + "'>Here</a>";
+                            $scope.waveformFooter = "Your mix will be available <a href='" + '/mix' + "'>Here</a>";
                             $scope.$apply();
-                        }, 1200);
+                        }, 6400);
 
                         var imageFile = document.getElementById('mix-image-fileinput').files[0];
                         if (imageFile) {
@@ -153,8 +153,9 @@ angular.module('dssWebApp')
                 },
                 complete: function (file) {
                     if (file.status !== 'error') {
-                        $scope.waveformHeader = "Generating waveform, we'll try to let you know when it's done or send you an email.";
-                        $scope.uploadState = uploadStates.AUDIO_SENT;
+                        $scope.waveformHeader =
+                            "<i class='fa fa-spinner fa-spin'></i>" +
+                            "Generating waveform, we'll try to let you know when it's done or send you an email.";                        $scope.uploadState = uploadStates.AUDIO_SENT;
                         $scope.$apply();
                         _checkRedirect();
                     } else {
