@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('dssWebApp')
-    .controller('MainCtrl', function ($scope, $rootScope, $http, $state, $auth,
+    .controller('MainCtrl', function ($scope, $rootScope, $http, $state, $auth, inform,
                                       dialogs, logger, SocketService, AudioService,
                                       MixModel, UserModel, LoginService, Session, SERVER_CONFIG, CHAT_EVENTS, AUTH_EVENTS) {
         $scope.isAuthorized = LoginService.isAuthorized;
@@ -9,12 +9,12 @@ angular.module('dssWebApp')
         $scope.currentPath = '';
         $scope.chatVisible = false;
         $rootScope.isMessaging = false;
+
         $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
             if ($auth.isAuthenticated()) {
                 LoginService.getUserProfile()
                     .then(function (user) {
                         $rootScope.setCurrentUser(user);
-                        $rootScope.connectSockets();
                         return $state.go(toState.name, toParams);
                     });
             }
@@ -67,10 +67,31 @@ angular.module('dssWebApp')
             if (!$scope.$$phase) {
                 $scope.$apply();
             }
-        });
+            SocketService.removeListener('user:broadcast');
+            var html="";
+            html += "                <div class=\"media\">";
+            html += "                    <a class=\"thumbnail pull-left\" href=\"#\">";
+            html += "                        <img class=\"media-object\" src=\"http:\/\/critterapp.pagodabox.com\/img\/user.jpg\">";
+            html += "                    <\/a>";
+            html += "                    <div class=\"media-body\">";
+            html += "                        <h4 class=\"media-heading\">First Last Name<\/h4>";
+            html += "                        <p><span class=\"label label-info\">888 photos<\/span> <span class=\"label label-warning\">150 followers<\/span><\/p>";
+            html += "                        <p>";
+            html += "                            <a href=\"#\" class=\"btn btn-xs btn-default\"><span class=\"glyphicon glyphicon-comment\"><\/span> Message<\/a>";
+            html += "                            <a href=\"#\" class=\"btn btn-xs btn-default\"><span class=\"glyphicon glyphicon-heart\"><\/span> Favorite<\/a>";
+            html += "                            <a href=\"#\" class=\"btn btn-xs btn-default\"><span class=\"glyphicon glyphicon-ban-circle\"><\/span> Unfollow<\/a>";
+            html += "                        <\/p>";
+            html += "                    <\/div>";
+            html += "                <\/div>";
 
-        $rootScope.$on('event:auth-loginConfirmed', function (data) {
-            $rootScope.connectSockets();
+            SocketService.on('user:broadcast', function (message) {
+                alert(message);
+                inform.add(html, {
+                    ttl: 800000,
+                    html: true,
+                    type: 'default'
+                });
+            });
         });
 
         $scope.setCurrentPath = function (path) {
@@ -93,12 +114,7 @@ angular.module('dssWebApp')
                     $rootScope.setCurrentUser(null);
                     $rootScope.$broadcast(AUTH_EVENTS.logoutSuccess);
                 });
-            SocketService.removeHandler('site:broadcast');
         };
-
-        $scope.$on('$destroy', function () {
-            SocketService.removeHandler('site:broadcast');
-        });
 
         $scope.getMixUrl = function (mix) {
             var port = window.location.port;

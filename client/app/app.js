@@ -20,7 +20,8 @@ angular.module('dssWebApp', [
         'angular-smilies',
         'satellizer',
         'toastr',
-        'angulartics.google.analytics'
+        'angulartics.google.analytics',
+        'inform'
     ])
     .config(function ($stateProvider, $sceDelegateProvider, $httpProvider, $urlRouterProvider, $locationProvider, $provide, $authProvider,
                       ngClipProvider, $analyticsProvider, dialogsProvider, DSProvider, DSHttpAdapterProvider,
@@ -88,21 +89,4 @@ angular.module('dssWebApp', [
     $rootScope.setCurrentUser = function (user) {
         $rootScope.currentUser = user;
     };
-    $rootScope.connectSockets = function () {
-        //SocketService.connectSocket(Session.getSession());
-        SocketService.on('socket:site:broadcast', function (data) {
-            console.log(data);
-            $.notify({
-                message: data,
-                icon: '/assets/images/yeoman.png'
-            }, {
-                placement: {
-                    from: 'bottom',
-                    align: 'left'
-                },
-                icon_type: 'image'
-            });
-        });
-    };
-
 });
