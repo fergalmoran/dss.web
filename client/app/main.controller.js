@@ -3,7 +3,8 @@
 angular.module('dssWebApp')
     .controller('MainCtrl', function ($scope, $rootScope, $http, $state, $auth, inform,
                                       dialogs, logger, SocketService, AudioService,
-                                      MixModel, UserModel, LoginService, Session, SERVER_CONFIG, CHAT_EVENTS, AUTH_EVENTS) {
+                                      MixModel, UserModel, LoginService, Session,
+                                      SERVER_CONFIG, CHAT_EVENTS, MESSAGE_EVENTS, AUTH_EVENTS) {
         $scope.isAuthorized = LoginService.isAuthorized;
         $scope.isAuthenticated = LoginService.isAuthenticated;
         $scope.currentPath = '';
@@ -73,29 +74,11 @@ angular.module('dssWebApp')
                 $scope.$apply();
             }
             SocketService.removeListener('user:broadcast');
-            var html = "";
-            html += "                <div class=\"media\">";
-            html += "                    <a class=\"thumbnail pull-left\" href=\"#\">";
-            html += "                        <img class=\"media-object\" src=\"http:\/\/critterapp.pagodabox.com\/img\/user.jpg\">";
-            html += "                    <\/a>";
-            html += "                    <div class=\"media-body\">";
-            html += "                        <h4 class=\"media-heading\">First Last Name<\/h4>";
-            html += "                        <p><span class=\"label label-info\">888 photos<\/span> <span class=\"label label-warning\">150 followers<\/span><\/p>";
-            html += "                        <p>";
-            html += "                            <a href=\"#\" class=\"btn btn-xs btn-default\"><span class=\"glyphicon glyphicon-comment\"><\/span> Message<\/a>";
-            html += "                            <a href=\"#\" class=\"btn btn-xs btn-default\"><span class=\"glyphicon glyphicon-heart\"><\/span> Favorite<\/a>";
-            html += "                            <a href=\"#\" class=\"btn btn-xs btn-default\"><span class=\"glyphicon glyphicon-ban-circle\"><\/span> Unfollow<\/a>";
-            html += "                        <\/p>";
-            html += "                    <\/div>";
-            html += "                <\/div>";
-
             SocketService.on('user:broadcast', function (message) {
-                alert(message);
-                inform.add(html, {
-                    ttl: 800000,
-                    html: true,
-                    type: 'default'
-                });
+                console.log('Received broadcast', message);
+                var parsed = JSON.parse(message);
+                utils.showToast(parsed.title, parsed.body, parsed.image);
+                $rootScope.$broadcast(MESSAGE_EVENTS.broadcast, parsed);
             });
         });
 
