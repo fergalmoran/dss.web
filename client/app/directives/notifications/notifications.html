@@ -1,14 +1,14 @@
-<li id="header_inbox_bar" class="dropdown">
+<li id="navbar-notification-dropdown" class="dropdown">
     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
         <i class="fa fa-envelope-o"></i>
-        <span class="badge bg-important">5</span>
+        <span class="badge bg-important" ng-show="notificationCount != 0">{{notificationCount}}</span>
     </a>
     <ul class="dropdown-menu extended inbox">
         <div class="notify-arrow notify-arrow-red"></div>
         <li>
-            <p class="red">You have 5 new messages</p>
+            <p class="red">You have {{notificationCount}} new notifications</p>
         </li>
-        <li ng-repeat="notification in notifications">
+        <li ng-repeat="notification in notifications" ng-class="notification.accepted_date ? '' : 'notification-new'">
             <a href="{{notification.target}}">
                 <span class="photo">
                     <img alt="avatar" ng-src="{{notification.from_user.profile_image_small}}">
