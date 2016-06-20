@@ -132,7 +132,6 @@ angular.module('dssWebApp')
                     $scope.uploadForm.$dirty = true;
                 }
             };
-            //TODO: refactor dropzone out to a directive
             $('#dss-file-upload').dropzone({
                 addRemoveLinks: true,
                 acceptedFiles: '.mp3',

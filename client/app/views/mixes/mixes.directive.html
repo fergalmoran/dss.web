@@ -1,7 +1,8 @@
-<div class="box">
-    <div class="box-title">
-        <a ui-sref="root.user.mix({user: mix.user.slug, mix: mix.slug})"><h3><i class="fa fa-headphones"></i>{{mix.title}}</h3></a>
-        <div class="actions">
+<div class="panel">
+    <div class="panel-heading">
+        <!--<a ui-sref="root.user.mix({user: mix.user.slug, mix: mix.slug})"><h3><i class="fa fa-headphones"></i>{{mix.title}}</h3></a>-->
+        <a ui-sref="root.user.mix({user: mix.user.slug, mix: mix.slug})"><i class="fa fa-headphones"></i>&nbsp;{{mix.title}}</a>
+        <div class="tools pull-right">
             <btn clip-copy="getMixUrl(mix)" clip-click="copyUrl(mix)" class="btn btn-mini content-refresh" data-toggle="tooltip" data-title="Copy Link">
                 <i class="fa fa-copy"></i>
             </btn>
@@ -13,15 +14,8 @@
             </a>
         </div>
     </div>
-    <div class="box-content">
-        <div class="col-md-4 image-container widget-advanced"
-             style="background-image: url('{{mix.mix_image}}');">
-            <div style="background-image: url('{{mix.user.profile_image_small}}')"
-                 class="widget-image-container animation-hatch">
-                <div ng-class="playState==1 ? 'pause' : 'play'" style="display: block" ng-click="play(mix)"
-                     class="playbtn play"></div>
-            </div>
-        </div>
+    <div class="panel-body">
+        <dss-mix-image class="col-md-4"></dss-mix-image>
         <div class="col-md-7 pull-right">
             <div class="row">
                 <h4></h4>

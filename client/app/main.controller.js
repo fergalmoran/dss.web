@@ -16,7 +16,12 @@ angular.module('dssWebApp')
                     .then(function (user) {
                         $rootScope.setCurrentUser(user);
                         return $state.go(toState.name, toParams);
+                    }, function (reason) {
+                        debugger;
+                        console.error(reason);
                     });
+            } else {
+                debugger;
             }
         });
         $rootScope.safeApply = function (fn) {
@@ -68,7 +73,7 @@ angular.module('dssWebApp')
                 $scope.$apply();
             }
             SocketService.removeListener('user:broadcast');
-            var html="";
+            var html = "";
             html += "                <div class=\"media\">";
             html += "                    <a class=\"thumbnail pull-left\" href=\"#\">";
             html += "                        <img class=\"media-object\" src=\"http:\/\/critterapp.pagodabox.com\/img\/user.jpg\">";

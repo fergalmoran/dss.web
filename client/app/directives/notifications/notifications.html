@@ -1,32 +1,29 @@
-<div>
-    <!--<div class="notification-heading">-->
-        <!--<h4 class="menu-title">Notifications</h4>-->
-        <!--<h4 class="menu-title pull-right">-->
-            <!--View all<i class="glyphicon glyphicon-circle-arrow-right"></i>-->
-        <!--</h4>-->
-    <!--</div>-->
-    <!--<li class="divider"></li>-->
-    <div class="notifications-wrapper notification-wrapper">
-        <div class="content" href="#" ng-repeat="notification in notifications">
-            <div class="notification-item notification-wrapper"
-                ng-class="notification.accepted_date ? '' : 'notification-new'">
-                <img class="notification-details-profile-image" ng-src="{{notification.from_user.profile_image_small}}"
-                     alt="">
-                <div class="details notification-details">
-                    <div class="name">
-                        {{notification.from_user.first_name}}
-                    </div>
-                    <div class="message">
-                        {{notification.verb}}&nbsp;<a href="{{notification.target}}">{{notification.target_desc}}</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--<li class="divider"></li>-->
-    <!--<div class="notification-footer">-->
-        <!--<h4 class="menu-title">-->
-            <!--View all<i class="glyphicon glyphicon-circle-arrow-right"></i>-->
-        <!--</h4>-->
-    <!--</div>-->
-</div>
+<li id="header_inbox_bar" class="dropdown">
+    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+        <i class="fa fa-envelope-o"></i>
+        <span class="badge bg-important">5</span>
+    </a>
+    <ul class="dropdown-menu extended inbox">
+        <div class="notify-arrow notify-arrow-red"></div>
+        <li>
+            <p class="red">You have 5 new messages</p>
+        </li>
+        <li ng-repeat="notification in notifications">
+            <a href="{{notification.target}}">
+                <span class="photo">
+                    <img alt="avatar" ng-src="{{notification.from_user.profile_image_small}}">
+                </span>
+                <span class="subject">
+                    <span class="from">{{notification.from_user.first_name}}</span>
+                    <span class="time">{{notification.date|humanise}}</span>
+                </span>
+                <span class="message">
+                    {{notification.verb}}&nbsp;{{notification.target_desc}}
+                </span>
+            </a>
+        </li>
+        <li>
+            <a href="#">See all messages</a>
+        </li>
+    </ul>
+</li>
