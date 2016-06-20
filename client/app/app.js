@@ -1,27 +1,28 @@
 'use strict';
 
 angular.module('dssWebApp', [
-        'ngCookies',
-        'ngResource',
-        'ngAnimate',
-        'ngSanitize',
-        'btford.socket-io',
-        'ui.router',
-        'angular-loading-bar',
-        'js-data',
-        'ui.bootstrap',
-        'ui.select',
-        'dialogs.main',
-        'infinite-scroll',
-        'angularFileUpload',
-        'angulartics',
-        'ngClipboard',
-        'angular-jwt',
-        'angular-smilies',
-        'satellizer',
-        'toastr',
-        'angulartics.google.analytics'
-    ])
+    'ngCookies',
+    'ngResource',
+    'ngAnimate',
+    'ngSanitize',
+    'btford.socket-io',
+    'ui.router',
+    'angular-loading-bar',
+    'js-data',
+    'ui.bootstrap',
+    'ui.select',
+    'dialogs.main',
+    'infinite-scroll',
+    'angularFileUpload',
+    'angulartics',
+    'ngClipboard',
+    'angular-jwt',
+    'angular-smilies',
+    'satellizer',
+    'toastr',
+    'angulartics.google.analytics',
+    'inform'
+])
     .config(function ($stateProvider, $sceDelegateProvider, $httpProvider, $urlRouterProvider, $locationProvider, $provide, $authProvider,
                       ngClipProvider, $analyticsProvider, dialogsProvider, DSProvider, DSHttpAdapterProvider,
                       SERVER_CONFIG, STORAGE) {
@@ -82,27 +83,10 @@ angular.module('dssWebApp', [
             'https://dsscdn.blob.core.windows.net/mixes/**'
         ]);
         $locationProvider.html5Mode(true);
-    }).run(function ($http, $rootScope, $state, $window, LoginService, Session, SocketService) {
-    $rootScope.isPlaying = false;
-
-    $rootScope.setCurrentUser = function (user) {
-        $rootScope.currentUser = user;
-    };
-    $rootScope.connectSockets = function () {
-        //SocketService.connectSocket(Session.getSession());
-        SocketService.on('socket:site:broadcast', function (data) {
-            console.log(data);
-            $.notify({
-                message: data,
-                icon: '/assets/images/yeoman.png'
-            }, {
-                placement: {
-                    from: 'bottom',
-                    align: 'left'
-                },
-                icon_type: 'image'
-            });
-        });
-    };
-
-});
+    })
+    .run(function ($http, $rootScope, $state, $window, LoginService, Session, SocketService) {
+        $rootScope.isPlaying = false;
+        $rootScope.setCurrentUser = function (user) {
+            $rootScope.currentUser = user;
+        };
+    });

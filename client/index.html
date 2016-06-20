@@ -26,6 +26,8 @@
     <link rel="stylesheet" href="bower_components/smalot-bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
     <link rel="stylesheet" href="bower_components/ui-select/dist/select.css" />
     <link rel="stylesheet" href="bower_components/angular-toastr/dist/angular-toastr.css" />
+    <link rel="stylesheet" href="bower_components/angular-inform/dist/angular-inform.css" />
+    <link rel="stylesheet" href="bower_components/jquery.gritter/css/jquery.gritter.css" />
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -35,9 +37,13 @@
     <link rel="stylesheet" href="assets/animations.css">
     <link rel="stylesheet" href="assets/zoom/audioplayer.css">
     <link rel="stylesheet" href="assets/zoom/style.css">
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css"/>
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
-    <link rel="stylesheet" href="assets/site/css/site.css">
-    <link rel="stylesheet" href="assets/site/css/themes.css">
+    <link rel="stylesheet" href="assets/flatlab/style.css">
+    <link rel="stylesheet" href="assets/flatlab/style-responsive.css">
+    <link rel="stylesheet" href="assets/flatlab/bootstrap-fileupload.css">
+    <link rel="stylesheet" href="assets/flatlab/bootstrap-reset.css">
+
     <link rel="stylesheet" href="assets/select2/select2.css">
 
     <!-- injector:css -->
@@ -46,21 +52,19 @@
     <!-- endinjector -->
     <!-- endbuild -->
 </head>
-<body class="theme-lightgrey" data-theme="theme-lightgrey" ng-controller="MainCtrl">
-
-<div id="navigation" ui-view="navbar">
-</div>
-<div id="main">
-    <div class="container-fluid" id="content">
-        <div class="page-header" ui-view="pageheader"></div>
-        <div class="container-fluid" ui-view="content">
-        </div>
-    </div>
-</div>
-<!--<div ui-view="chatbar"></div>-->
+<body ng-controller="MainCtrl" class="has-js">
+<section id="container">
+    <header class="header white-bg" ui-view="navbar"></header>
+    <section id="main-content" style="margin-left: 0px;">
+        <section class="wrapper" ui-view="content">
+        </section>
+    </section>
+</section>
+<div inform class="inform-animate inform-fixed inform-shadow inform-center"></div>
 <div id="footer" ng-show="isPlaying" ui-view="footer" class="app-footer"
      style="position: fixed; bottom: 0px; top: auto;">
 </div>
+
 <script src="//connect.facebook.net/en_US/sdk.js"></script>
 <script src="bower_components/socket.io-client/socket.io.js"></script>
 
@@ -128,6 +132,8 @@
 <script src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
 <script src="bower_components/angular-socket-io/socket.js"></script>
 <script src="bower_components/angular-toastr/dist/angular-toastr.tpls.js"></script>
+<script src="bower_components/angular-inform/dist/angular-inform.js"></script>
+<script src="bower_components/jquery.gritter/js/jquery.gritter.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
 
@@ -142,6 +148,7 @@
 
 <script src="bower_components/angular-deferred-bootstrap/angular-deferred-bootstrap.js"></script>
 <script src="bower_components/SoundManager2/script/soundmanager2-nodebug.js"></script>
+<script src="assets/flatlab/bootstrap-fileupload.js"></script>
 <script src="assets/utils.js"></script>
 <script src="assets/slimscroll/jquery.slimscroll.js"></script>
 <script src="assets/dropzone/dropzone.js"></script>
@@ -157,6 +164,7 @@
 <script src="app/constants/audio.js"></script>
 <script src="app/constants/backends.js"></script>
 <script src="app/constants/chat.js"></script>
+<script src="app/constants/messages.js"></script>
 <script src="app/constants/playstates.js"></script>
 <script src="app/constants/storage.js"></script>
 <script src="app/dialogs/alert/alertDialogCtrl.js"></script>
@@ -165,12 +173,14 @@
 <script src="app/dialogs/sharing/shareMix.controller.js"></script>
 <script src="app/directives/activity/activityFeed.directive.js"></script>
 <script src="app/directives/audio/audio.player.directive.js"></script>
+<script src="app/directives/checkbox/checkbox.js"></script>
 <script src="app/directives/misc/checkboxBitfield.js"></script>
 <script src="app/directives/misc/ckeditor.js"></script>
 <script src="app/directives/misc/enterpress.js"></script>
 <script src="app/directives/misc/focus.js"></script>
 <script src="app/directives/misc/timeAgo.js"></script>
 <script src="app/directives/misc/tooltip.js"></script>
+<script src="app/directives/miximage/mixImage.js"></script>
 <script src="app/directives/notifications/notifications.directive.js"></script>
 <script src="app/directives/playlist/playlist.directive.js"></script>
 <script src="app/directives/radio/player/radio.player.directive.js"></script>

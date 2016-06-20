@@ -1,3 +1,71 @@
-<iframe width="100%" height="166" scrolling="no" frameborder="no"
-        src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/144278437&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false">
-</iframe>
+<div id="ap1" style="width:100%; " class="skin-wave skin-wave-mode-normal audioplayer loaded">
+    <div class="audioplayer-inner">
+        <a class="the-thumb-con">
+            <dss-mix-image></dss-mix-image>
+        </a>
+        <div class="ap-controls">
+            <dss-waveform class="hidden-xs"></dss-waveform>
+        </div>
+    </div>
+    <div ng-show="addingComment" class="lower-container add-comment animate-show">
+        <div class="input-group comment-add-form pull-right">
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-primary">
+                            <i class="fa fa-pencil"></i>
+                        </button>
+                    </span>
+            <input type="text" placeholder="Add comment"
+                   ng-keyup="$event.keyCode == 13 &amp;&amp; addComment($event)"
+                   ng-show="addingComment"
+                   show-focus="addingComment" class="form-control"/>
+        </div>
+    </div>
+    <div ng-hide="addingComment" class="lower-container mix-details animate-show">
+        <div class="control-container pull-left">
+            <div class="con-controls">
+                <div class="the-bg"></div>
+                <div ng-click="play($event)" class="con-playpause">
+                    <div ng-show="(playState == 0 || playState == 2)" class="playbtn">
+                        <div class="play-icon"></div>
+                        <div class="play-icon-hover"></div>
+                    </div>
+                    <div ng-show="(playState == 1)" class="pausebtn">
+                        <div class="pause-icon">
+                            <div class="pause-part-1"></div>
+                            <div class="pause-part-2"></div>
+                        </div>
+                        <div class="pause-icon-hover"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="left: 56px;" class="hidden-xs">
+            <a ui-sref="root.user({user: mix.user.slug})"
+               class="the-artist ng-binding">
+                {{mix.user.display_name}}
+            </a>
+            <a href="#" ng-click="toggleFollow()" ng-show="currentUser"
+               uib-tooltip="{{mix.user.is_following ? 'Unfollow' : 'Follow'}} {{mix.user.display_name}}">
+                <i class="fa fa-user-plus"
+                   ng-class="mix.user.is_following ? 'text-danger' : 'text-success'"></i>
+            </a>
+            <div class="meta-artist"><span class="the-name ng-binding">{{mix.title}}</span></div>
+        </div>
+
+    </div>
+    <div style="width: 920px; left: 220px;" class="hidden-sm" ng-click="showCommentForm($event)" class="comments-holder active">
+        <div class="the-bg"></div>
+        <span ng-style="{'left': + (comment.time_index/mix.duration) * 100 + '%'}"
+              ng-repeat="comment in comments | filter: { time_index: '!0' }"
+              class="a-comment with-tooltip">
+            <div class="aux-padder"></div>
+            <span style="width: 250px;" class="dzstooltip skin-black">
+                <span class="the-comment-author">@{{comment.user}}</span> says:<br/>{{comment.comment}}
+            </span>
+           <div style="background-image: url({{comment.avatar_image}})" class="the-avatar">
+           </div>
+        </span>
+    </div>
+    <div class="clear"></div>
+</div>

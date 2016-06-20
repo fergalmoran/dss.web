@@ -67,6 +67,24 @@
                         <div id="image-area" class="form-group">
                             <label class="col-sm-3 control-label">Image</label>
                             <div class="col-sm-3">
+                                <div class="fileupload fileupload-new" data-provides="fileupload">
+                                    <div class="fileupload-new thumbnail" style="width: 200px; height: 150px;">
+                                        <img ng-src="{{mix.mix_image ? mix.mix_image : &quot;assets/images/image-upload-placeholder.png&quot;}}"
+                                             alt=""/>
+                                    </div>
+                                    <div class="fileupload-preview fileupload-exists thumbnail"
+                                         style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
+                                    <div>
+                                       <span class="btn btn-white btn-file">
+                                           <span class="fileupload-new"><i class="fa fa-paper-clip"></i> Select image</span>
+                                           <span class="fileupload-exists"><i class="fa fa-undo"></i> Change</span>
+                                           <input type="file" id="mix-image-fileinput" class="default"/>
+                                       </span>
+                                        <a href="#" class="btn btn-danger fileupload-exists"
+                                           data-dismiss="fileupload"><i class="fa fa-trash"></i> Remove</a>
+                                    </div>
+                                </div>
+                                <!--
                                 <div data-provides="fileinput" class="fileinput fileinput-new override-text-align">
                                     <div data-trigger="fileinput" style="width: 200px; height: 150px;"
                                          class="fileinput-preview thumbnail override-text-align">
@@ -85,51 +103,19 @@
                                         </a>
                                     </div>
                                 </div>
+                                -->
                             </div>
                             <div class="col-sm-3">
-                                <table class="table table-striped table-vcenter">
-                                    <tbody>
-                                    <tr>
-                                        <td>
-                                            Private
-                                        </td>
-                                        <td>
-                                            <div class="checkbox">
-                                                <label class="switch switch-primary">
-                                                    <input ng-model="mix.is_private" type="checkbox" checked="">
-                                                    <span></span>
-                                                </label>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Downloadable
-                                        </td>
-                                        <td>
-                                            <div class="checkbox">
-                                                <label class="switch switch-primary">
-                                                    <input ng-model="mix.is_downloadable" type="checkbox" checked="">
-                                                    <span></span>
-                                                </label>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Homepage
-                                        </td>
-                                        <td>
-                                            <div class="checkbox">
-                                                <label class="switch switch-primary">
-                                                    <input ng-model="mix.is_featured" type="checkbox" checked="">
-                                                    <span></span>
-                                                </label>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                                <section class="panel">
+                                    <header class="panel-heading">Mix options</header>
+                                    <div class="panel-body">
+                                        <div class="checkboxes">
+                                            <pretty-checkbox ng-model="mix.is_private" label="'Private'"></pretty-checkbox>
+                                            <pretty-checkbox ng-model="mix.is_downloadable" label="'Downloadable'"></pretty-checkbox>
+                                            <pretty-checkbox ng-model="mix.is_featured" label="'Homepage'"></pretty-checkbox>
+                                        </div>
+                                    </div>
+                                </section>
                             </div>
                         </div>
                         <div id="genres-area" class="form-group">

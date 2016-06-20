@@ -13,6 +13,7 @@ sub.subscribe('site:broadcast');
 sub.subscribe('site:radio_changed');
 sub.subscribe('user:process');
 sub.subscribe('user:message');
+sub.subscribe('user:broadcast');
 sub.subscribe('chat');
 
 sub.on("error", function (err) {
@@ -20,11 +21,15 @@ sub.on("error", function (err) {
 });
 
 sub.on('message', function (channel, message) {
+    console.info('Message received: %s - %s', channel, message);
     var msg = JSON.parse(message);
     if (channel === 'chat') {
         sessions.forEach(function (socket) {
             socket.emit(channel, message);
         });
+    } else if (channel === 'user:broadcast') {
+        console.info('User broadcast message received');
+        onUserMessage(channel, msg);
     } else if (channel === 'user:process') {
         onUserMessage(channel, msg);
     } else if (channel === 'user:message') {
@@ -38,6 +43,7 @@ sub.on('message', function (channel, message) {
 
 // When the user connects.. perform this
 function onConnect(socket) {
+    console.info('OnConnect - Address(%s) : Token(%s)', socket.address, socket.handshake.query.token);
     socket.on('info', function (data) {
         console.info('[%s] %s', socket.address, JSON.stringify(data, null, 2));
     });
@@ -54,9 +60,14 @@ function onDisconnect(socket) {
     console.info('[%s] DISCONNECTED', socket.address);
 }
 function onUserMessage(channel, message) {
+    console.info('Message for session: %s', message.session);
     if (sessions.has(message.session)) {
+        console.info('Session found');
         var socket = sessions.get(message.session);
+        console.info('Sending %s to %s', message.message, channel);
         socket.emit(channel, message.message);
+    }else{
+        console.error('Session not found');
     }
 }
 module.exports = {
@@ -84,17 +95,14 @@ module.exports = {
                 onDisconnect(socket);
 
             });
-
             // Call onConnect.
             onConnect(socket);
-
             if (session) {
                 if (!sessions.has(session)) {
                     sessions.delete(session);
                 }
                 sessions.set(session, socket);
             }
-            console.info('[%s] CONNECTED', socket.address);
         })
     }, isMember: function (session) {
         return sessions.has(session);

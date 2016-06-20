@@ -1,22 +1,28 @@
 'use strict';
 
 angular.module('dssWebApp')
-    .controller('MainCtrl', function ($scope, $rootScope, $http, $state, $auth,
+    .controller('MainCtrl', function ($scope, $rootScope, $http, $state, $auth, inform,
                                       dialogs, logger, SocketService, AudioService,
-                                      MixModel, UserModel, LoginService, Session, SERVER_CONFIG, CHAT_EVENTS, AUTH_EVENTS) {
+                                      MixModel, UserModel, LoginService, Session,
+                                      SERVER_CONFIG, CHAT_EVENTS, MESSAGE_EVENTS, AUTH_EVENTS) {
         $scope.isAuthorized = LoginService.isAuthorized;
         $scope.isAuthenticated = LoginService.isAuthenticated;
         $scope.currentPath = '';
         $scope.chatVisible = false;
         $rootScope.isMessaging = false;
+
         $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
             if ($auth.isAuthenticated()) {
                 LoginService.getUserProfile()
                     .then(function (user) {
                         $rootScope.setCurrentUser(user);
-                        $rootScope.connectSockets();
                         return $state.go(toState.name, toParams);
+                    }, function (reason) {
+                        debugger;
+                        console.error(reason);
                     });
+            } else {
+                debugger;
             }
         });
         $rootScope.safeApply = function (fn) {
@@ -67,10 +73,13 @@ angular.module('dssWebApp')
             if (!$scope.$$phase) {
                 $scope.$apply();
             }
-        });
-
-        $rootScope.$on('event:auth-loginConfirmed', function (data) {
-            $rootScope.connectSockets();
+            SocketService.removeListener('user:broadcast');
+            SocketService.on('user:broadcast', function (message) {
+                console.log('Received broadcast', message);
+                var parsed = JSON.parse(message);
+                utils.showToast(parsed.title, parsed.body, parsed.image);
+                $rootScope.$broadcast(MESSAGE_EVENTS.broadcast, parsed);
+            });
         });
 
         $scope.setCurrentPath = function (path) {
@@ -93,12 +102,7 @@ angular.module('dssWebApp')
                     $rootScope.setCurrentUser(null);
                     $rootScope.$broadcast(AUTH_EVENTS.logoutSuccess);
                 });
-            SocketService.removeHandler('site:broadcast');
         };
-
-        $scope.$on('$destroy', function () {
-            SocketService.removeHandler('site:broadcast');
-        });
 
         $scope.getMixUrl = function (mix) {
             var port = window.location.port;
