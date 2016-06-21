@@ -43,8 +43,6 @@
     "angular-socket-io": "^0.7.0",
     "socket.io-client": "^1.4.6",
     "angular-toastr": "^1.7.0",
-    "angular-inform": "^0.0.18",
-    "font-awesome": "^4.6.3",
     "jquery.gritter": "^1.7.4"
   },
   "devDependencies": {
@@ -52,7 +50,6 @@
     "angular-scenario": ">=1.2.*"
   },
   "resolutions": {
-    "angular-bootstrap": "~0.14.3",
     "angular": "1.4.*"
   }
 }
