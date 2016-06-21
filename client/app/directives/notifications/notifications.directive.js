@@ -38,8 +38,8 @@ angular.module('dssWebApp')
                 });
                 scope.$on(MESSAGE_EVENTS.broadcast, function (message) {
                     getNotifications(scope)
-                        .then(function(){
-                            scope.$apply();
+                        .then(function () {
+                            $rootScope.safeApply();
                         });
                 });
             }
