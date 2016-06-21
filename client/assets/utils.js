@@ -8,7 +8,6 @@ var utils = {
             title: title,
             text: text,
             image: image,
-            time: 60000,
             sticky: false
         });
     }
