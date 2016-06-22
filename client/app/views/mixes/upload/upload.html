@@ -1,30 +1,34 @@
 <div ng-hide="$root.currentUser" class="row">
     <button type="button" ng-click="login()" class="btn btn-sm btn-danger">Login</button>
 </div>
-<div ng-show="uploadState==uploadStates.AUDIO_SENDING && !detailsEntered" class="progress progress-striped">
-    <div role="progressbar" aria-valuenow="uploadProgress" aria-valuemin="0" aria-valuemax="100"
-         ng-style="uploadProgressStyle" class="progress-bar progress-bar-success">
-        {{uploadProgress}}%
-    </div>
-</div>
 <div ng-show="$root.currentUser" class="row">
-    <div ng-show="uploadState <= uploadStates.AUDIO_SENT" class="text-center row">
+
+    <div ng-show="uploadState==uploadStates.AUDIO_SENDING" class="progress progress-striped" id="progress-wrapper">
+        <div role="progressbar" aria-valuenow="uploadProgress" aria-valuemin="0" aria-valuemax="100"
+             ng-style="uploadProgressStyle" class="progress-bar progress-bar-success">
+            {{uploadProgress}}%
+        </div>
+    </div>
+
+    <div ng-show="uploadState <= uploadStates.AUDIO_SENT" class="text-center row" id="fileupload-wrapper">
         <div class="block full">
             <form id="dss-file-upload" ng-show="uploadState==0" class="dropzone">
             </form>
         </div>
     </div>
-    <div class="row">
-        <div ng-show="uploadState==uploadStates.AUDIO_SENT" class="widget widget-simple col-md-8">
-            <h6 class="description">
-                <span ng-bind-html="waveformHeader | unsafe"></span><br/>
-                <span ng-bind-html="waveformFooter | unsafe"></span>
-            </h6>
+    <div ng-show="uploadState==uploadStates.AUDIO_SENT" class="text-center row" id="status-wrapper">
+        <div class="panel">
+            <div class="panel-body">
+                <h2 class="description">
+                    <span id="waveform-status-info" ng-bind-html="waveformHeader | unsafe"></span><br/>
+                    <span ng-bind-html="waveformFooter | unsafe"></span>
+                </h2>
+            </div>
         </div>
     </div>
 
     <div ng-show="uploadState != uploadStates.VIRGIN && (!detailsEntered || uploadState == uploadStates.EDIT_MODE)"
-         class="row">
+         class="row"  id="details-wrapper">
         <div class="block text-center">
             <div class="col-md-2"></div>
             <div class="col-md-8">
@@ -40,7 +44,8 @@
                                 <input type="text" id="title" name="title" required="" ng-minlength="5"
                                        ng-maxlength="250"
                                        ng-model="mix.title" class="form-control input-sm"/>
-                                <p for="title" ng-show="uploadForm.title.$invalid &amp;&amp; uploadForm.title.$dirty"
+                                <p for="title"
+                                   ng-show="uploadForm.title.$invalid &amp;&amp; uploadForm.title.$dirty"
                                    class="help-block">Title must be between 5 and 250 characters</p>
                                 <p for="title"
                                    ng-show="(uploadForm.title.$error.required) &amp;&amp; uploadForm.$dirty &amp;&amp;!(uploadForm.title.$invalid &amp;&amp; uploadForm.title.$dirty)"
@@ -75,7 +80,8 @@
                                          style="max-width: 200px; max-height: 150px; line-height: 20px;"></div>
                                     <div>
                                        <span class="btn btn-white btn-file">
-                                           <span class="fileupload-new"><i class="fa fa-paper-clip"></i> Select image</span>
+                                           <span class="fileupload-new"><i
+                                                   class="fa fa-paper-clip"></i> Select image</span>
                                            <span class="fileupload-exists"><i class="fa fa-undo"></i> Change</span>
                                            <input type="file" id="mix-image-fileinput" class="default"/>
                                        </span>
@@ -109,9 +115,12 @@
                                     <header class="panel-heading">Mix options</header>
                                     <div class="panel-body">
                                         <div class="checkboxes">
-                                            <pretty-checkbox ng-model="mix.is_private" label="'Private'"></pretty-checkbox>
-                                            <pretty-checkbox ng-model="mix.is_downloadable" label="'Downloadable'"></pretty-checkbox>
-                                            <pretty-checkbox ng-model="mix.is_featured" label="'Homepage'"></pretty-checkbox>
+                                            <pretty-checkbox ng-model="mix.is_private"
+                                                             label="'Private'"></pretty-checkbox>
+                                            <pretty-checkbox ng-model="mix.is_downloadable"
+                                                             label="'Downloadable'"></pretty-checkbox>
+                                            <pretty-checkbox ng-model="mix.is_featured"
+                                                             label="'Homepage'"></pretty-checkbox>
                                         </div>
                                     </div>
                                 </section>

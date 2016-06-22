@@ -18,11 +18,8 @@ angular.module('dssWebApp')
                         $rootScope.setCurrentUser(user);
                         return $state.go(toState.name, toParams);
                     }, function (reason) {
-                        debugger;
                         console.error(reason);
                     });
-            } else {
-                debugger;
             }
         });
         $rootScope.safeApply = function (fn) {
