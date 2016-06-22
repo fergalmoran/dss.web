@@ -1,6 +1,12 @@
 <div ng-hide="$root.currentUser" class="row">
     <button type="button" ng-click="login()" class="btn btn-sm btn-danger">Login</button>
 </div>
+<div ng-show="uploadState==uploadStates.AUDIO_SENDING && !detailsEntered" class="progress progress-striped">
+    <div role="progressbar" aria-valuenow="uploadProgress" aria-valuemin="0" aria-valuemax="100"
+         ng-style="uploadProgressStyle" class="progress-bar progress-bar-success">
+        {{uploadProgress}}%
+    </div>
+</div>
 <div ng-show="$root.currentUser" class="row">
     <div ng-show="uploadState <= uploadStates.AUDIO_SENT" class="text-center row">
         <div class="block full">
@@ -16,19 +22,12 @@
             </h6>
         </div>
     </div>
+
     <div ng-show="uploadState != uploadStates.VIRGIN && (!detailsEntered || uploadState == uploadStates.EDIT_MODE)"
          class="row">
         <div class="block text-center">
             <div class="col-md-2"></div>
             <div class="col-md-8">
-                <div class="row">
-                    <div ng-show="uploadState==uploadStates.AUDIO_SENDING" class="progress progress-striped">
-                        <div role="progressbar" aria-valuenow="uploadProgress" aria-valuemin="0" aria-valuemax="100"
-                             ng-style="uploadProgressStyle" class="progress-bar progress-bar-success">
-                            {{uploadProgress}}%
-                        </div>
-                    </div>
-                </div>
                 <div class="row">
                     <form name="uploadForm" ng-submit="saveMix()" class="form-horizontal">
                         <input type="hidden" ng-model="mix.uid"/>

@@ -113,7 +113,7 @@ angular.module('dssWebApp')
                         $scope.mix = result;
                         $timeout(function () {
                             var url = $state.href('root.user.mix', {user: $scope.mix.user.slug, mix: $scope.mix.slug});
-                            $scope.waveformFooter = "Your mix will be available <a href='" + '/mix' + "'>Here</a>";
+                            $scope.waveformFooter = "Your mix will be available <a href='" + '/' + url + "'>Here</a>";
                             $scope.$apply();
                         }, 6400);
 
