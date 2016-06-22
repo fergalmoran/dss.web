@@ -1,71 +1,13 @@
-<div id="ap1" style="width:100%; " class="skin-wave skin-wave-mode-normal audioplayer loaded">
-    <div class="audioplayer-inner">
-        <a class="the-thumb-con">
-            <dss-mix-image></dss-mix-image>
-        </a>
-        <div class="ap-controls">
-            <dss-waveform class="hidden-xs"></dss-waveform>
-        </div>
-    </div>
-    <div ng-show="addingComment" class="lower-container add-comment animate-show">
-        <div class="input-group comment-add-form pull-right">
-                    <span class="input-group-btn">
-                        <button type="button" class="btn btn-primary">
-                            <i class="fa fa-pencil"></i>
-                        </button>
-                    </span>
-            <input type="text" placeholder="Add comment"
-                   ng-keyup="$event.keyCode == 13 &amp;&amp; addComment($event)"
-                   ng-show="addingComment"
-                   show-focus="addingComment" class="form-control"/>
-        </div>
-    </div>
-    <div ng-hide="addingComment" class="lower-container mix-details animate-show">
-        <div class="control-container pull-left">
-            <div class="con-controls">
-                <div class="the-bg"></div>
-                <div ng-click="play($event)" class="con-playpause">
-                    <div ng-show="(playState == 0 || playState == 2)" class="playbtn">
-                        <div class="play-icon"></div>
-                        <div class="play-icon-hover"></div>
-                    </div>
-                    <div ng-show="(playState == 1)" class="pausebtn">
-                        <div class="pause-icon">
-                            <div class="pause-part-1"></div>
-                            <div class="pause-part-2"></div>
-                        </div>
-                        <div class="pause-icon-hover"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div style="left: 56px;" class="hidden-xs">
-            <a ui-sref="root.user({user: mix.user.slug})"
-               class="the-artist ng-binding">
-                {{mix.user.display_name}}
-            </a>
-            <a href="#" ng-click="toggleFollow()" ng-show="currentUser"
-               uib-tooltip="{{mix.user.is_following ? 'Unfollow' : 'Follow'}} {{mix.user.display_name}}">
-                <i class="fa fa-user-plus"
-                   ng-class="mix.user.is_following ? 'text-danger' : 'text-success'"></i>
-            </a>
-            <div class="meta-artist"><span class="the-name ng-binding">{{mix.title}}</span></div>
-        </div>
-
-    </div>
-    <div style="width: 920px; left: 220px;" class="hidden-sm" ng-click="showCommentForm($event)" class="comments-holder active">
-        <div class="the-bg"></div>
-        <span ng-style="{'left': + (comment.time_index/mix.duration) * 100 + '%'}"
-              ng-repeat="comment in comments | filter: { time_index: '!0' }"
-              class="a-comment with-tooltip">
-            <div class="aux-padder"></div>
-            <span style="width: 250px;" class="dzstooltip skin-black">
-                <span class="the-comment-author">@{{comment.user}}</span> says:<br/>{{comment.comment}}
-            </span>
-           <div style="background-image: url({{comment.avatar_image}})" class="the-avatar">
-           </div>
-        </span>
-    </div>
-    <div class="clear"></div>
-</div>
+<li id=navbar-notification-dropdown class=dropdown><a data-toggle=dropdown class=dropdown-toggle href=#><i
+        class="fa fa-envelope-o"></i> <span class="badge bg-important" ng-show="notificationCount != 0">{{notificationCount}}</span></a>
+    <ul class="dropdown-menu extended inbox">
+        <div class="notify-arrow notify-arrow-red"></div>
+        <li><p class=red>You have {{notificationCount}} new notifications</p></li>
+        <li ng-repeat="notification in notifications"
+            ng-class="notification.accepted_date ? \'\' : \'notification-new\'"><a href={{notification.target}}><span
+                class=photo><img alt=avatar ng-src={{notification.from_user.profile_image_small}}></span> <span
+                class=subject><span class=from>{{notification.from_user.first_name}}</span> <span class=time>{{notification.date|humanise}}</span></span>
+            <span class=message>{{notification.verb}}&nbsp;{{notification.target_desc}}</span></a></li>
+        <li><a href=#>See all messages</a></li>
+    </ul>
+</li>
