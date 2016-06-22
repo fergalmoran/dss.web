@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('dssWebApp')
-    .controller('MainCtrl', function ($scope, $rootScope, $http, $state, $auth, inform,
+    .controller('MainCtrl', function ($scope, $rootScope, $http, $state, $auth, 
                                       dialogs, logger, SocketService, AudioService,
                                       MixModel, UserModel, LoginService, Session,
                                       SERVER_CONFIG, CHAT_EVENTS, MESSAGE_EVENTS, AUTH_EVENTS) {
@@ -18,11 +18,8 @@ angular.module('dssWebApp')
                         $rootScope.setCurrentUser(user);
                         return $state.go(toState.name, toParams);
                     }, function (reason) {
-                        debugger;
                         console.error(reason);
                     });
-            } else {
-                debugger;
             }
         });
         $rootScope.safeApply = function (fn) {

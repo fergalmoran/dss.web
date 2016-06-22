@@ -20,8 +20,7 @@ angular.module('dssWebApp', [
     'angular-smilies',
     'satellizer',
     'toastr',
-    'angulartics.google.analytics',
-    'inform'
+    'angulartics.google.analytics'
 ])
     .config(function ($stateProvider, $sceDelegateProvider, $httpProvider, $urlRouterProvider, $locationProvider, $provide, $authProvider,
                       ngClipProvider, $analyticsProvider, dialogsProvider, DSProvider, DSHttpAdapterProvider,

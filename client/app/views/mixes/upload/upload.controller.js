@@ -6,8 +6,10 @@ angular.module('dssWebApp')
                   Session, MixModel, LoginService, ImageUploadService, SERVER_CONFIG, AUTH_EVENTS) {
 
             $scope.mix = mix;
-            $scope.waveformHeader = '(drag & drop or click & browse)';
 
+            $scope.waveformHeader =
+                "<i class='fa fa-spinner fa-spin'></i>" +
+                "Generating waveform, we'll try to let you know when it's done or send you an email.";
             $scope.waveformFooter = '';
 
             $scope.sending = false;
@@ -113,7 +115,7 @@ angular.module('dssWebApp')
                         $scope.mix = result;
                         $timeout(function () {
                             var url = $state.href('root.user.mix', {user: $scope.mix.user.slug, mix: $scope.mix.slug});
-                            $scope.waveformFooter = "Your mix will be available <a href='" + '/mix' + "'>Here</a>";
+                            $scope.waveformFooter = "Your mix will be available <a href='" + url + "'>Here</a>";
                             $scope.$apply();
                         }, 6400);
 
@@ -151,10 +153,8 @@ angular.module('dssWebApp')
                     $scope.$apply();
                 },
                 complete: function (file) {
+                    $scope.uploadState = uploadStates.AUDIO_SENT;
                     if (file.status !== 'error') {
-                        $scope.waveformHeader =
-                            "<i class='fa fa-spinner fa-spin'></i>" +
-                            "Generating waveform, we'll try to let you know when it's done or send you an email.";                        $scope.uploadState = uploadStates.AUDIO_SENT;
                         $scope.$apply();
                         _checkRedirect();
                     } else {
@@ -171,4 +171,8 @@ angular.module('dssWebApp')
                         $scope.genreSearchResults = results.data.results;
                     });
             };
+            $('#waveform-status-info').pulsate({
+                color: "#FCB322",
+                glow: true
+            });
         });
