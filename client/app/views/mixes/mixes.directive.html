@@ -2,7 +2,7 @@
     <div class="panel-heading">
         <!--<a ui-sref="root.user.mix({user: mix.user.slug, mix: mix.slug})"><h3><i class="fa fa-headphones"></i>{{mix.title}}</h3></a>-->
         <a ui-sref="root.user.mix({user: mix.user.slug, mix: mix.slug})"><i class="fa fa-headphones"></i>&nbsp;{{mix.title}}</a>
-        <div class="tools pull-right">
+        <div class="tools pull-right visible-sm">
             <btn clip-copy="getMixUrl(mix)" clip-click="copyUrl(mix)" class="btn btn-mini content-refresh" data-toggle="tooltip" data-title="Copy Link">
                 <i class="fa fa-copy"></i>
             </btn>
@@ -15,15 +15,12 @@
         </div>
     </div>
     <div class="panel-body">
-        <dss-mix-image class="col-md-5"></dss-mix-image>
-        <div class="col-md-6 pull-right">
-            <div class="row">
-                <h4></h4>
-            </div>
+        <dss-mix-image class="col-md-5 col-sm-12"></dss-mix-image>
+        <div class="col-md-6 col-sm-12 pull-right">
             <div class="row">
                 <aside>By <a ui-sref="root.user({user: mix.user.slug})">{{mix.user.display_name}}</a></aside>
             </div>
-            <div class="row genre-wrapper">
+            <div class="row genre-wrapper visible-sm">
                 <a ui-sref="root.mixes({genre: g.slug})" class="btn genre-btn" ng-repeat="g in mix.genres">{{g.description}}</a>
             </div>
             <div class="row">

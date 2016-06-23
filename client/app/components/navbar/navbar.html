@@ -1,13 +1,14 @@
 <div class="sidebar-toggle-box">
     <i class="fa fa-bars"></i>
 </div>
-<a ui-sref="root" class="logo">Deep<span>South</span>Sounds</a>
+<a ui-sref="root" class="logo hidden-md hidden-lg">D<span>S</span>S</a>
+<a ui-sref="root" class="logo visible-md visible-lg">Deep<span>South</span>Sounds</a>
 <div class="nav notify-row" id="top_menu">
     <ul class="nav top-menu" ng-show="$root.currentUser">
         <dss-notifications />
     </ul>
 </div>
-<div class="top-nav ">
+<div class="top-nav visible-sm">
     <ul class="nav top-menu top-nav-buttons">
         <li id="navbar-upload-button">
             <a ui-sref="root.upload">
