@@ -1,0 +1,75 @@
+<div class="user-content-header user-content-header-media">
+    <div class="user-header-section">
+        <img ng-src="{{user.profile_image_small}}" alt="Avatar" class="pull-right img-circle"/>
+
+        <h1>
+            {{user.display_name}}
+        </h1>
+        <small>{{user.title}}</small>
+    </div>
+    <img ng-src="{{user.profile_image_header}}" alt="header image" class="animation-pulseSlow"/>
+</div>
+
+<br/>
+
+<div class="col-md-6">
+    <div class="box">
+        <div class="box-title">
+            <h3>About</h3>
+            <div class="actions">
+                <button class="btn btn-link"
+                        ng-click="startChat(user.slug)"
+                        data-toggle="tooltip" title="Chat">
+                    <i class="fa fa-comment"></i>
+                </button>
+            </div>
+        </div>
+        <div class="box-content">
+            <div class="text-indent" ng-bind-html="user.description"></div>
+        </div>
+    </div>
+    <div class="box">
+        <div class="box-title">
+            <h3>Followers</h3>
+        </div>
+        <div class="box-content">
+            <div ng-repeat="follower in user.followers" class="col-xs-4 col-sm-3 col-lg-2 block-section">
+                <a ui-sref="root.user({user: follower.slug})">
+                    <img ng-src="{{follower.profile_image_small}}" alt="image" data-toggle="tooltip"
+                         title="{{follower.display_name}}" class="img-circle user-profile-insert"/>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-6">
+    <div ng-show="user.mix_count != 0" class="box">
+        <div class="box-title">
+            <h3>{{mixTitle}}
+                <strong> Mixes</strong>
+            </h3>
+            <div class="actions">
+                <a data-toggle="tooltip" title="Popular Mixes"
+                   ng-click="showPopular()"
+                   class="btn btn-alt btn-sm btn-default">
+                    <i class="glyphicon glyphicon-thumbs-up"></i>
+                </a>
+                <a data-toggle="tooltip" title="Latest   Mixes"
+                   ng-click="showLatest()"
+                   class="btn btn-alt btn-sm btn-default">
+                    <i class="glyphicon glyphicon-time"></i>
+                </a>
+            </div>
+        </div>
+        <div class="box-content">
+            <div class="gallery">
+                <div class="row">
+                    <div ng-repeat="mix in mixes" class="col-xs-6 col-sm-4">
+                        <dss-audio-player template="views/templates/audioGallery.html"></dss-audio-player>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

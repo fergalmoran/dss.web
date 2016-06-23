@@ -1,0 +1,52 @@
+<div>
+    <div class="col-md-2">
+        <dss-mix-image></dss-mix-image>
+    </div>
+    <div class="col-md-10">
+        <div class="row skin-wave skin-wave-mode-normal audioplayer loaded">
+            <div class="ap-controls">
+                <dss-waveform class="hidden-xs"></dss-waveform>
+            </div>
+        </div>
+        <div class="row pull-right">
+            <div class="btn-group btn-group-xs">
+                <button ng-click="shareEmbed()" class="btn btn-small"><i
+                        class="fa fa-wordpress blue"></i></button>
+                <button ng-click="shareFacebook()" class="btn btn-small"><i
+                        class="fa fa-facebook-square blue"></i></button>
+                <button class="btn btn-small">
+                    <i ng-click="shareTwitter()" class="fa fa-twitter-square"></i>
+                </button>
+            </div>
+            <div class="btn-group btn-group-xs">
+                <button uib-tooltip="Plays" class="btn btn-small">
+                    <i class="fa fa-play-circle"></i>
+                    {{ mix.plays.length }}
+                </button>
+                <button ng-show="$root.currentUser && mix.is_downloadable" ng-click="downloadFile()"
+                        uib-tooltip="Download"
+                        class="btn btn-sm">
+                    <i class="fa fa-download"></i>
+                    {{ mix.downloads.length }}
+                </button>
+                <button ng-show="!$root.currentUser && mix.is_downloadable" uib-tooltip="Login to download"
+                        ng-click="login()" class="btn btn-sm">
+                    <i class="fa fa-download"></i>
+                    {{ mix.downloads.length }}
+                </button>
+                <a ng-click="toggleLike()"
+                   ng-class="mix.is_liked ? 'btn-danger' : 'btn-success'"
+                   uib-tooltip="{{mix.is_liked ? 'Unlike' : 'Like'}}"
+                   class="btn btn-alt btn-sm btn-default"><i
+                        class="fa fa-heart"></i>{{ mix.likes.length }}
+                </a>
+            </div>
+            <div class="btn-group btn-group-xs">
+                <button ng-click="editMix(mix)" class="btn btn-small btn-success"><i class="fa fa-pencil-square-o"></i>Edit
+                </button>
+                <button ng-click="deleteMix(mix)" class="btn btn-small btn-danger"><i class="fa fa-times"></i>Delete
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

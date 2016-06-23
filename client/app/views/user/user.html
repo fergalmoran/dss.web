@@ -1,0 +1,77 @@
+<div class="col-sm-4 col-md-4" ng-repeat="user in users">
+    <div class="post">
+        <div class="post-img-content">
+            <a ui-sref="root.user({user: user.slug})">
+                <img class="userlist-profile-image" ng-src="{{user.profile_image_medium}}" class="img-responsive"/>
+            </a>
+            <br/>
+            <span class="post-title">
+                <b>{{user.display_name}}</b>
+            </span>
+        </div>
+        <div class="content">
+            <div>
+               {{user.title}}
+            </div>
+        </div>
+    </div>
+</div>
+<!--
+<div ng-repeat="user in users" class="col-md-4">
+    <div class="widget">
+        <div class="widget-advanced widget-advanced-alt">
+            <div class="widget-header text-left">
+                <img ng-src="{{user.profile_image_header}}" alt="background"
+                     class="widget-background animation-pulseSlow">
+                <h3 class="widget-content widget-content-image widget-content-light clearfix">
+                    <a ui-sref="root.user({user: user.slug})" class="pull-right">
+                        <img ng-src="{{user.profile_image_medium}}" alt="avatar" class="widget-image img-circle">
+                    </a>
+                    <a ui-sref="root.user({user: user.slug})"
+                       class="themed-color-autumn">{{user.display_name}}</a>
+                    <br>
+                    <small>{{user.title}}</small>
+                </h3>
+                <div class="widget-options block-options">
+                    <button class="btn btn-xs btn-primary"
+                            ng-click="startChat(user.slug)"
+                            data-toggle="tooltip" title="Chat">
+                        <i class="fa fa-comment"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="widget-main">
+                <div class="row text-center animation-fadeIn">
+                    <div class="col-xs-4">
+                        <h3>
+                            <a href="javascript:void(0)" class="themed-color-autumn">
+                                <strong>12</strong>
+                            </a>
+                            <br>
+                            <small>Trips</small>
+                        </h3>
+                    </div>
+                    <div class="col-xs-4">
+                        <h3>
+                            <a href="javascript:void(0)" class="themed-color-autumn">
+                                <strong>21</strong>
+                            </a>
+                            <br>
+                            <small>Cities</small>
+                        </h3>
+                    </div>
+                    <div class="col-xs-4">
+                        <h3>
+                            <a href="javascript:void(0)" class="themed-color-autumn">
+                                <strong>3</strong>
+                            </a>
+                            <br>
+                            <small>Stories</small>
+                        </h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+-->

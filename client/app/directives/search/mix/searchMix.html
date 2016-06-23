@@ -1,0 +1,7 @@
+<input type="text"
+       class="form-control"
+       ng-model="mix.display_name"
+       placeholder="Type to search"
+       typeahead="result as result.name for results in getMixSearchResults($viewValue)"
+       typeahead-on-select="chooseValue($item)"
+       typeahead-template-url="app/directives/search/mix/searchResult.html">

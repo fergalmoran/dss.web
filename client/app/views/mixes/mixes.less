@@ -1,0 +1,145 @@
+.widget-advanced .widget-image-container {
+  position: absolute;
+  display: inline-block;
+  padding: 5px;
+  margin-left: -36px;
+  border-radius: 36px;
+  background-color: #ffffff;
+}
+
+.mix-detail-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.mix-detail-container.pnp-played-overlay {
+  top: 0;
+  left: 0;
+}
+
+.playbtn:hover {
+  opacity: 0.4;
+}
+
+.playbtn.play {
+  background-image: url('/assets/images/play-button.png');
+}
+
+.playbtn.pause {
+  background-image: url('/assets/images/pause-button.png');
+}
+
+.playbtn {
+  opacity: 0.9;
+  visibility: visible;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center center;
+  transition-property: all;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-out;
+  -moz-transition-property: all;
+  -moz-transition-duration: 0.3s;
+  -moz-transition-timing-function: ease-out;
+  -webkit-transition-property: all;
+  -webkit-transition-duration: 0.3s;
+  -webkit-transition-timing-function: ease-out;
+  -o-transition-property: all;
+  -o-transition-duration: 0.3s;
+  -o-transition-timing-function: ease-out;
+  -ms-transition-property: all;
+  -ms-transition-duration: 0.3s;
+  -ms-transition-timing-function: ease-out;
+  background-position: center center;
+  background-repeat: no-repeat;
+  content: " ";
+  border-right-width: 0;
+  border-left: 0 #aaaaaa;
+}
+
+.mix-image-text-overlay {
+  color: white;
+  letter-spacing: -1px;
+  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.7);
+  padding: 2px 10px;
+}
+
+.square, .btn {
+  border-radius: 0 !important;
+}
+
+.mix-container {
+  background-color: transparent;
+  border-radius: 10px;
+
+}
+
+.mix-container-left {
+  padding-right: 24px;
+}
+
+.mix-container-right {
+  padding-left: 24px;
+  padding-right: 24px;
+  margin-right: 24px;
+}
+
+@media (max-width: 767px) {
+  .mix-tools {
+    bottom: 0px !important;
+  }
+}
+
+.mix-tools {
+  bottom: -47px;
+  height: 50px;
+  left: 0;
+  position: absolute;
+  right: 0;
+}
+
+.mix-tools > button {
+  background: none;
+  border: none;
+  box-shadow: none;
+}
+
+.image-container {
+  height: 142px;
+  //background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-attachment: scroll;
+  background-size: cover;
+}
+
+.widget-image-container {
+  width: 74px;
+  height: 74px;
+  position: absolute !important;
+  top: 50%;
+  left: 65%;
+  transform: translate(-50%, -50%);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  cursor: pointer;
+}
+
+.genre-wrapper {
+  margin-top: 12px;
+}
+
+.genre-btn {
+  margin-bottom: 1px;
+  margin-top: 1px;
+  margin-left: 1px;
+  margin-right: 1px;
+}

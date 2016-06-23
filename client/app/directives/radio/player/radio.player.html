@@ -1,0 +1,10 @@
+<div class="col-md-12">
+    DSS Radio: Now playing
+    <br>
+    <a ng-click="playRadio($event)" href="#">
+        <i class="fa fa-fw"
+           ng-class="radioPlaying ? 'fa-stop text-danger' : 'fa-play text-success'"></i>
+        {{radioNowPlaying}}
+    </a>
+    <i ng-if="radioLoading" class="fa fa-spinner fa-spin"></i>
+</div>

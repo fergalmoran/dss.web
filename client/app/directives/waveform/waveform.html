@@ -1,0 +1,26 @@
+<div class="scrubbar">
+    <div ng-click="setPosition($event)" class="scrub-bg">
+        <img src="{{mix.waveform_url}}"
+             style="transform-origin: 100% 100% 0px;"
+             class="scrub-bg-img"/>
+    </div>
+    <div class="scrub-buffer"></div>
+    <div ng-click="setPosition($event)" ng-style="{'width': + playPos + 'px'}" class="scrub-prog">
+        <img
+            src="{{mix.waveform_url}}" style="transform-origin: 100% 100% 0px;" class="scrub-prog-img"/>
+    </div>
+    <div class="scrubBox"></div>
+    <div class="scrubBox-prog"></div>
+    <div style="left: 86px;" class="scrubBox-hover"></div>
+    <div class="scrub-bg-reflect"><img src="{{mix.waveform_url}}" class="scrub-bg-img-reflect"/></div>
+    <div ng-style="{'width': + playPos + 'px'}" class="scrub-prog-reflect">
+        <img src="{{mix.waveform_url}}"
+             style="width: 1095px;"
+             class="scrub-prog-img-reflect"/>
+    </div>
+    <div class="total-time">{{mix.duration|humaniseTime}}</div>
+    <div ng-style="{'left': + playPos + 'px'}" class="curr-time">
+        {{elapsed|humaniseTime}}
+        <div ng-show="addingComment" class="lower-container add-comment animate-show"></div>
+    </div>
+</div>

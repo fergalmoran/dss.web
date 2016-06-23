@@ -1,0 +1,33 @@
+<div id="uniquePlayer-1" class="webPlayer light audioPlayer footer-player">
+    <div class="controls">
+        <div class="leftblock">
+            <a ng-click="playPause()" tabindex="1" class="smooth noload"
+               ng-class="vm.playState==1 ? 'pause' : 'play'"></a>
+        </div>
+        <div class="play-progress">
+            <span>
+                <a ui-sref="root.user.mix({user: mix.user.slug, mix: mix.slug})">
+                    {{mix.user.first_name}} - {{mix.title}}
+                </a>
+            </span>
+            <div class="progressbar">
+                <div class="seekBar horizontal" style="width: 100%;" ng-click="doSeek($event)">
+                    <div class="playBar" ng-style="{'width': + vm.playPos + '%'}"></div>
+                    <a ng-style="{'left': + vm.playPos + '%'}">
+                        <div></div>
+                    </a>
+                    <input type="hidden" name="" ng-model="vm.playPos"></div>
+            </div>
+            <div class="time current">{{vm.timeCurrent|humaniseTime}}</div>
+            <div class="time duration">{{vm.timeDuration|humaniseTime}}</div>
+        </div>
+        <div class="rightblock">
+            <div class="volumeBar">
+                <div class="currentVolume horizontal">
+                    <div class="curvol" ng-style="{'width': + vm.currentVolume + '%'}"></div>
+                </div>
+            </div>
+            <div class="volumeText">Volume: {{vm.currentVolume}}</div>
+        </div>
+    </div>
+</div>

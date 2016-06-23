@@ -1,0 +1,23 @@
+<div class="box">
+    <div class="box-title">
+        <div class="actions">
+            <a ng-click="play($event)" class="btn btn-xs btn-primary"
+               data-toggle="tooltip" title="Play Mix">
+                <i ng-class="playState==1 ? 'fa-pause' : 'fa-play'" class="fa"></i>
+            </a>
+            <a ng-show="mix.can_edit" ng-click="editMix(mix)" class="btn btn-xs btn-primary"
+               data-toggle="tooltip" title="Edit Mix">
+                <i class="fa fa-pencil"></i>
+            </a>
+            <a ng-show="mix.can_edit" ng-click="deleteMix(mix)" class="btn btn-xs btn-primary"
+               data-toggle="tooltip" title="Delete Mix">
+                <i class="fa fa-remove"></i>
+            </a>
+        </div>
+    </div>
+    <div class="box-content">
+        <a ui-sref="root.user.mix({user: mix.user.slug, mix: mix.slug})"><img ng-src="{{mix.mix_image}}"/>
+        </a>
+        <h5>{{mix.title}}</h5>
+    </div>
+</div>
