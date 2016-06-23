@@ -20,7 +20,7 @@
             <div class="row">
                 <aside>By <a ui-sref="root.user({user: mix.user.slug})">{{mix.user.display_name}}</a></aside>
             </div>
-            <div class="row genre-wrapper visible-md visible-lg">
+            <div class="row genre-wrapper visible-md visible-lg" style="display: none">
                 <a ui-sref="root.mixes({genre: g.slug})" class="btn genre-btn" ng-repeat="g in mix.genres">{{g.description}}</a>
             </div>
             <div class="row">
