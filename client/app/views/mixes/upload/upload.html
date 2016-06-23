@@ -28,7 +28,7 @@
     </div>
 
     <div ng-show="uploadState != uploadStates.VIRGIN && (!detailsEntered || uploadState == uploadStates.EDIT_MODE)"
-         class="row"  id="details-wrapper">
+         class="row" id="details-wrapper">
         <div class="block text-center">
             <div class="col-md-2"></div>
             <div class="col-md-8">
@@ -115,12 +115,15 @@
                                     <header class="panel-heading">Mix options</header>
                                     <div class="panel-body">
                                         <div class="checkboxes">
-                                            <pretty-checkbox ng-model="mix.is_private"
-                                                             label="'Private'"></pretty-checkbox>
-                                            <pretty-checkbox ng-model="mix.is_downloadable"
-                                                             label="'Downloadable'"></pretty-checkbox>
-                                            <pretty-checkbox ng-model="mix.is_featured"
-                                                             label="'Homepage'"></pretty-checkbox>
+                                            <div class="row">
+                                                <pretty-checkbox ng-model="mix.is_private" label="'Private'"/>
+                                            </div>
+                                            <div class="row">
+                                                <pretty-checkbox ng-model="mix.is_downloadable" label="'Downloadable'"/>
+                                            </div>
+                                            <div class="row">
+                                                <pretty-checkbox ng-model="mix.is_featured" label="'Homepage'"/>
+                                            </div>
                                         </div>
                                     </div>
                                 </section>

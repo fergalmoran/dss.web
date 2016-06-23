@@ -75,5 +75,6 @@ angular.module('dssWebApp')
                     $scope.playState = PLAYSTATES.playing;
                 }
             });
+
         }
     });

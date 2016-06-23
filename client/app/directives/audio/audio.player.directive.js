@@ -10,7 +10,7 @@ angular.module('dssWebApp')
             link: function (scope, elem, attrs) {
                 scope.getTemplateUrl = function () {
                     return 'app/' + attrs.template;
-                }
+                };
             },
             template: '<div ng-include="getTemplateUrl()"></div>',
             controller: function ($scope, AudioService) {

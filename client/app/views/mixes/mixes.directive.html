@@ -1,15 +1,18 @@
-<div class="panel">
+<div class="panel" xmlns="http://www.w3.org/1999/html">
     <div class="panel-heading">
         <!--<a ui-sref="root.user.mix({user: mix.user.slug, mix: mix.slug})"><h3><i class="fa fa-headphones"></i>{{mix.title}}</h3></a>-->
-        <a ui-sref="root.user.mix({user: mix.user.slug, mix: mix.slug})"><i class="fa fa-headphones"></i>&nbsp;{{mix.title}}</a>
+        <a ui-sref="root.user.mix({user: mix.user.slug, mix: mix.slug})">
+            <i class="fa fa-headphones"></i>&nbsp;
+            <span>{{mix.title|truncate:50:true}}</span>
+        </a>
         <div class="tools pull-right visible-md visible-lg">
-            <btn clip-copy="getMixUrl(mix)" clip-click="copyUrl(mix)" class="btn btn-mini content-refresh" data-toggle="tooltip" data-title="Copy Link">
+            <btn clip-copy="getMixUrl(mix)" clip-click="copyUrl(mix)" class="btn-mini content-refresh" data-toggle="tooltip" data-title="Copy Link">
                 <i class="fa fa-copy"></i>
             </btn>
-            <a ng-show="mix.can_edit" ng-click="editMix(mix)" class="btn btn-mini content-refresh" data-toggle="tooltip" data-title="Edit">
+            <a href="#" ng-show="mix.can_edit" ng-click="editMix(mix)" class="btn-mini content-refresh" data-toggle="tooltip" data-title="Edit">
                 <i class="fa fa-pencil"></i>
             </a>
-            <a ng-show="mix.can_edit" ng-click="deleteMix(mix)" class="btn btn-mini content-remove" data-toggle="tooltip" data-title="Delete">
+            <a href="#" ng-show="mix.can_edit" ng-click="deleteMix(mix)" class="btn-mini content-remove" data-toggle="tooltip" data-title="Delete">
                 <i class="fa fa-times"></i>
             </a>
         </div>
