@@ -1,4 +1,97 @@
-(function(c){var k={init:function(a){var b={color:c(this).css("background-color"),reach:20,speed:1E3,pause:0,glow:!0,repeat:!0,onHover:!1};c(this).css({"-moz-outline-radius":c(this).css("border-top-left-radius"),"-webkit-outline-radius":c(this).css("border-top-left-radius"),"outline-radius":c(this).css("border-top-left-radius")});a&&c.extend(b,a);b.color=c("<div style='background:"+b.color+"'></div>").css("background-color");!0!==b.repeat&&(!isNaN(b.repeat)&&0<b.repeat)&&(b.repeat-=1);return this.each(function(){b.onHover?
-    c(this).bind("mouseover",function(){g(b,this,0)}).bind("mouseout",function(){c(this).pulsate("destroy")}):g(b,this,0)})},destroy:function(){return this.each(function(){clearTimeout(this.timer);c(this).css("outline",0)})}},g=function(a,b,d){var f=a.reach;d=d>f?0:d;var h=(f-d)/f,e=a.color.split(","),h="rgba("+e[0].split("(")[1]+","+e[1]+","+e[2].split(")")[0]+","+h+")",e={outline:"2px solid "+h};a.glow?(e["box-shadow"]="0px 0px "+parseInt(d/1.5)+"px "+h,userAgent=navigator.userAgent||"",/(chrome)[ \/]([\w.]+)/.test(userAgent.toLowerCase())&&
-(e["outline-offset"]=d+"px",e["outline-radius"]="100 px")):e["outline-offset"]=d+"px";c(b).css(e);b.timer&&clearTimeout(b.timer);b.timer=setTimeout(function(){if(d>=f&&!a.repeat)return c(b).pulsate("destroy"),!1;if(d>=f&&!0!==a.repeat&&!isNaN(a.repeat)&&0<a.repeat)a.repeat-=1;else if(a.pause&&d>=f)return l(a,b,d+1),!1;g(a,b,d+1)},a.speed/f)},l=function(a,b,c){innerfunc=function(){g(a,b,c)};b.timer=setTimeout(innerfunc,a.pause)};c.fn.pulsate=function(a){if(k[a])return k[a].apply(this,Array.prototype.slice.call(arguments,
-    1));if("object"===typeof a||!a)return k.init.apply(this,arguments);c.error("Method "+a+" does not exist on jQuery.pulsate")}})(jQuery);
+(function( $ ){
+    var methods = {
+        init: function(options) {
+            var settings = {
+                color: $(this).css("background-color"),
+                reach: 20,
+                speed: 1000,
+                pause: 0,
+                glow: true,
+                repeat: true,
+                onHover: false
+            };
+            $(this).css({
+                "-moz-outline-radius": $(this).css("border-top-left-radius"),
+                "-webkit-outline-radius": $(this).css("border-top-left-radius"),
+                "outline-radius": $(this).css("border-top-left-radius")
+            });
+
+            if (options) {
+                $.extend(settings, options);
+            }
+            settings.color = $("<div style='background:" + settings.color + "'></div>").css("background-color");
+            if(settings.repeat !== true && !isNaN(settings.repeat) && settings.repeat > 0) {
+                settings.repeat -=1;
+            }
+
+            return this.each(function() {
+                if(settings.onHover) {
+                    $(this).bind("mouseover", function () {pulse(settings, this, 0);})
+                        .bind("mouseout", function (){$(this).pulsate("destroy");});
+                } else {
+                    pulse(settings, this, 0);
+                }
+            });
+        },
+        destroy: function() {
+            return this.each(function() {
+                clearTimeout(this.timer);
+                $(this).css("outline",0);
+            });
+        }
+    };
+
+    var pulse = function(options, el, count) {
+        var reach = options.reach,
+            count = count>reach ? 0 : count,
+            opacity = (reach-count)/reach,
+            colorarr = options.color.split(","),
+            color = "rgba(" + colorarr[0].split("(")[1] + "," + colorarr[1] + "," + colorarr[2].split(")")[0] + "," + opacity + ")",
+            cssObj = {
+                "outline": "2px solid " + color
+            };
+        if(options.glow) {
+            cssObj["box-shadow"] = "0px 0px " + parseInt((count/1.5)) + "px " + color;
+        }
+        cssObj["outline-offset"] = count + "px";
+
+        $(el).css(cssObj);
+
+        var innerfunc = function () {
+            if(count>=reach && !options.repeat) {
+                $(el).pulsate("destroy");
+                return false;
+            } else if(count>=reach && options.repeat !== true && !isNaN(options.repeat) && options.repeat > 0) {
+                options.repeat = options.repeat-1;
+            } else if(options.pause && count>=reach) {
+                pause(options, el, count+1);
+                return false;
+            }
+            pulse(options, el, count+1);
+        };
+
+        if(el.timer){
+            clearTimeout(el.timer);
+        }
+        el.timer = setTimeout(innerfunc, options.speed/reach);
+    };
+
+    var pause = function (options, el, count) {
+        innerfunc = function () {
+            pulse(options, el, count);
+        };
+        el.timer = setTimeout(innerfunc, options.pause);
+    };
+
+    $.fn.pulsate = function( method ) {
+        // Method calling logic
+        if ( methods[method] ) {
+            return methods[ method ].apply( this, Array.prototype.slice.call( arguments, 1 ));
+        } else if ( typeof method === 'object' || ! method ) {
+            return methods.init.apply( this, arguments );
+        } else {
+            $.error( 'Method ' +  method + ' does not exist on jQuery.pulsate' );
+        }
+
+    };
+})( jQuery );
