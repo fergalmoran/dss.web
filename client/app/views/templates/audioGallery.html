@@ -1,4 +1,4 @@
-<div class="box">
+<div class="box col-md-4">
     <div class="box-title">
         <div class="actions">
             <a ng-click="play($event)" class="btn btn-xs btn-primary"
@@ -18,6 +18,6 @@
     <div class="box-content">
         <a ui-sref="root.user.mix({user: mix.user.slug, mix: mix.slug})"><img ng-src="{{mix.mix_image}}"/>
         </a>
-        <h5>{{mix.title}}</h5>
+        <h5 class="text-nowrap dss-truncate">{{mix.title}}</h5>
     </div>
 </div>

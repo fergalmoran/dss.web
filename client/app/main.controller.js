@@ -123,10 +123,17 @@ angular.module('dssWebApp')
         };
 
         $scope.deleteMix = function (mix) {
-            var dlg = dialogs.create('app/dialogs/confirm/confirmDialog.html', 'confirmDialogCtrl', {
-                title: "Delete this mix?",
-                body: mix.title
-            });
+            var dlg = dialogs.create(
+                'app/dialogs/confirm/confirmDialog.html',
+                'confirmDialogCtrl',
+                {
+                    title: "Delete this mix?",
+                    body: mix.title
+                },
+                {
+                    size: "sm"
+                }
+            );
             dlg.result.then(function (result) {
                 if (result) {
                     MixModel.destroy(mix.slug).then(function () {

@@ -4,27 +4,22 @@ angular.module('dssWebApp')
     .controller('UserItemCtrl', function ($scope, UserModel, MixModel, user, logger) {
         logger.logSuccess('UserItemCtrl', $scope);
         $scope.user = user;
-        $scope.showLatest = function () {
+        function _getMixes (ordering) {
             $scope.mixTitle = "Latest";
             MixModel.findAll({
                 user__slug: user.slug,
                 waveform_generated: "True",
-                ordering: "-id"
+                limit: 6,
+                ordering: ordering
             }).then(function (mixes) {
                 $scope.mixes = mixes;
                 $scope.mixPage = 1;
             });
-        };
-        $scope.showPopular = function () {
-            $scope.mixTitle = "Popular";
-            MixModel.findAll({
-                user__slug: user.slug,
-                waveform_generated: "True",
-                ordering: "-play_count"
-            }).then(function (mixes) {
-                $scope.mixes = mixes;
-                $scope.mixPage = 1;
-            });
-        };
-        $scope.showLatest();
+        }
+        _getMixes("-id");
+        $('#mixes-tabs').find('a').click(function (e) {
+            console.log("Tabbing");
+            e.preventDefault();
+            _getMixes($(e.target).data("dss-ordering"));
+        });
     });
