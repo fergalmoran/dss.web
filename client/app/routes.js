@@ -99,6 +99,20 @@ angular.module('dssWebApp')
                     }
                 }
             })
+            .state('root.users', {
+                url: 'users',
+                resolve: {
+                    users: function ($stateParams, UserModel) {
+                        return UserModel.findAll();
+                    }
+                },
+                views: {
+                    'content@': {
+                        templateUrl: 'app/views/user/users.html',
+                        controller: 'UsersCtrl'
+                    }
+                }
+            })
             .state('root.user', {
                 url: ':user',
                 resolve: {
@@ -145,6 +159,20 @@ angular.module('dssWebApp')
                     'content@': {
                         templateUrl: 'app/views/mixes/upload/upload.html',
                         controller: 'MixUploadCtrl'
+                    }
+                }
+            })
+            .state('error', {
+                url: '/error',
+                resolve: {
+                    errorObj: [function () {
+                        return this.self.error;
+                    }]
+                },
+                views: {
+                    'content@': {
+                        templateUrl: 'app/views/error/error.html',
+                        controller: 'ErrorCtrl'
                     }
                 }
             });

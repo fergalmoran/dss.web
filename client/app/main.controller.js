@@ -22,6 +22,13 @@ angular.module('dssWebApp')
                     });
             }
         });
+
+        $rootScope.$on('$stateChangeError', function (event, toState, toParams, fromState, fromParams, error) {
+            event.preventDefault();
+            $state.get('error').error = { code: 123, description: error };
+            return $state.go('error');
+        });
+
         $rootScope.safeApply = function (fn) {
             var phase = this.$root.$$phase;
             if (phase == '$apply' || phase == '$digest') {
