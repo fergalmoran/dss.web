@@ -9,8 +9,13 @@ angular.module('dssWebApp')
             },
             link: function (scope, element, attrs) {
                 scope.chooseValue = function (viewValue) {
-                    console.log(viewValue);
-                    scope.mix = viewValue;
+                    //console.log(viewValue);
+                    //scope.mix = viewValue;
+                    document.activeElement.blur();
+                    $('#search-input').blur();
+                };
+                scope.dismiss = function () {
+                    alert('Hello');
                 };
                 scope.getMixSearchResults = function (val) {
                     console.log("Getting results");
@@ -24,7 +29,9 @@ angular.module('dssWebApp')
                         return response.data.map(function (item) {
                             return {
                                 'id': item.id,
+                                'user': item.user,
                                 'slug': item.slug,
+                                'url': item.url,
                                 'display_name': item.title,
                                 'image': item.image
                             };
