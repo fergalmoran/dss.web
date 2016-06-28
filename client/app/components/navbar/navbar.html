@@ -7,7 +7,7 @@
 </div>
 <div class="top-nav visible-md visible-lg">
     <ul class="nav top-menu top-nav-buttons">
-        <li id="navbar-upload-button">
+        <li id="navbar-upload-button" ng-show="$root.currentUser">
             <a ui-sref="root.upload">
                 <i class="fa fa-cloud-upload"></i>
                 <span>Upload</span>

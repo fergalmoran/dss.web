@@ -1,0 +1,37 @@
+<div class="panel">
+    <div class="panel-heading">
+        Comments
+    </div>
+    <div class="panel-body">
+        <ul class="media-list media-feed media-feed-hover">
+            <li>
+                <section class="panel">
+                    <form>
+                        <textarea placeholder="Rate me, validate me, trash me?" rows="2"
+                                  class="form-control input-lg p-text-area" ng-model="newComment">
+                        </textarea>
+                    </form>
+                    <footer class="panel-footer" style="height: 64px;">
+                        <button class="btn btn-danger pull-right" ng-click="postComment()" >Post</button>
+                    </footer>
+                </section>
+            </li>
+            <li ng-repeat="comment in comments" ng-animate="'animate'" class="media"><a class="pull-left"><img ng-src="{{comment.avatar_image}}" alt="{{comment.user.display_name}}" class="img-circle user-profile-insert-medium"/></a>
+                <div class="media-body">
+                    <p class="push-bit">
+                        <span class="text-muted pull-right">
+                            <small>{{comment.date_created|humanise}}</small>
+                        </span>
+                        <strong><a ui-sref="root.user({user: comment.slug})">{{comment.display_name}}</a> commented.</strong>
+                    </p>
+                    <p>{{comment.comment}}</p>
+                    <p ng-if="comment.can_edit">
+                        <a ng-click="deleteComment(comment)" class="btn btn-xs btn-default">
+                            <i class="fa fa-remove"></i> Delete
+                        </a>
+                    </p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
