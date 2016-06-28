@@ -1,0 +1,22 @@
+<div class="row mix-audio-container">
+    <div id="mix-audio-container" class="col-md-12">
+        <dss-audio-player template="directives/audio/audio.player.html"></dss-audio-player>
+    </div>
+</div>
+<hr />
+<div class="row">
+    <div class="col-sm-6">
+        <section class="panel">
+            <header class="panel-heading">
+                {{mix.title}}
+            </header>
+            <div class="panel-body">
+                <span ng-bind-html="mix.description | dssHtml"></span>
+
+            </div>
+        </section>
+    </div>
+    <div class="col-sm-6">
+        <dss-comments></dss-comments>
+    </div>
+</div>
