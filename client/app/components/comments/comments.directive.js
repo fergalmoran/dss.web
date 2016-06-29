@@ -32,7 +32,7 @@ angular.module('dssWebApp')
                     var dlg = dialogs.create('app/dialogs/confirm/confirmDialog.html', 'confirmDialogCtrl', {
                         title: 'You sure chief?',
                         body: 'Delete this comment?'
-                    });
+                    }, { size: "sm"});
                     dlg.result.then(function (result) {
                         if (result) {
                             CommentModel.destroy(comment.id).then(function (item) {
