@@ -32,20 +32,19 @@ angular.module('dssWebApp')
             'Z'
         ];
         console.log($stateParams);
-        if ($stateParams.initial !== undefined){
+        if ($stateParams.initial !== undefined) {
             $scope.currentInitial = $stateParams.initial;
-        }else{
+        } else {
             $scope.currentInitial = '';
-        }
-        /*
-        $scope.page = 1;
+            $scope.page = 1;
 
-        $scope.nextPage = function (e) {
-            $scope.page++;
-            UserModel.findAll({
-                page: $scope.page,
-                limit: 3
-            });
-        };
-        UserModel.bindAll(null, $scope, 'users');*/
+            $scope.nextPage = function (e) {
+                $scope.page++;
+                UserModel.findAll({
+                    page: $scope.page,
+                    limit: 3
+                });
+            };
+            UserModel.bindAll(null, $scope, 'users');
+        }
     });
