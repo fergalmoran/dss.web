@@ -9,7 +9,7 @@ angular.module('dssWebApp')
 
             $scope.waveformHeader =
                 "<i class='fa fa-spinner fa-spin'></i>" +
-                "Generating waveform, we'll try to let you know when it's done or send you an email.";
+                "Processing your mix, please wait (this could take a few minutes).";
             $scope.waveformFooter = '';
 
             $scope.sending = false;
