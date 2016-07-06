@@ -15,15 +15,15 @@ angular.module('dssWebApp', [
     'infinite-scroll',
     'angularFileUpload',
     'angulartics',
-    'ngClipboard',
     'angular-jwt',
     'angular-smilies',
     'satellizer',
     'toastr',
+    'ngclipboard',
     'angulartics.google.analytics'
 ])
     .config(function ($stateProvider, $sceDelegateProvider, $httpProvider, $urlRouterProvider, $locationProvider, $provide, $authProvider,
-                      ngClipProvider, $analyticsProvider, dialogsProvider, DSProvider, DSHttpAdapterProvider,
+                      $analyticsProvider, dialogsProvider, DSProvider, DSHttpAdapterProvider,
                       SERVER_CONFIG, STORAGE) {
         $urlRouterProvider
             .otherwise('/');
@@ -59,7 +59,6 @@ angular.module('dssWebApp', [
             redirectUri: window.location.origin + '/',
             url: '/_a/?backend=google'
         });
-        ngClipProvider.setPath("bower_components/zeroclipboard/dist/ZeroClipboard.swf");
 
         $analyticsProvider.firstPageview(true);
         $analyticsProvider.withAutoBase(true);

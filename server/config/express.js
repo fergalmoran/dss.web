@@ -21,6 +21,7 @@ module.exports = function (app) {
     app.set('views', config.root + '/server/views');
     app.set('apiUrl', config.apiUrl);
     app.set('radioUrl', config.radioUrl);
+    app.set('podcastUrl', config.podcastUrl);
     app.set('view engine', 'jade');
     app.use(compression());
     app.use(bodyParser.urlencoded({extended: false}));

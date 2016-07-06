@@ -1,9 +1,10 @@
 'use strict';
 
 angular.module('dssWebApp')
-    .controller('UserItemCtrl', function ($scope, UserModel, MixModel, user, logger) {
+    .controller('UserItemCtrl', function ($scope, UserModel, MixModel, SERVER_CONFIG, user, logger) {
         logger.logSuccess('UserItemCtrl', $scope);
         $scope.user = user;
+        $scope.userPodcastUrl = SERVER_CONFIG.podcastUrl + '/' + user.slug;
         function _getMixes (ordering) {
             $scope.mixTitle = "Latest";
             MixModel.findAll({

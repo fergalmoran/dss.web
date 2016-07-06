@@ -13,6 +13,7 @@ angular.module('dssWebApp')
         $scope.isActive = function (route) {
             return route === $location.path();
         };
+        $scope.podcastUrl = SERVER_CONFIG.podcastUrl;
 
         $scope.showActivityArea = function () {
             $scope.activityAreaOpen = true;

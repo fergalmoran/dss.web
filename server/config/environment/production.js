@@ -22,5 +22,6 @@ module.exports = {
     },
     redisHost: 'redis',
     apiUrl: process.env.API_URL,
-    radioUrl: process.env.RADIO_URL
+    radioUrl: process.env.RADIO_URL,
+    podcastUrl: process.env.PODCAST_URL
 };
