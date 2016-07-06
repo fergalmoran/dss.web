@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('dssWebApp')
-    .controller('UserEditCtrl', function ($scope, $http, $q, SERVER_CONFIG, UserModel, user, logger) {
+    .controller('UserEditCtrl', function ($scope, $http, $q, SERVER_CONFIG, UserModel, user) {
         console.log('Editing user', user);
         $scope.sharing_options = [
             {'abbr': 'Plays', 'power': 0},
@@ -18,6 +18,9 @@ angular.module('dssWebApp')
             slugChanging: false,
             slugError: false
         };
+
+        $scope.podcastUrlFavourites = SERVER_CONFIG.podcastUrl + "/" + $scope.vm.user.uid + "/favourites";
+        $scope.podcastUrlFollowing = SERVER_CONFIG.podcastUrl + "/" + $scope.vm.user.uid + "/following";
 
         $scope.$on('$locationChangeStart', function (event) {
             updateUser();
@@ -78,4 +81,8 @@ angular.module('dssWebApp')
                     console.log('Error saving user: ', error);
                 });
         }
+        $('#settings-tab a').click(function (e) {
+            e.preventDefault();
+            $(this).tab('show');
+        })
     });

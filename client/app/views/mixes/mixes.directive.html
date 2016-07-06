@@ -45,6 +45,13 @@
                            ng-style="{'color': mix.is_liked ? 'red' : ''}">
                         </i>
                     </button>
+                    <button ng-click="toggleFavourite()" type="button" class="btn"
+                            uib-tooltip="{{mix.is_favourited ? 'Remove from favourites' : 'Add to favourites'}}">
+                        <i class="fa fa-2x"
+                           ng-class="mix.is_favourited ? 'fa-minus-square' : 'fa-plus-square-o'"
+                           ng-style="{'color': mix.is_favourited ? 'red' : ''}">
+                        </i>
+                    </button>
                 </div>
             </div>
         </div>

@@ -46,7 +46,15 @@
                        ng-class="mix.is_liked ? 'btn-danger' : 'btn-success'"
                        uib-tooltip="{{mix.is_liked ? 'Unlike' : 'Like'}}"
                        class="btn btn-alt btn-sm btn-default">
-                        <i class="fa fa-heart"></i>{{ mix.likes.length }}
+                        <i class="fa fa-heart"></i>&nbsp;{{ mix.likes.length }}
+                    </a>
+                </div>
+                <div class="btn-group btn-group-xs" ng-show="$root.currentUser">
+                    <a ng-click="toggleFavourite()"
+                       ng-class="mix.is_favourited? 'btn-danger' : 'btn-success'"
+                       uib-tooltip="{{mix.is_favourited ? 'Remove from favourites' : 'Add to favourites'}}"
+                       class="btn btn-alt btn-sm btn-default">
+                        <i class="fa" ng-class="mix.is_favourited ? 'fa-minus-square' : 'fa-plus-square-o'"></i>&nbsp;{{ mix.favourites.length }}
                     </a>
                 </div>
                 <div class="audio-actions-button-bar btn-group btn-group-xs" ng-if="mix.can_edit">

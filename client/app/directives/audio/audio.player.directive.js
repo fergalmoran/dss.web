@@ -87,6 +87,17 @@ angular.module('dssWebApp')
                     }
                     MixModel.save($scope.mix.slug);
                 };
+                $scope.toggleFavourite = function () {
+                    if ($scope.mix.is_favourited) {
+                        console.log("Here");
+                        _.remove($scope.mix.favourites, function (n) {
+                            return n.slug === $rootScope.currentUser.slug;
+                        });
+                    } else {
+                        $scope.mix.favourites.push({slug: $rootScope.currentUser.slug});
+                    }
+                    MixModel.save($scope.mix.slug);
+                };
                 $scope.play = function (event) {
                     switch ($scope.playState) {
                         case PLAYSTATES.playing:

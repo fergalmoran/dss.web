@@ -30,6 +30,7 @@ module.exports = function (app) {
             console.log('Sending config');
             res.send(JSON.stringify({
                 apiUrl: app.get('apiUrl'),
+                podcastUrl: app.get('podcastUrl'),
                 radioUrl: app.get('radioUrl')
             }));
         });
