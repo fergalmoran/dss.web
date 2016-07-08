@@ -2,7 +2,6 @@
   "name": "dssweb",
   "version": "0.0.0",
   "dependencies": {
-    "SoundManager2": "soundmanager#*",
     "angular": "~1.4.3",
     "angular-animate": "*",
     "angular-bootstrap": "~0.14.3",
