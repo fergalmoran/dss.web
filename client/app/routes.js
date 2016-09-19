@@ -100,10 +100,16 @@ angular.module('dssWebApp')
                 }
             })
             .state('root.users', {
-                url: 'users',
+                url: 'users?initial=:i',
                 resolve: {
                     users: function ($stateParams, UserModel) {
-                        return UserModel.findAll();
+                        if ($stateParams.initial === undefined) {
+                            return UserModel.findAll();
+                        } else {
+                            return UserModel.findAll({
+                                initial: $stateParams.initial
+                            });
+                        }
                     }
                 },
                 views: {
