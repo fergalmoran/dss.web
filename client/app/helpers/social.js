@@ -1,5 +1,7 @@
 var helpers = helpers || {};
-function _getLink(url){
+function _getLink(url) {
+    if (url.startsWith('http'))
+        return url;
     return window.location.protocol + "//" + (window.location.host + '/' + url).replace(/([^:]\/)\/+/g, '$1');
 }
 
@@ -34,7 +36,7 @@ helpers.social = {
             }
         });
     },
-    postToTwitter: function(mix){
+    postToTwitter: function (mix) {
         var url = "http://" + window.location.host + "/mixes/" + mix.slug;
         var text = mix.title;
         window.open("http://twitter.com/share?url=#{url}&amp;text={#text}", "twitterwindow", "height=450, width=550, top=" +
