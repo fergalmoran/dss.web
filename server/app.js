@@ -8,12 +8,13 @@
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 var express = require('express');
+var session = require('express-session');
 var config = require('./config/environment');
+ 
 // Setup server
 var app = express();
-
 var cookieParser = require('cookie-parser');
-var session = require('cookie-session');
+var cookieSession = require('cookie-session');
 
 var server = require('http').createServer(app);
 var socketio = require('socket.io')(server, {
@@ -31,7 +32,10 @@ app.engine('mustache', mustacheExpress());
 app.set('view engine', 'mustache');
 app.set('views', __dirname + '/views');
 app.use(cookieParser);
-app.use(session);
+app.use(cookieSession({
+    domain: 'www.deepsouthsounds.com',
+    keys: ['key1', 'key2'],
+}));
 
 // Start server
 server.listen(config.port, config.ip, function () {

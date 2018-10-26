@@ -13,7 +13,9 @@
                 <a ui-sref="root.user({user: mix.user.slug})">{{mix.user.display_name}}</a>
             </div>
             <div class="pull-right">
-                <dss-playlist></dss-playlist>
+                <div class="btn-group" ng-show="$root.currentUser">
+                    <dss-playlist mix="mix" dss-class="btn-default btn-xs"></dss-playlist>
+                </div>
                 <div class="audio-actions-button-bar btn-group btn-group-xs">
                     <button ng-click="shareEmbed()" class="btn btn-small" uib-tooltip="Get embed codes">
                         <i class="fa fa-wordpress blue"></i>
@@ -30,7 +32,7 @@
                         <i class="fa fa-play-circle"></i>
                         {{ mix.plays.length }}
                     </button>
-                    <button ng-show="$root.currentUser && mix.is_downloadable" ng-click="downloadFile()"
+                    <button ng-show="mix.is_downloadable" ng-click="downloadFile()"
                             uib-tooltip="Download"
                             class="btn btn-sm">
                         <i class="fa fa-download"></i>
@@ -55,12 +57,13 @@
                        ng-class="mix.is_favourited? 'btn-danger' : 'btn-success'"
                        uib-tooltip="{{mix.is_favourited ? 'Remove from favourites' : 'Add to favourites'}}"
                        class="btn btn-alt btn-sm btn-default">
-                        <i class="fa" ng-class="mix.is_favourited ? 'fa-minus-square' : 'fa-plus-square-o'"></i>&nbsp;{{ mix.favourites.length }}
+                        <i class="fa" ng-class="mix.is_favourited ? 'fa-minus-square' : 'fa-plus-square-o'"></i>&nbsp;{{
+                        mix.favourites.length }}
                     </a>
                 </div>
                 <div class="audio-actions-button-bar btn-group btn-group-xs" ng-if="mix.can_edit">
                     <button ng-click="editMix(mix)" class="btn btn-small btn-success"><i
-                            class="fa fa-pencil-square-o"></i>Edit
+                        class="fa fa-pencil-square-o"></i>Edit
                     </button>
                     <button ng-click="deleteMix(mix)" class="btn btn-small btn-danger"><i class="fa fa-times"></i>Delete
                     </button>

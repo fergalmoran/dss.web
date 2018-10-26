@@ -1,6 +1,6 @@
 #FROM digitallyseamless/nodejs-bower-grunt-runtime
 
-FROM fergalmoran/node
+FROM node
 
 ENV NODE_ENV production
 
