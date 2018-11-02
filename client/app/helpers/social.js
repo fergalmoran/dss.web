@@ -7,7 +7,7 @@ function _getLink(url) {
 
 if (FB) {
     FB.init({
-        appId: '154504534677009',
+        appId: '344996219591469',
         status: true,
         cookie: true,
         xfbml: true,

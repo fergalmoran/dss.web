@@ -10,7 +10,7 @@ process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 var express = require('express');
 var session = require('express-session');
 var config = require('./config/environment');
- 
+
 // Setup server
 var app = express();
 var cookieParser = require('cookie-parser');
@@ -26,8 +26,8 @@ require('./config/express')(app);
 require('./routes')(app);
 
 
-var mustacheExpress = require('mustache-express');
-app.engine('mustache', mustacheExpress());
+// var mustacheExpress = require('mustache-express');
+// app.engine('mustache', mustacheExpress());
 
 app.set('view engine', 'mustache');
 app.set('views', __dirname + '/views');

@@ -2,15 +2,16 @@
 <a ui-sref="root" class="logo visible-md visible-lg">Deep<span>South</span>Sounds</a>
 <div class="nav notify-row" id="top_menu">
     <ul class="nav top-menu" ng-show="$root.currentUser">
-        <dss-notifications />
+        <dss-notifications/>
     </ul>
 </div>
 <div class="top-nav visible-md visible-lg">
     <ul class="nav top-menu top-nav-buttons">
         <li id="navbar-upload-button" ng-show="$root.currentUser">
-            <a ui-sref="root.upload">
+            <!--<a ui-sref="root.upload">-->
+            <a href="#">
                 <i class="fa fa-cloud-upload"></i>
-                <span>Upload</span>
+                <span>Uploads disabled</span>
             </a>
         </li>
         <li id="navbar-users-button">

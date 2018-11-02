@@ -38,11 +38,6 @@
                         <i class="fa fa-download"></i>
                         {{ mix.downloads.length }}
                     </button>
-                    <button ng-show="!$root.currentUser && mix.is_downloadable" uib-tooltip="Login to download"
-                            ng-click="login()" class="btn btn-sm">
-                        <i class="fa fa-download"></i>
-                        {{ mix.downloads.length }}
-                    </button>
                 </div>
                 <div class="audio-actions-button-bar btn-group btn-group-xs" ng-show="$root.currentUser">
                     <a ng-click="toggleLike()"

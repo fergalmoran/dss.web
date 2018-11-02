@@ -13,7 +13,6 @@ angular.module('dssWebApp', [
     'ui.select',
     'dialogs.main',
     'infinite-scroll',
-    'angularFileUpload',
     'angulartics',
     'angular-jwt',
     'angular-smilies',
@@ -40,7 +39,7 @@ angular.module('dssWebApp', [
         $authProvider.facebook({
             name: 'facebook',
             url: '/_a/?backend=facebook',
-            clientId: '154504534677009',
+            clientId: '344996219591469',
             authorizationEndpoint: 'https://www.facebook.com/v2.5/dialog/oauth',
             redirectUri: window.location.origin + '/',
             requiredUrlParams: ['display', 'scope'],
